@@ -9,20 +9,125 @@
 
 #### Getting Started with Powershell
 
+- Run as admin
+
 - Check and change the Powershell execution policy;
+
+  - what is execution policy?
+
+    It's designed to prevent a user from unknowingly running a script. Two types: Remote Signed & Restricted; Regardless of the execution policy setting, any PowerShell command can be run interactively. The execution policy only affects commands running in a **script**. 
+
+  - Related codes:
+
+    ```powershell
+    Get-ExecutionPolicy
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+    ```
+
+- Related stuffs
+
+  - [about_Automatic_Variables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables): Describes variables that store state information for PowerShell. These variables are created and maintained by PowerShell.
+  - [about_Hash_Tables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_hash_tables): Describes how to create, use, and sort hash tables in PowerShell.
+  - [about_Execution_Policies](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies): Describes the PowerShell execution policies and explains how to manage them.
 
 #### Helping Systems
 
 - cmdlets: **Compiled commands**  in PowerShell are called cmdlets. Cmdlet is pronounced "command-let" (not CMD-let). Cmdlets names have the form of singular **"Verb-Noun"**  commands to make them easily discoverable. 
 - Three core cmdlets:
   - Get-Help:
-    - Use and locate commands;
+    - How to use and locate commands (can be used to find commands that don't have help topics); Example:
+    
+      ```powershell
+      Get-Help -Name Get-Help
+      Get-Help -Name Get-Help -Full
+      ```
+    
+      (The **Full** parameter is a switch parameter. A parameter that doesn't require a value is called a switch parameter. )
+    
     - Six sets of parameters;
-    - Use help which provides one page of help at a time instead of using Get-Help;
-    - Support wildcards, such as help about_* ;
+    
+      - NAME
+      - SYNOPSIS
+      - SYNTAX
+      - DESCRIPTION
+      - PARAMETERS
+      - INPUTS
+      - OUTPUTS
+      - NOTES
+      - EXAMPLES
+      - RELATED LINKS
+    
+    - Use `help` which provides one page of help at a time instead of using Get-Help:
+    
+      ```powershell
+      Get-Help -Name Get-Help -Full
+      help -Name Get-Help -Full
+      help Get-Help -Full
+      ```
+    
+      `Help` is a function that **pipes** `Get-Help` to a function named `more` ;  
+    
+      **Name** is a positional parameter and it's being used positionally in that example. This means the value can be specified without specifying the parameter name
+    
+      ```powershell
+      help Get-Help -Parameter Name
+      ```
+    
+      Don't display the entire help topic for a command:
+    
+      ```powershell
+      Get-Help -Name Get-Command -Full
+      Get-Help -Name Get-Command -Detailed
+      Get-Help -Name Get-Command -Examples
+      Get-Help -Name Get-Command -Online
+      Get-Help -Name Get-Command -Parameter Noun
+      Get-Help -Name Get-Command -ShowWindow
+      ```
+    
+      or
+    
+      ```powershell
+      help Get-Command -Full | Out-GridView
+      ```
+    
+      
+    
+    - Support wildcards
+    
+      ```powershell
+      help *process*
+      help process
+      ```
+    
+      
   - Get-Command
-    - To locate commands;
+    - To **locate** commands;
+    
+       use the `Get-Command` cmdlet to determine what commands exist for working with processes
+    
+      ```powershell
+      Get-Command -Noun Process
+      ```
+    
+      
+    
     - Accept wildcards;
+    
+    - Periodically update the help system
+    
+      ```powershell
+      Update-Help
+      ```
+    
+    - Learn a PowerShell command a day
+    
+      ```powershell
+      Get-Command | Get-Random | Get-Help -Full
+      ```
+    
+      
+    
+  - Get-Member
 
 #### Objects, properties, and methods
 
