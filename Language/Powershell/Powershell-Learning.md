@@ -134,7 +134,7 @@
 
   A **property** is a characteristic about an item. Your drivers license has a property called eye color and the most common values for that property are blue and brown. A **method** is an action that can be taken on an item.
 
-- The Get-Service cmdlet gets **objects**  that represent the services on a computer, including running and stopped services.  Example:
+- The [Get-Service](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-service?view=powershell-7.1) cmdlet gets **objects**  that represent the services on a computer, including running and stopped services.  Example:
 
   ```powershell
   Get-Service -Name w32time
@@ -155,7 +155,7 @@
 
   
 
-- Get-Member: discover what **objects, properties, and methods**  are available for commands; `Get-Member` function displays what types of object was returned. Use this type and `Get-Command` to find commands that accept that type of **objects** as input. Example:
+- [Get-Member](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-member?view=powershell-7.1): discover what **objects, properties, and methods**  are available for commands <Gets the properties and methods of objects.\> ; `Get-Member` function displays what types of object was returned. Use this type and `Get-Command` to find commands that accept that type of **objects** as input. Example:
 
   ````powershell
   Get-Service -Name w32time | Get-Member
