@@ -99,7 +99,6 @@
       help process
       ```
     
-      
   - Get-Command
     - To **locate** commands;
     
@@ -131,17 +130,51 @@
 
 #### Objects, properties, and methods
 
-- The Get-Service cmdlet gets **objects**  that represent the services on a computer, including running and stopped services. 
+-  what is properties and methods?
 
-- Get-Member:discover what **objects, properties, and methods**  are available for commands;
+  A **property** is a characteristic about an item. Your drivers license has a property called eye color and the most common values for that property are blue and brown. A **method** is an action that can be taken on an item.
 
-- I rarely find myself using methods, but they're something you need to be aware of. There are times that you'll come across a Get-* command without a corresponding command to modify that item.
+- The Get-Service cmdlet gets **objects**  that represent the services on a computer, including running and stopped services.  Example:
 
-- Active Directory (
+  ```powershell
+  Get-Service -Name w32time
+  
+  Status   Name               DisplayName
+  ------   ----               -----------
+  Running  w32time            Windows Time
+  ```
 
-  skipped
+  Status, Name, and DisplayName are examples of properties.
 
-  ).
+  Select-Object cmdlet can be used to determine what properties you want to show
+
+  ```powershell
+  Get-Service -Name w32time | Select-Object -Property *
+  Get-Service -Name w32time | Select-Object -Property Status, Name, DisplayName, ServiceType
+  ```
+
+  
+
+- Get-Member: discover what **objects, properties, and methods**  are available for commands; `Get-Member` function displays what types of object was returned. Use this type and `Get-Command` to find commands that accept that type of **objects** as input. Example:
+
+  ````powershell
+  Get-Service -Name w32time | Get-Member
+  Get-Command -ParameterType ServiceController
+  ````
+
+  
+
+- > I rarely find myself using methods: A better option is to use a cmdlet to perform the action if one exists. But one of the benefits of using a cmdlet is that many times **the cmdlet offers additional functionality that isn't available with a method.** In the previous example, the PassThru parameter was used. This causes a cmdlet that doesn't normally produce output, to produce output. 
+
+  Example:
+
+  ```powershell
+  Get-Service -Name w32time | Start-Service -PassThru
+  ```
+
+  If a command does not produce output, it can't be piped to Get-Member. 
+
+- Active Directory (skipped).
 
   - Run as administrator in PowerShell: 
 
