@@ -184,17 +184,59 @@ PS> Start-Process powershell -Verb runAs
 
 #### Pipeline
 
-- Many programming and scripting languages require a semicolon at the end of each line. While they can be used that way in PowerShell, it's not recommended because they're not needed.
-- Filtering left: the orders of commands matter.
-- Which parameters of one command accept some certain types of input? When a parameter accepts pipeline input by both property name and by value, it always tries **by value** first. If **by value** fails, then it tries **by property name**. **By value** is a little misleading, prefer to call it **by type**.
+- Many programming and scripting languages require a semicolon at the end of each line. While they can be used that way in PowerShell, it's **not recommended** because they're not needed. JUST PIPE SYMBOL
+
+  ```powershell
+  Get-Service |
+    Where-Object CanPauseAndContinue -eq $true |
+      Select-Object -Property *
+  ```
+
+  
+
+- **Filtering left**: the orders of commands matter.
+
+- Which parameters of one command accept some certain types of input? When a parameter accepts pipeline input by both property name and by value, it always tries **by value** first. If **by value** fails, then it tries **by property name**. **By value** is a little misleading, prefer to call it **by type**. -Confused
+
 - In PowerShell, you should always use single quotes instead of double quotes unless the contents of the quoted string contains a variable that needs to be expanded to its actual value. 
-- In lineuping properties, Select-Object can be used to rename (modify) a property.
+
+- Create a custom object. Example: The contents of the CustomObject variable is a PSCustomObject object type and it contains a property named Name.
+
+  ```powershell
+  $CustomObject = [pscustomobject]@{
+   Name = 'w32time'
+   }
+  ```
+
+  
+
+- In lineuping properties, Select-Object can be used to **rename (modify) a property**.
 
 ```
 $CustomObject | 
   Select-Object -Property @{name='Name';expression={$_.Service}} | 
     Stop-Service
 ```
+
+- How to use a parameter that does not accept pipeline input?
+
+```powershell
+# save the display name for a couple of Windows services into a text
+'Background Intelligent Transfer Service', 'Windows Time' |
+Out-File -FilePath $env:TEMP\services.txt
+
+Stop-Service -DisplayName (Get-Content -Path $env:TEMP\services.txt)
+```
+
+- PowerShellGet: PowerShellGet is a PowerShell **module** that contains commands for discovering, installing, publishing, and updating PowerShell modules (and other artifacts) **to or from a NuGet repository**.
+
+- Find-Module: find a module in the [PowerShell Gallery](https://www.powershellgallery.com/). And to install the module, pipe the commands to Install-Module:
+
+  ```powershell
+  Find-Module -Name MrToolkit | Install-Module
+  ```
+
+  
 
 #### Formatting, aliases, providers, comparison
 
