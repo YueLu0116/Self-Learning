@@ -2,7 +2,7 @@
 
 starts from 2021-03-25
 
-### Mar.25th, 2021
+### Mar. 25th, 2021
 
 - Multimedia
 
@@ -29,7 +29,7 @@ starts from 2021-03-25
   6. 【Q&A】[ssh-config 编写](https://thucnc.medium.com/how-to-specify-different-ssh-keys-for-git-push-for-a-given-domain-bef56639dc02)
 
 
-### Mar.26th, 2021
+### Mar. 26th, 2021
 
 - CMake
 
@@ -43,7 +43,7 @@ starts from 2021-03-25
 4. 【reference】[Async/Await - Best Practices in Asynchronous Programming](https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming)
   5. 【reference】[unit test](https://docs.microsoft.com/en-us/visualstudio/test/walkthrough-creating-and-running-unit-tests-for-managed-code?view=vs-2019)；
 
-### Mar.28th, 2021
+### Mar. 28th, 2021
 
 - git
   1. 【reference】[Git Tools - Submodules](http://git-scm.com/book/en/v2/Git-Tools-Submodules);
@@ -59,3 +59,44 @@ starts from 2021-03-25
   5. 【reference】[USING HTTPCOMPLETIONOPTION TO IMPROVE HTTPCLIENT PERFORMANCE IN .NET](https://www.stevejgordon.co.uk/using-httpcompletionoption-responseheadersread-to-improve-httpclient-performance-dotnet)
   6. 【reference】[c#断点续传参考](https://www.cnblogs.com/sparkdev/p/6141539.html)
 
+### Mar. 29th, 2021
+
+- csharp
+
+  1. 【reference】[partial class](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods)
+  2. 【reference】[static method](https://www.c-sharpcorner.com/UploadFile/abhikumarvatsa/static-methods-in-C-Sharp/#:~:text=A%20static%20method%20in%20C%23,the%20method%20and%20its%20data)
+
+
+### Mar.31th, 2021
+
+- git
+
+  1. 【Q&A】[how to write gitignore file](https://git-scm.com/docs/gitignore)
+
+  2. 【Q&A】[github gitignore file resource](https://docs.github.com/en/github/getting-started-with-github/ignoring-files)
+
+     > If you want to ignore a file that is already checked in, you must untrack the file before you add a rule to ignore it. From your terminal, untrack the file.
+
+  3. 【Q&A】[how to handle information from git bash: "please enter a commit message to explain why this merge is necessary"](https://stackoverflow.com/questions/19085807/please-enter-a-commit-message-to-explain-why-this-merge-is-necessary-especially)
+
+- csharp
+
+  1. 【reference】[c# Google style guide](https://google.github.io/styleguide/csharp-style.html)
+  2. 【reference】[c# coding conventions from microsoft](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions)
+  3. 【Q&A】[how to quit a console window application?](https://docs.microsoft.com/en-us/dotnet/api/system.environment.exit?view=net-5.0)
+  4. 【Q&A】[what is the command to exit a console application in c#?](https://stackoverflow.com/questions/10286056/what-is-the-command-to-exit-a-console-application-in-c)
+  5. 【reference】[fire and forget in c#](https://stackoverflow.com/questions/1018610/simplest-way-to-do-a-fire-and-forget-method-in-c)
+
+- CMake
+
+  1. 【reference】[An introduction to morden CMake](https://cliutils.gitlab.io/modern-cmake/)
+
+- multimedia
+
+  1. 【tools】[SDL](https://www.libsdl.org/)
+
+     > Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D. 
+
+  2. 【reading】[The Hitchhiker's Guide to the Galaxy.](https://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker%27s_Guide_to_the_Galaxy#Answer_to_the_Ultimate_Question_of_Life.2C_the_Universe.2C_and_Everything_.2842.29)
+
+  

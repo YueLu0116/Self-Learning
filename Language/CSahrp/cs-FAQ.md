@@ -123,3 +123,6 @@ class TestAuthorAttribute
        P. Ackerman, version 1.00   
 */
 ```
+
+#### How to **correctly** use Reader-Writer lock
+
