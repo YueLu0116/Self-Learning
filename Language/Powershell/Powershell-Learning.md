@@ -42,7 +42,7 @@
       Get-Help -Name Get-Help -Full
       ```
     
-      (The **Full** parameter is a switch parameter. A parameter that doesn't require a value is called a switch parameter. )
+      (The **Full** parameter is a **switch parameter**. A parameter that doesn't require a value is called a switch parameter. )
     
     - Six sets of parameters;
     
@@ -67,7 +67,7 @@
     
       `Help` is a function that **pipes** `Get-Help` to a function named `more` ;  
     
-      **Name** is a positional parameter and it's being used positionally in that example. This means the value can be specified without specifying the parameter name
+      **Name** is a **positional parameter** and it's being used positionally in that example. This means the value can be specified without specifying the parameter name
     
       ```powershell
       help Get-Help -Parameter Name
@@ -200,7 +200,7 @@ PS> Start-Process powershell -Verb runAs
 
 - In PowerShell, you should always use single quotes instead of double quotes unless the contents of the quoted string contains a variable that needs to be expanded to its actual value. 
 
-- Create a custom object. Example: The contents of the CustomObject variable is a PSCustomObject object type and it contains a property named Name.
+- **Create a custom object**. Example: The contents of the CustomObject variable is a PSCustomObject object type and it contains a property named Name.
 
   ```powershell
   $CustomObject = [pscustomobject]@{
