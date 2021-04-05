@@ -61,3 +61,5 @@
 [Scott Logic Blog](https://blog.scottlogic.com/)
 
 [Comeau C++ and C FAQ](https://web.archive.org/web/20181115023158/http://www.comeaucomputing.com/techtalk/#top)
+
+[google ai bolg](https://ai.googleblog.com/)
