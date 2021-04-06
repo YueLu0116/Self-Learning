@@ -240,9 +240,35 @@ Stop-Service -DisplayName (Get-Content -Path $env:TEMP\services.txt)
 
 #### Formatting, aliases, providers, comparison
 
-- Format-List and Format-Table formatting the outputs. ( produce format objects);
-- Get-Alias -Name gcm, gm and Get-Alias -Definition Get-Command, Get-Member ;
-- A **provider**  in PowerShell is an interface that allows **file system**  like access to a datastore.( Get-PSProvider and Get-PSDrive );
-- [Comparison operators](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/05-formatting-aliases-providers-comparison?view=powershell-7.1#comparison-operators);
+- `Format-List` and `Format-Table` formatting the outputs. ( **produce format objects**);
+
+  Example:
+
+  ```powershell
+  Get-Service -Name w32time | Format-List | Get-Member
+  ```
+
+  
+
+- Get-Alias:
+
+  Example:
+
+  ```powershell
+  # find alias
+  Get-Alias -Name gcm
+  # find alias for a command
+  Get-Alias -Definition Get-Command, Get-Member
+  ```
+
+  
+
+- A **provider**  in PowerShell is an **interface** that allows **file system**  like access to a datastore.( `Get-PSProvider`) ; The actual drives that these providers use to expose their datastore can be determined with the `Get-PSDrive` cmdlet. (skip)
+
+- Comparison Operators table:
+
+  <img src="./images/comparison-operator-table.PNG" alt="Comparison Operator Table" style="zoom:50%;" />
+
+  - > All of the operators listed in the Table are case-insensitive. Place a c in front of the operator listed in the Table to make it case-sensitive. For example, -ceq is the case-sensitive version of the -eq comparison operator.
 
 #### Flow
