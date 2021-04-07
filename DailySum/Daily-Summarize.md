@@ -253,3 +253,62 @@ starts from 2021-03-25
 - Widgets
   1. [Online Reading](https://q.mimicrylabs.com/)
   2. [justcc linux](https://justcc.mengkang.net/#/)
+
+### Apr. 8th, 2021
+
+- linux
+
+  1. 【reference】[cat command](https://www.geeksforgeeks.org/cat-command-in-linux-with-examples/);
+
+  2. 【Q&A & TODO】[what is the difference between select and poll?](https://stackoverflow.com/questions/970979/what-are-the-differences-between-poll-and-select)
+
+  3. 【reference】[GNU manuals online](https://www.gnu.org/manual/manual.html);
+
+  4. 【reference】[gcc参数详解](https://www.runoob.com/w3cnote/gcc-parameter-detail.html);
+
+  5. 【reference】[configure, make, and make install](https://www.cnblogs.com/tinywan/p/7230039.html);
+
+     > 在Linux下安装一个应用程序时，一般先运行脚本configure，然后用make来编译源程序，在运行make install，最后运行make clean删除一些临时文件。
+
+- CMake
+
+  1. 【reference】[CMake install](https://blog.csdn.net/qq_38410730/article/details/102837401);
+
+- Csharp
+
+  1. 【Q&A】[what is lazy initialization?](https://docs.microsoft.com/en-us/dotnet/framework/performance/lazy-initialization)
+
+     > - Lazy initialization of an object means that its creation is deferred until it is first used.
+     >
+     > - You can also pass a delegate in the Lazy<T> constructor that invokes a specific constructor overload on the wrapped type at creation time
+     >
+     > - To implement a public property by using lazy initialization, define the backing field of the property as a Lazy<T>, and return the Value property from the get accessor of the property.
+
+  2. 【Q&A】[What is the difference between **`const`** and **`readonly`** in C#?](https://stackoverflow.com/questions/55984/what-is-the-difference-between-const-and-readonly-in-c)
+
+  3. 【reference】[Language Integrated Query (LINQ)](https://docs.microsoft.com/en-us/dotnet/csharp/linq/)
+
+     > Language-Integrated Query (LINQ) is the name for a set of technologies based on the integration of query capabilities directly into the C# language.
+
+  4. 【reference】[Lambda expressions](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions)
+
+     > - Any lambda expression can be converted to a delegate type.
+     >
+     > - Sometimes the compiler can't infer the types of input parameters. You can specify the types explicitly 
+
+  5. 【Q&A】[what is the difference between field, member, and properties?](https://stackoverflow.com/questions/2720142/programming-terms-field-member-properties-c)
+
+     > Often used as accessors to a private field of a class
+
+  6. 【reference】[Use ExtractToFile to override existing files](https://docs.microsoft.com/en-us/dotnet/api/system.io.compression.zipfileextensions.extracttofile?view=net-5.0).
+
+  7. 【reference】[delegates and lambdas](https://docs.microsoft.com/en-us/dotnet/standard/delegates-lambdas).
+
+     > - Action<> is used when there is a need to perform an action using the arguments of the delegate.
+     >
+     > - Func<> is used usually when you have a transformation on hand, that is, you need to transform the arguments of the delegate into a different result. 
+     >
+     > - Predicate<> is used when you need to determine if the argument satisfies the condition of the delegate.
+
+- reading
+  1. 【Q&A】[what is 101?](https://en.wikipedia.org/wiki/101_(topic))
