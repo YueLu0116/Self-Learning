@@ -272,3 +272,47 @@ Stop-Service -DisplayName (Get-Content -Path $env:TEMP\services.txt)
   - > All of the operators listed in the Table are case-insensitive. Place a c in front of the operator listed in the Table to make it case-sensitive. For example, -ceq is the case-sensitive version of the -eq comparison operator.
 
 #### Flow
+
+- `ForEach-Object` : iterate through items in a pipeline.
+
+  Example:
+
+  ```powershell
+  'ActiveDirectory', 'SQLServer' |
+     ForEach-Object {Get-Command -Module $_} |
+       Group-Object -Property ModuleName -NoElement |
+           Sort-Object -Property Count -Descending
+  ```
+
+- When using the `foreach` keyword, you must store all of the items in memory before iterating through them
+
+  Example:
+
+  ```powershell
+  $ComputerName = 'DC01', 'WEB01'
+  foreach ($Computer in $ComputerName) {
+    Get-ADComputer -Identity $Computer
+  }
+  ```
+
+- for loop
+
+  ```powershell
+  for ($i = 1; $i -lt 5; $i++){...}
+  ```
+
+- do-until loop
+
+  ```powershell
+  do{...}until(...)
+  ```
+
+- while loop
+
+  ```powershell
+  while(...){}
+  ```
+
+- key word: break, continue, Return
+
+  
