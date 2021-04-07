@@ -28,6 +28,8 @@
 
 ### Blogs and Articles
 
+[酷壳](https://coolshell.cn/)
+
 [Bolg of Jeff Atwood, the co-founder of StackOverflow](https://blog.codinghorror.com/);
 
 [Blog of Martin Fowler-Thoughtworks](https://martinfowler.com/);
@@ -63,3 +65,5 @@
 [Comeau C++ and C FAQ](https://web.archive.org/web/20181115023158/http://www.comeaucomputing.com/techtalk/#top)
 
 [google ai bolg](https://ai.googleblog.com/)
+
+[Microsoft research blog](https://www.microsoft.com/en-us/research/blog/)

@@ -187,3 +187,69 @@ starts from 2021-03-25
        DRI：Direct Responsible Individual，负责人；
        Risk Level，代表问题点的风险等级。
 
+### Apr. 6th, 2021
+
+- CMake:
+
+  1. 【Q&A】[What is the meaning of the keyword `PUBLIC`, `PRIVATE`, and `INTERFACE` related to CMake's `target_include_directories`?](https://stackoverflow.com/questions/26243169/cmake-target-include-directories-meaning-of-scope)
+
+  2. 【Q&A】[cmake：target_** 中的 PUBLIC，PRIVATE，INTERFACE](https://zhuanlan.zhihu.com/p/82244559)
+
+     > - PRIVATE: 生成 libhello-world.so时，只在 hello_world.c 中包含了 hello.h，[libhello-world.so](http://libhello-world.so/) 对外的头文件——hello_world.h 中不包含 hello.h。而且 main.c 不会调用 hello.c 中的函数，或者说 main.c 不知道 hello.c 的存在
+     > - INTERFACE：接口。生成 [libhello-world.so](http://libhello-world.so/) 时，只在[libhello-world.so](http://libhello-world.so/) 对外的头文件——hello_world.h 中包含 了 hello.h， hello_world.c 中不包含 hello.h，即 [libhello-world.so](http://libhello-world.so/) 不使用 [libhello.so](http://libhello.so/) 提供的功能，只使用 hello.h 中的某些信息，比如结构体。但是 main.c 需要使用 [libhello.so](http://libhello.so/) 中的功能。
+
+- C++
+
+  1. 【reference】[Fundamental types](https://en.cppreference.com/w/cpp/language/types)
+  2. 【Q&A】[Why doesn't C++ provide a "finally" construct?](https://www.stroustrup.com/bs_faq2.html#finally)
+  3. 【Q&A】[What is meant by Resource Acquisition is Initialization (RAII)?](https://stackoverflow.com/questions/2321511/what-is-meant-by-resource-acquisition-is-initialization-raii)
+  4. 【reference】[Resource acquisition is initialization](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization)
+
+- Windows
+
+  1. 【reference】[Miscellaneous Mouse Operations](https://docs.microsoft.com/en-us/windows/win32/learnwin32/other-mouse-operations)
+
+     > About mouse wheel:
+     >
+     > - If the user rotates the mouse wheel, the window with focus receives a WM_MOUSEWHEEL message. The wParam parameter of this message contains an integer value called the delta that measures how far the wheel was rotated. The delta uses arbitrary **units**, where 120 units is defined as the rotation needed to **perform one "action." **Of course, the definition of an action depends on your program. For example, if the mouse wheel is used to scroll text, each 120 units of rotation would scroll one line of text.
+     > - If the mouse wheel has a high resolution, the absolute value of the delta might be less than 120. In that case, if it makes sense for the action to occur in smaller increments, you can do so. For example, text could scroll by increments of less than one line. Otherwise, accumulate the total delta until the wheel rotates enough to perform the action. Store the unused delta in a variable, and when 120 units accumulate (either positive or negative), perform the action.
+
+- Reading
+
+  1. 【resource】[由苹果的低级BUG想到的](https://coolshell.cn/articles/11112.html)
+
+  2. 【resource】[container](https://medium.com/geekculture/introduction-to-containers-basics-of-containerization-bb60503df931)
+
+     > -  The operating system is the software that manages this hardware. OS consists of a system program known as the kernel, which is loaded in the memory when OS starts. The kernel is responsible for process management, CPU scheduling, file system & IO.
+     > - The software consists of a component called **Hypervisor** or Virtual Machine Manager. Hypervisor runs on top of this host OS. Users can launch their individual OSs using the hypervisor. These OSs are known as **guest OSs**. The guest OS then manages the virtual hardware created by the Hypervisor.
+     > - Virtual Machines are heavyweight & add to the system complexity. 
+     > - LXC (Linux Container) was the first implementation of containerization technology. It leveraged the Linux **cgroups and namespace** isolation to create light-weight containers. In fact, the initial version of Docker was directly built on top of LXC.
+     > - Containers don’t require the installation of a separate guest operating system. They directly **run and use the host operating system.** Containers only need the dependent file system and binaries for their functioning. 
+     > - An **image** is a binary file or a dependency to run an application.
+     > - Let’s assume that we want to run a python webserver. In this case, the python interpreter becomes its primary **dependency**. Further, the python interpreter has OS-specific dependencies. Hence, Images are built using a **layered approach**.
+     > - The base OS layer doesn’t consist of the whole operating system and its kernel. It only contains the file system and dependent binaries. - light weight
+     > - When a container is started, it pulls all the images from the repository. It then creates cgroups, namespaces, and the virtual environment. From a container’s perspective, the binaries & files appear to be the only files in the whole machine. 
+
+  3. 【resource】[Sally Rooney by the book interview](https://www.nytimes.com/2020/02/20/books/review/sally-rooney-by-the-book-interview.html)
+
+     > - on your nightstand 床头
+     >
+     > - Right now, I’m reading and enjoying a few different books at once: Dostoyevsky’s “The Karamazov Brothers,” in a translation by Ignat Avsey; Zadie Smith’s collection “Grand Union”; and Andrés Barba’s forthcoming novel “A Luminous Republic,” translated by Lisa Dillman.
+     >
+     > - I like to be alone and undisturbed, so I can read out loud to myself if I feel like it. If I get tangled up in a sentence or I lose my train of thought, I find reading aloud can be helpful. Alone on the sofa with a cup of coffee is pretty close to the ideal. As for what I’m reading, preferably something old, but it should also be something I’ve never read before.
+     >
+     > - How do you organize your books? I don’t. I just accumulate new ones all the time and leave them lying around on shelves and household surfaces in no order whatsoever.
+
+  4. 【resource】[Standard SWE Level Framework](https://www.levels.fyi/blog/swe-level-framework.html)
+
+     > - Software Engineers are expected to develop their skills in a variety of areas to be eligible for promotion and move to the next level. 
+     >
+     > - ambiguity, scope of work and impact
+     >
+     > - As an Entry Level Engineer, you’ll be expected to develop and maintain lower complexity components under the guidance and tutelage of more experienced team members. Although mostly working on group projects, the Entry Level Engineer is encouraged to demonstrate initiative to innovate and should perfect basic coding skills.
+     >
+     > - The Software Engineer demonstrates the ability to work on projects autonomously. They also develop and maintain low to moderately complex components, likely leaning more towards the moderately complex problems. Specialization in one or more coding languages is common.
+
+- Widgets
+  1. [Online Reading](https://q.mimicrylabs.com/)
+  2. [justcc linux](https://justcc.mengkang.net/#/)
