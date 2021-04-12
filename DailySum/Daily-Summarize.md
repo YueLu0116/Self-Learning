@@ -311,4 +311,66 @@ starts from 2021-03-25
      > - Predicate<> is used when you need to determine if the argument satisfies the condition of the delegate.
 
 - reading
+  
   1. 【Q&A】[what is 101?](https://en.wikipedia.org/wiki/101_(topic))
+
+### Apr. 12th, 2021
+
+- Csharp
+
+  1. 【Q&A】[How do I get the name of the current executable in C#?](https://stackoverflow.com/questions/616584/how-do-i-get-the-name-of-the-current-executable-in-c)
+
+  2. 【Q&A】[How do I force my .NET application to run as administrator?](https://stackoverflow.com/questions/2818179/how-do-i-force-my-net-application-to-run-as-administrator)
+
+  3. 【Q&A】[How to: Determine which .NET Framework versions are installed](https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed)
+
+     > The version of .NET Framework (4.5 and later) installed on a machine is listed in the registry at HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full. If the Full subkey is missing, then .NET Framework 4.5 or above isn't installed.
+
+  4. 【Q&A】[C#: Cannot see the changes in the windows registry](https://stackoverflow.com/questions/45153123/c-cannot-see-the-changes-in-the-windows-registry)
+
+  5. 【Q&A】[Check if application is installed in registry](https://stackoverflow.com/questions/16379143/check-if-application-is-installed-in-registry)
+
+  6. 【Q&A】[How to run silent installer in C#](https://stackoverflow.com/questions/20643100/how-to-run-silent-installer-in-c-sharp)
+
+  7. 【reference】[example: edit firewall rules using cs](https://github.com/TechnitiumSoftware/TechnitiumLibrary/blob/master/TechnitiumLibrary.Net.Firewall/WindowsFirewall.cs)
+
+  8. 【reference】[use powershell in c# can not find system.management](https://morgantechspace.com/2015/03/the-type-or-namespace-name-automation-does-not-exist-in-the-namespace-system-management.html)
+
+  9. 【reference】[powershell New-NetFirewallRule](https://docs.microsoft.com/en-us/powershell/module/netsecurity/new-netfirewallrule?view=windowsserver2019-ps)
+
+  10. 【Q&A】[Create firewall rule to open port per application programmatically in c#](https://stackoverflow.com/questions/8488227/create-firewall-rule-to-open-port-per-application-programmatically-in-c-sharp)
+
+- windows
+
+  1. 【Q&A & TODO】[Find GUID From MSI File](https://stackoverflow.com/questions/11251034/find-guid-from-msi-file)
+
+  2. 【reference】[Standard Installer Command-Line Options](https://docs.microsoft.com/en-us/windows/win32/msi/standard-installer-command-line-options)
+
+  3. 【reference】[Windows Firewall Basics](https://www.liquidweb.com/kb/windows-firewall-basics/)
+
+  4. 【reference】[Registry Redirector](https://docs.microsoft.com/zh-cn/windows/win32/winprog64/registry-redirector)
+
+     > Redirected keys are mapped to physical locations under Wow6432Node. 
+
+  5. 【Q&A】[Difference Between HKEY_CURRENT_USER and HKEY_LOCAL_MACHINE](http://www.differencebetween.net/technology/hardware-technology/difference-between-hkey_current_user-and-hkey_local_machine/)
+
+  6. 【Q&A】[What are Inbound and Outbound Rules for Windows Firewall?](https://superuser.com/questions/48343/what-are-inbound-and-outbound-rules-for-windows-firewall)
+
+  7. 【reference】[Run and RunOnce Registry Keys](https://docs.microsoft.com/en-us/windows/win32/setupapi/run-and-runonce-registry-keys)
+
+     > Run and RunOnce registry keys cause programs to run each time that a user logs on.
+
+  8. 【reference】[What does %~dp0 mean, and how does it work?](https://stackoverflow.com/questions/5034076/what-does-dp0-mean-and-how-does-it-work)
+
+  9. 【reference】[Windows Registry](https://en.wikipedia.org/wiki/Windows_Registry)
+
+     > In other words, the registry or Windows Registry contains information, settings, options, and other values for programs and hardware installed on all versions of Microsoft Windows operating systems.
+
+- CMake
+
+  1. 【reference】[CMake学习小结--变量](https://www.jianshu.com/p/72b07f886820)
+
+- cpp
+
+  1. 【Q&A】[C++, How to determine if a Windows Process is running?](https://stackoverflow.com/questions/1591342/c-how-to-determine-if-a-windows-process-is-running)
+
