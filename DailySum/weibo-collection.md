@@ -11,6 +11,8 @@
 - [Practical Cryptography for Developers](https://cryptobook.nakov.com/)
 - [学习究竟是什么](https://sspai.com/post/65000)
 - [微信直播聊天室架构演进](https://weibo.com/ttarticle/p/show?id=2309404614924931301545#_0)
+- [docker入门](https://mp.weixin.qq.com/s/uj5CO3WgcGQN_cHKPhpkfg)
+- [All C++20 core language features with examples](https://oleksandrkvl.github.io/2021/04/02/cpp-20-overview.html)
 
 ## Basics
 
@@ -18,12 +20,14 @@
 - mit6.824 - 分布式系统课程
 - [How Git servers work, and how to keep yours secure](https://gemini.nytpu.com/gemlog/2021-03-07.gmi)
 - [Computer Networking Basics Every Developer Should Know](https://iximiuz.com/en/posts/computer-networking-101/?utm_medium=reddit&utm_source=r_programming)
+- [golang in microsoft](https://docs.microsoft.com/zh-cn/learn/paths/go-first-steps/)
 
 ## Widget
 
 - GoodSync - 本地及 FTP 文件同步工具，支持无人值守。
 - [密码管理工具：Microsoft Authenticator](https://sspai.com/post/65633)
 - [警惕租房陷阱、保留维权证据，供你随身携带的租房贴士](https://sspai.com/post/63270)
+- 
 
 ## Open Source
 

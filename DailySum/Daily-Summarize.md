@@ -340,6 +340,8 @@ starts from 2021-03-25
 
   10. 【Q&A】[Create firewall rule to open port per application programmatically in c#](https://stackoverflow.com/questions/8488227/create-firewall-rule-to-open-port-per-application-programmatically-in-c-sharp)
 
+  11. 【reference】[dotnet standard](https://github.com/dotnet/csharpstandard)
+
 - windows
 
   1. 【Q&A & TODO】[Find GUID From MSI File](https://stackoverflow.com/questions/11251034/find-guid-from-msi-file)

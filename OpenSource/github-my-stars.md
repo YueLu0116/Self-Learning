@@ -21,6 +21,7 @@
 - [snapdrop](https://github.com/RobinLinus/snapdrop)
 - [weibo-public-opinion-datasets](https://github.com/nghuyong/weibo-public-opinion-datasets)
 - [Spectre.Console-A library that makes it easier to create beautiful console applications.](https://github.com/spectresystems/spectre.console)
+- [Easy Watermark](https://github.com/rosuH/EasyWatermark)
 
 ### Multimedia
 
