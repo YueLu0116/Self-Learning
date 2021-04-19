@@ -1,6 +1,6 @@
 # c# FAQ
 
-#### **What is reflection?**
+## **What is reflection?**
 
 - 编译时不清楚某些对象的类型时，例如类、方法的等，利用回射检查（inspect）自身代码，确定这些类型。以一段java代码为例：
 
@@ -24,7 +24,7 @@ method.invoke(foo, null);
 
 [Reflection (C#)](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/reflection)
 
-#### **So what are attributes in c#?**
+## **So what are attributes in c#?**
 
 - c# 中属性说明了一个程序（整个生成的二进制文件-assembiles、一个类-types、方法-methods甚至返回值等）的metadata，通过reflection可以在运行时获取到。
 - 属性有默认的（语言本身集成）也可以是用户自定的；
@@ -32,13 +32,13 @@ method.invoke(foo, null);
 
 [Attributes (C#)](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/)
 
-#### **How to create custom attributes?**
+## **How to create custom attributes?**
 
 通过继承System.Attribute来自定义类。
 
 [Creating Custom Attributes (C#)](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/creating-custom-attributes)
 
-#### **How to** **[Accessing Attributes by Using Reflection (C#)](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/accessing-attributes-by-using-reflection)** **and** **[Retrieving Information Stored in Attributes](https://docs.microsoft.com/en-us/dotnet/standard/attributes/retrieving-information-stored-in-attributes)**?
+## **How to** **[Accessing Attributes by Using Reflection (C#)](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/accessing-attributes-by-using-reflection)** **and** **[Retrieving Information Stored in Attributes](https://docs.microsoft.com/en-us/dotnet/standard/attributes/retrieving-information-stored-in-attributes)**?
 
 Show me the code
 
@@ -124,5 +124,83 @@ class TestAuthorAttribute
 */
 ```
 
-#### How to **correctly** use Reader-Writer lock
+## How to **correctly** use Reader-Writer lock
 
+## What is the difference between readonly and const?
+
+[readonly in microsoft docs](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/readonly) 官方文档中说明了`readonly`变量 (field) 只能在声明时或者构造函数中进行赋值，但可以进行多次赋值。而`const`变量只能被赋值一次。**readonly通过以下语句指定运行时常量：**
+
+`public static readonly int ThisYear = 2004;` 而**const指定的是编译时常量**。
+
+> The `readonly` keyword is different from the [const](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/const) keyword. A `const` field can only be initialized at the declaration of the field. A `readonly` field can be assigned multiple times in the field declaration and in any constructor. Therefore, `readonly` fields can have different values depending on the constructor used.
+
+SO问题 [What is the difference between const and readonly in C#?](https://stackoverflow.com/questions/55984/what-is-the-difference-between-const-and-readonly-in-c) 给出了二者比较的例子：
+
+```csharp
+public class Const_V_Readonly
+{
+  public const int I_CONST_VALUE = 2;
+  public readonly int I_RO_VALUE;
+  public Const_V_Readonly()
+  {
+     I_RO_VALUE = 3;
+  }
+}
+```
+
+Assembly A中定义了这个类，而在Assembly B中引用到了Assembly A，那么对于const类型的变量，在A中改变该值，A和B都要重新编译，对于readonly变量，在A中改变了改值，只需要重新编译A。因此只有在确定变量值不变时才用const。
+
+_Effective c#_中补充:
+
+> - Compile-time constants can also be declared inside methods. Read-only constants cannot be declared with method scope.
+> - Compile-time constants can be used only for primitive types (built-in integral and floating-point types), enums, or strings. Runtime constants can be any type.
+> - Updating the value of a public constant should be viewed as an interface change. You must recompile all code that references that constant. Updating the value of a read-only constant is an implementation change; it is binary compatible with existing client code.
+
+## What are field and property? What is the difference between them?
+
+[field](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/fields) 对应类的“数据成员”官方文档中给出了如下几条规范：
+
+> - Generally, you should use fields only for variables that have private or protected accessibility. Data that your class exposes to client code should be provided through [methods](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/methods), [properties](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties), and [indexers](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers/). By using these constructs for indirect access to internal fields, you can guard against invalid input values. A private field that stores the data exposed by a public property is called a *backing store* or *backing field*. (封装，field通常是private and protect的)
+> - Fields typically store the data that must be accessible to more than one class method and must be stored for longer than the lifetime of any single method. For example, a class that represents a calendar date might have three integer fields: one for the month, one for the day, and one for the year. Variables that are not used outside the scope of a single method should be declared as *local variables* within the method body itself. （类中多个方法需要使用的变量设为field，只在一个方法中使用的应该是那个方法的local variable）
+
+[properity](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties)为private fields提供了接口（更为灵活，检查赋值是否合法等），有三种实现形式：
+
+1. the traditional way
+
+```csharp
+public double Hours
+{
+    get { return _seconds / 3600; }
+    set {
+        if (value < 0 || value > 24)
+            throw new ArgumentOutOfRangeException(
+            $"{nameof(value)} must be between 0 and 24.");
+
+        _seconds = value * 3600;
+    }
+}
+```
+
+2. expression body definitions
+
+```csharp
+public Person(string first, string last)
+{
+    _firstName = first;
+    _lastName = last;
+}
+
+public string Name => $"{_firstName} {_lastName}";
+```
+
+3. auto-implemented properties
+
+```csharp
+public string Name
+{ get; set; }
+
+public decimal Price
+{ get; set; }
+```
+
+SO也有相关[问题](https://stackoverflow.com/questions/2720142/programming-terms-field-member-properties-c)。
