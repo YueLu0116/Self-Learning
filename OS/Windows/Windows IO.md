@@ -50,3 +50,13 @@ When to use unbuffered IO and buffered IO?
 
 - File system metadata: File system metadata is always cached. Therefore, to store any metadata changes to disk, the file must either be flushed or be opened with FILE_FLAG_WRITE_THROUGH.
 
+## Synchronous and asynchronous I/O
+
+> [Synchronous and Asynchronous I/O](https://docs.microsoft.com/en-us/windows/win32/fileio/synchronous-and-asynchronous-i-o)
+
+- When to use synchronous i/o instead of asnychronous i/o?
+
+  > However, for relatively fast I/O operations, the overhead of processing kernel I/O requests and kernel signals may make asynchronous I/O less beneficial, particularly if many fast I/O operations need to be made.
+
+- [OVERLAPPED](https://docs.microsoft.com/en-us/windows/win32/api/minwinbase/ns-minwinbase-overlapped) structurer
+
