@@ -383,3 +383,48 @@ starts from 2021-03-25
   2. 【books】[Video Encoding by the Numbers: Eliminate the Guesswork from your Streaming Video](https://www.amazon.com/Video-Encoding-Numbers-Eliminate-Guesswork/dp/0998453005/ref=sr_1_1?s=books&ie=UTF8&qid=1486396940&sr=1-1&keywords=jan+ozer)
   3. 【reference TODO】[AV1 Bitstream Analyzer](https://medium.com/hackernoon/av1-bitstream-analyzer-d25f1c27072b#id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImRlOTU1NmFkNDY4MDMxMmMxMTdhZmFlZjI5MjBmNWY5OWE0Yzc5ZmQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2MTg4MzIyNzksImF1ZCI6IjIxNjI5NjAzNTgzNC1rMWs2cWUwNjBzMnRwMmEyamFtNGxqZGNtczAwc3R0Zy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExNTc3NDc2MTk2MTkwMzgwNTQ0NiIsImVtYWlsIjoiZGVyZWtsdTE5OTYwMTE2QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiIyMTYyOTYwMzU4MzQtazFrNnFlMDYwczJ0cDJhMmphbTRsamRjbXMwMHN0dGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiWXVlIEx1IiwicGljdHVyZSI6Imh0dHBzOi8vbGg0Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tb24wSVd5NW9uWXcvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQU1adXVja3JiTmNrVmYwSUFLdGtXRmxzQ3N1ZDNMRGo0QS9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoiWXVlIiwiZmFtaWx5X25hbWUiOiJMdSIsImlhdCI6MTYxODgzMjU3OSwiZXhwIjoxNjE4ODM2MTc5LCJqdGkiOiI0YWU4NjBjNTYxNjFjNmExMjI2YjU0NzFkZTk1MzFiYjRjYWNkYjA2In0.EX7SYFPGjjPYN9dEfWKY0_f43NT-IjiO4zXXzrb3qrFr1mjL3tNuLKq-yOEdLrNpwTe8gAcf8Vj2wBexuQ5dAy9lmPBzVe3GiWNa4vY7CyRuC1cT4McoJ6FOaUxJv2O5g4wglA0SaE9gcjz752VB89I2vv-T5h4NFHKekGNRS9d4ONFL_ahlAPnJml03KFHbBFchPvkJNwynIbQgSE8ibT23TbrgB0oO8_ArhykRv-fjiR6j-ckYPQe6Gw2CwLWYE_6tFybfcDylBVpCoaqiThrdtF-kthXVa4CAgfxmBc3yzND9wxkHJAEdQLevkUUWi2PJiunK2BGrB7WpWHMT4A)
 
+### Apr. 23th, 2021
+
+- cloud game
+
+  1. 【reference】[google input example](https://chromium.googlesource.com/chromium/chromium/+/8da845c82ec64ba85c8222e61c249244a492bebd/chrome/browser/ime_input.cc)
+
+  2. 【Q&A】[how do you use IME](https://stackoverflow.com/questions/434048/how-do-you-use-ime/1249990)
+
+  3. 【Q&A】[simulate input of non-acsii characters](https://stackoverflow.com/questions/15743053/simulate-input-of-non-ascii-characters)
+
+  4. 【reference】[Windows Hooks overview](https://docs.microsoft.com/en-us/windows/win32/winmsg/about-hooks)
+
+     > - The system maintains a separate **hook chain** for each type of hook. A hook chain is a list of pointers to special, application-defined callback functions called hook procedures.
+     >
+     > - To take advantage of a particular type of hook, the developer provides **a hook procedure** and uses the `SetWindowsHookEx` function to install it into the chain associated with the hook. 
+     >
+     > - `HookProc` is a placeholder for an application-defined name.
+     >
+     > - Each hook procedure in the chain determines whether to pass the event to the next procedure. A hook procedure passes an event to the next procedure by calling the CallNextHookEx function.
+
+  5. 【reference】[Mouse scroll](https://www.codeproject.com/Articles/1042516/Custom-Controls-in-Win-API-Scrolling)
+
+  6. 【Q&A】[how to achieve FPS-like mouse look camera](https://gamedev.stackexchange.com/questions/176550/fps-like-mouse-look-camera-winapi-problem)
+
+- Make
+
+  1. 【reference】[GYP](https://gyp.gsrc.io/index.md)
+
+- cpp
+
+  1. 【reference】[static keyword in cpp](https://stackoverflow.com/questions/15235526/the-static-keyword-and-its-various-uses-in-c/15235708)
+  2. 【reference】[cpp const](http://duramecho.com/ComputerInformation/WhyHowCppConst.html)
+  3. 【Q&A】[stdafx](https://stackoverflow.com/questions/4726155/what-is-stdafx-h-used-for-in-visual-studio#:~:text=4-,%22Stdafx.,compile%20time%20and%20Unnecessary%20Processing)
+
+- distribution
+
+  1. 【reference】[HDFS](https://hadoop.apache.org/docs/r1.2.1/hdfs_design.html)
+
+- Windows
+
+  1. 【Q&A】[buffered and unbuffered io](https://www.quora.com/Whats-the-difference-between-buffered-I-O-and-unbuffered-I-O)
+
+     > - Your program is doing the writes assuming it is doing the I/O, but the writes are actually getting buffered in DRAM.
+     >
+     > - the dirty buffers are flushed to disk thus writing their respective contents to corresponding blocks on disk -- this is the actual I/O.
