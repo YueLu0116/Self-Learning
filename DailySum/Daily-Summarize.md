@@ -428,3 +428,15 @@ starts from 2021-03-25
      > - Your program is doing the writes assuming it is doing the I/O, but the writes are actually getting buffered in DRAM.
      >
      > - the dirty buffers are flushed to disk thus writing their respective contents to corresponding blocks on disk -- this is the actual I/O.
+
+### Apr. 24th, 2021
+
+- GUI
+
+  1. 【Q&A】[What is difference between GTK and QT applications?](https://unix.stackexchange.com/questions/129355/what-is-difference-between-gtk-and-qt-applications)
+
+     > GNU/Linux tends to be more GTK oriented than Qt in the sense that the former is more commonly used, so you may want to prefer it when given the choice
+
+- Windows
+
+  1. 【reference】[Text Services Framework](https://docs.microsoft.com/en-us/windows/win32/tsf/text-services-framework)

@@ -22,6 +22,7 @@
 - [weibo-public-opinion-datasets](https://github.com/nghuyong/weibo-public-opinion-datasets)
 - [Spectre.Console-A library that makes it easier to create beautiful console applications.](https://github.com/spectresystems/spectre.console)
 - [Easy Watermark](https://github.com/rosuH/EasyWatermark)
+- [Wox - launcher for windows](https://github.com/Wox-launcher/Wox)
 
 ### Multimedia
 
@@ -37,10 +38,16 @@
 - [vlc-VLC media player](https://github.com/videolan/vlc)
 - [WebRTC Web demos and samples](https://github.com/webrtc/samples)
 - [anyRTC-RTMP-OpenSource-RTMP 推流器，RTMP(HLS)秒开播放器，跨平台（Win,IOS,Android）开源代码](https://github.com/anyrtcIO-Community/anyRTC-RTMP-OpenSource)
+- [cscore .net audio library](https://github.com/filoe/cscore)
+- [Dopamine - audio player](https://github.com/digimezzo/dopamine-windows)
+- [streaming onboarding](https://github.com/Eyevinn/streaming-onboarding)
+- [vapoursynth - A video processing framework with simplicity in mind](https://github.com/vapoursynth/vapoursynth)
+- 
 
 ### Basics
 
 - [IPC-Windows](https://github.com/microsoft/IPC)
+- [cppcoro](https://github.com/lewissbaker/cppcoro)
 - [labuladong 的算法小抄](https://github.com/labuladong/fucking-algorithm)
 - [cppzmq](https://github.com/zeromq/cppzmq)
 - [zguide-zmq learning](https://github.com/booksbyus/zguide)
@@ -74,11 +81,12 @@
 - [computer-science](https://github.com/ossu/computer-science)
 - [SystemProgramming](https://github.com/angrave/SystemProgramming)
 - [awesome macOs command line](https://github.com/herrbischoff/awesome-macos-command-line)
+- [game developer roadmap 2020](https://github.com/utilForever/game-developer-roadmap)
+- [The Art of Command Line](https://github.com/jlevy/the-art-of-command-line)
 
 ### Net
 
 - [计算机网络-自顶向下方法-笔记](https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES)
-
 - [drogon-A C++14/17 based HTTP web application framework running on Linux/macOS/Unix/Windows](https://github.com/an-tao/drogon)
 - [cpp-httplib-A C++ header-only HTTP/HTTPS server and client library](https://github.com/yhirose/cpp-httplib)
 - [proxygen-A collection of C++ HTTP libraries including an easy to use HTTP server.](https://github.com/facebook/proxygen)
@@ -91,6 +99,7 @@
 - [curlpp-C++ wrapper around libcURL](https://github.com/jpbarrette/curlpp)
 - [High Performance TCP/UDP/HTTP Communication Component](https://github.com/ldcsaa/HP-Socket)
 - [tcp-udp-networking-c#](https://github.com/tom-weiland/tcp-udp-networking)
+- [web proxy](https://github.com/justcoding121/titanium-web-proxy)
 
 ### AI
 
@@ -104,3 +113,8 @@
 ### Android
 
 - [uamp-A sample audio app for Android](https://github.com/android/uamp)
+
+### Windows
+
+- [windows classic samples](https://github.com/microsoft/Windows-classic-samples)
+- [awesome windows](https://github.com/Awesome-Windows/Awesome)
