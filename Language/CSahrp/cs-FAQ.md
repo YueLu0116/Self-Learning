@@ -204,3 +204,68 @@ public decimal Price
 ```
 
 SO也有相关[问题](https://stackoverflow.com/questions/2720142/programming-terms-field-member-properties-c)。
+
+## Lambdas
+
+> [c# lambda in MSDN](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions)
+>
+> [How to return value with anonymous method?](https://stackoverflow.com/questions/10520892/how-to-return-value-with-anonymous-method)
+
+1. Types:
+
+   ```c#
+   (input-parameters) => expression
+   (input-parameters) => { <sequence-of-statements> }
+   ```
+
+2. Usages:
+
+   - Convert to a delegate type
+
+     ```c#
+     Func<int, int> square = x => x * x;
+     ```
+
+   - Convert to the expression tree types (TODO)
+
+     ```c#
+     System.Linq.Expressions.Expression<Func<int, int>> e = x => x * x;
+     Console.WriteLine(e);
+     // Output:
+     // x => (x * x)
+     ```
+
+   - Async lambdas
+
+     ```c#
+     public partial class Form1 : Form
+     {
+         public Form1()
+         {
+             InitializeComponent();
+             button1.Click += async (sender, e) =>
+             {
+                 await ExampleMethodAsync();
+                 textBox1.Text += "\r\nControl returned to Click event handler.\n";
+             };
+         }
+     
+         private async Task ExampleMethodAsync()
+         {
+             // The following line simulates a task-returning asynchronous process.
+             await Task.Delay(1000);
+         }
+     }
+     ```
+
+3. A frequent error
+
+   ```c#
+   string temp = () => {return "test";};  // WRONG
+   
+   // modify
+   Func<string> temp = () => {return "test";};
+   ```
+
+   > The problem here is that you've defined an anonymous method which returns a `string` but are trying to assign it directly to a `string`. It's an expression which when invoked produces a `string` it's not directly a `string`. It needs to be assigned to a compatible delegate type. In this case the easiest choice is `Func<string>`
+
