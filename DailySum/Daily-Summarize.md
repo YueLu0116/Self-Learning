@@ -2,14 +2,23 @@
 
 starts from 2021-03-25
 
+### Tags
+
+- reading
+- reference
+- Q&A
+- tools
+- books
+- programming
+
 ### Mar. 25th, 2021
 
 - Multimedia
 
-  1. 【read later & TODO】[Understanding Rate Control Modes](https://slhck.info/video/2017/03/01/rate-control.html)
+  1. 【reading & TODO】[Understanding Rate Control Modes](https://slhck.info/video/2017/03/01/rate-control.html)
 
   2. 【reference】[头条技术学院课件](https://drive.google.com/file/d/1gl3oRlNA_xnt7PyjXeeRu1Q9wy4-mOOG/view)
-  3. 【resource】 [可测试用视频资源](https://www.its.bldrdoc.gov/vqeg/video-datasets-and-organizations.aspx)
+  3. 【reference】 [可测试用视频资源](https://www.its.bldrdoc.gov/vqeg/video-datasets-and-organizations.aspx)
 
 - Windows
 
@@ -440,3 +449,12 @@ starts from 2021-03-25
 - Windows
 
   1. 【reference】[Text Services Framework](https://docs.microsoft.com/en-us/windows/win32/tsf/text-services-framework)
+
+### Apr. 26th, 2021
+
+- cpp
+  1. 【programming TODO】[C++ libcurl console progress bar](https://stackoverflow.com/questions/1637587/c-libcurl-console-progress-bar)
+  2. 【reference】[Download file using libcurl in C/C++](https://stackoverflow.com/questions/1636333/download-file-using-libcurl-in-c-c)
+- windows
+  1. 【tools TODO】[windbg](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/debugger-download-tools)
+  2. 【reference】[debug api](https://docs.microsoft.com/en-us/windows/win32/api/debugapi/)
