@@ -90,6 +90,20 @@ simple and easy:
 string firstLetter(1,str[0]);
 ```
 
+### How to print wide character?
+
+> [printf, wprintf, %s, %S, %ls, char* and wchar*: Errors not announced by a compiler warning?](https://stackoverflow.com/questions/17700797/printf-wprintf-s-s-ls-char-and-wchar-errors-not-announced-by-a-compil)
+>
+> [How to initialize and print a std::wstring?](https://stackoverflow.com/questions/8788057/how-to-initialize-and-print-a-stdwstring)
+
+```cpp
+wprintf(L"2 %S\n",L"some string"); // printf
+std::wstring st = L"SomeText";
+std::wcout << st; // stream
+```
+
+
+
 ## Errors and Exceptions handling
 
 ### Error: Expected a type specifier
