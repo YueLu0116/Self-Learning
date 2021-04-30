@@ -2,14 +2,23 @@
 
 starts from 2021-03-25
 
+### Tags
+
+- reading
+- reference
+- Q&A
+- tools
+- books
+- programming
+
 ### Mar. 25th, 2021
 
 - Multimedia
 
-  1. 【read later & TODO】[Understanding Rate Control Modes](https://slhck.info/video/2017/03/01/rate-control.html)
+  1. 【reading & TODO】[Understanding Rate Control Modes](https://slhck.info/video/2017/03/01/rate-control.html)
 
   2. 【reference】[头条技术学院课件](https://drive.google.com/file/d/1gl3oRlNA_xnt7PyjXeeRu1Q9wy4-mOOG/view)
-  3. 【resource】 [可测试用视频资源](https://www.its.bldrdoc.gov/vqeg/video-datasets-and-organizations.aspx)
+  3. 【reference】 [可测试用视频资源](https://www.its.bldrdoc.gov/vqeg/video-datasets-and-organizations.aspx)
 
 - Windows
 
@@ -440,3 +449,37 @@ starts from 2021-03-25
 - Windows
 
   1. 【reference】[Text Services Framework](https://docs.microsoft.com/en-us/windows/win32/tsf/text-services-framework)
+
+### Apr. 26th, 2021
+
+- cpp
+  1. 【programming TODO】[C++ libcurl console progress bar](https://stackoverflow.com/questions/1637587/c-libcurl-console-progress-bar)
+  2. 【reference】[Download file using libcurl in C/C++](https://stackoverflow.com/questions/1636333/download-file-using-libcurl-in-c-c)
+- windows
+  1. 【tools TODO】[windbg](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/debugger-download-tools)
+  2. 【reference】[debug api](https://docs.microsoft.com/en-us/windows/win32/api/debugapi/)
+
+### Apr. 29th, 2021
+
+- windows
+
+  1. 【reference】[UI Automation Fundamentals](https://docs.microsoft.com/en-us/windows/win32/winauto/entry-uiautocore-overview)
+
+  2. 【Q&A】[Extract text from rectangle on Windows screen without using OCR](https://stackoverflow.com/questions/55613130/extract-text-from-rectangle-on-windows-screen-without-using-ocr)
+
+     > If an application uses win32k apis, you will be able to get the text out by sending get window text. If application uses any other rendering on the screen, like opengl or directx, you will get nothing except by OCR. 
+
+  3. 【Q&A】[Get text from an edit control](https://stackoverflow.com/questions/5690333/get-text-from-an-edit-control)
+
+  4. 【Q&A】[Reading from a text field in another application's window](https://stackoverflow.com/questions/352236/reading-from-a-text-field-in-another-applications-window)
+
+  5. 【Q&A】[From the August 2001 issue of MSDN Magazine](https://docs.microsoft.com/en-us/archive/msdn-magazine/2001/august/c-q-a-getting-the-text-of-a-window-in-another-application;-making-backspace-work-in-the-explorer-bar)
+
+     > If the target window is owned by another process and has a caption, GetWindowText retrieves the window caption text. If the window does not have a caption, the return value is a null string. This behavior is by design.
+
+  6. 【Q&A】[How to use GetGuiThreadInfo](https://forums.codeguru.com/showthread.php?258913-How-to-use-GetGuiThreadInfo)
+
+     > You need to set cbSize member of the structure to sizeof(GUITHREADINFO) before calling GetGUIThreadInfo.
+
+  7. 【reference】[windows获取焦点](https://houkaifa.com/2019/02/25/WindowsInputCursor/)
+
