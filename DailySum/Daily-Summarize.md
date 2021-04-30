@@ -293,19 +293,19 @@ starts from 2021-03-25
      >
      > - To implement a public property by using lazy initialization, define the backing field of the property as a Lazy<T>, and return the Value property from the get accessor of the property.
 
-  2. 【Q&A】[What is the difference between **`const`** and **`readonly`** in C#?](https://stackoverflow.com/questions/55984/what-is-the-difference-between-const-and-readonly-in-c)
+  2. 【Q&A】[~~What is the difference between **`const`** and **`readonly`** in C#?~~](https://stackoverflow.com/questions/55984/what-is-the-difference-between-const-and-readonly-in-c)
 
   3. 【reference】[Language Integrated Query (LINQ)](https://docs.microsoft.com/en-us/dotnet/csharp/linq/)
 
      > Language-Integrated Query (LINQ) is the name for a set of technologies based on the integration of query capabilities directly into the C# language.
 
-  4. 【reference】[Lambda expressions](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions)
+  4. 【reference】~~[Lambda expressions](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions)~~
 
      > - Any lambda expression can be converted to a delegate type.
      >
      > - Sometimes the compiler can't infer the types of input parameters. You can specify the types explicitly 
 
-  5. 【Q&A】[what is the difference between field, member, and properties?](https://stackoverflow.com/questions/2720142/programming-terms-field-member-properties-c)
+  5. 【Q&A】~~[what is the difference between field, member, and properties?](https://stackoverflow.com/questions/2720142/programming-terms-field-member-properties-c)~~
 
      > Often used as accessors to a private field of a class
 
@@ -327,11 +327,11 @@ starts from 2021-03-25
 
 - Csharp
 
-  1. 【Q&A】[How do I get the name of the current executable in C#?](https://stackoverflow.com/questions/616584/how-do-i-get-the-name-of-the-current-executable-in-c)
+  1. 【Q&A】~~[How do I get the name of the current executable in C#?](https://stackoverflow.com/questions/616584/how-do-i-get-the-name-of-the-current-executable-in-c)~~
 
-  2. 【Q&A】[How do I force my .NET application to run as administrator?](https://stackoverflow.com/questions/2818179/how-do-i-force-my-net-application-to-run-as-administrator)
+  2. 【Q&A】~~[How do I force my .NET application to run as administrator?](https://stackoverflow.com/questions/2818179/how-do-i-force-my-net-application-to-run-as-administrator)~~
 
-  3. 【Q&A】[How to: Determine which .NET Framework versions are installed](https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed)
+  3. 【Q&A】~~[How to: Determine which .NET Framework versions are installed](https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed)~~
 
      > The version of .NET Framework (4.5 and later) installed on a machine is listed in the registry at HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full. If the Full subkey is missing, then .NET Framework 4.5 or above isn't installed.
 
