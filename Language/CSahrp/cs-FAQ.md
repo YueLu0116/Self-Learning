@@ -1,5 +1,7 @@
 # c# FAQ
 
+> [Hidden features of c#](https://stackoverflow.com/questions/9033/hidden-features-of-c)
+
 ## Advances
 
 ### What is reflection?
@@ -190,13 +192,105 @@ class TestAuthorAttribute
 
    > The problem here is that you've defined an anonymous method which returns a `string` but are trying to assign it directly to a `string`. It's an expression which when invoked produces a `string` it's not directly a `string`. It needs to be assigned to a compatible delegate type. In this case the easiest choice is `Func<string>`
 
+### What is the expression body definition?
+
+simple and easy to use: where `expression` is a valid expression. The return type of `expression` must be implicitly convertible to the `member`'s return type.
+
+```csharp
+// member => expression;
+
+public override string ToString() => $"{fname} {lname}".Trim(); 
+
+// equals to
+
+public override string ToString() 
+{ 
+   return $"{fname} {lname}".Trim(); 
+}
+```
+
 
 
 ## Parallel Programming
 
 ### How to **correctly** use Reader-Writer lock
 
+> https://docs.microsoft.com/en-us/dotnet/api/system.threading.readerwriterlock?view=net-5.0
+>
+> https://stackoverflow.com/questions/2116957/readerwriterlock-vs-lock
+>
+> https://stackoverflow.com/questions/4217398/when-is-readerwriterlockslim-better-than-a-simple-lock
+
+使用读写锁的场景是，在实现一个下载器时，有两个线程，分别读、写同一个变量。[What happens if two threads read & write the same piece of memory](https://stackoverflow.com/questions/3580291/what-happens-if-two-threads-read-write-the-same-piece-of-memory)里说明了一个线程读，一个线程写，结果也是undefined的，需要加读写锁。
+
+读写锁的机制是同一时刻，只有一个writer和多个readers（两个队列），写完后读，所有线程读完了再写。读写锁应用时，尽量减少写的时间，防止饥饿。同时会设置超时机制，防止死锁。
+
+> For example, a thread might acquire the writer lock on one resource and then request a reader lock on a second resource; in the meantime, another thread might acquire the writer lock on the second resource, and request a reader lock on the first. Unless time-outs are used, the threads deadlock.
+
+参考[ReaderWriterLock](https://docs.microsoft.com/en-us/dotnet/api/system.threading.readerwriterlock?view=net-5.0)，基本使用方式为
+
+```csharp
+static ReaderWriterLock rwl = new ReaderWriterLock();
+rwl.AcquireReaderLock(timeOut);
+// ...
+rwl.ReleaseReaderLock();
+
+rwl.AcquireWriterLock(timeOut);
+// ...
+rwl.ReleaseWriterLock();
+```
+
+> Instead of releasing a reader lock in order to acquire the writer lock, you can use [UpgradeToWriterLock](https://docs.microsoft.com/en-us/dotnet/api/system.threading.readerwriterlock.upgradetowriterlock?view=net-5.0) and [DowngradeFromWriterLock](https://docs.microsoft.com/en-us/dotnet/api/system.threading.readerwriterlock.downgradefromwriterlock?view=net-5.0).
+
+官方建议使用 [ReaderWriterLockSlim](https://docs.microsoft.com/en-us/dotnet/api/system.threading.readerwriterlockslim?view=net-5.0)：
+
+>  [ReaderWriterLockSlim](https://docs.microsoft.com/en-us/dotnet/api/system.threading.readerwriterlockslim?view=net-5.0) is recommended for all new development. [ReaderWriterLockSlim](https://docs.microsoft.com/en-us/dotnet/api/system.threading.readerwriterlockslim?view=net-5.0) is similar to [ReaderWriterLock](https://docs.microsoft.com/en-us/dotnet/api/system.threading.readerwriterlock?view=net-5.0), but it has simplified rules for recursion and for upgrading and downgrading lock state. [ReaderWriterLockSlim](https://docs.microsoft.com/en-us/dotnet/api/system.threading.readerwriterlockslim?view=net-5.0) avoids many cases of potential deadlock. In addition, the performance of [ReaderWriterLockSlim](https://docs.microsoft.com/en-us/dotnet/api/system.threading.readerwriterlockslim?view=net-5.0) is significantly better than [ReaderWriterLock](https://docs.microsoft.com/en-us/dotnet/api/system.threading.readerwriterlock?view=net-5.0).
+
 ### Delegate and event
+
+> [Understanding events and event handlers in C#](https://stackoverflow.com/questions/803242/understanding-events-and-event-handlers-in-c-sharp)
+
+event异步模式是当程序中有一个事件发生时，执行某些方法（event handlers），而delegate相当于event和handlers间的中间件。 
+
+delegate可以理解为函数的签名，指明了参数与返回值：
+
+```csharp
+//This delegate can be used to point to methods
+//which return void and take a string.
+public delegate void MyEventHandler(string foo);
+```
+
+通过delegate来告知程序，当一个event发生时，调用哪种类型的函数：
+
+```csharp
+public event MyEventHandler SomethingHappened;
+```
+
+定义一个事件发生时需要执行的函数：
+
+```csharp
+void HandleSomethingHappened(string foo)
+{
+    //Do some stuff
+}
+```
+
+登记：将对应的函数和event联系起来
+
+```csharp
+myObj.SomethingHappened += new MyEventHandler(HandleSomethingHappened);
+```
+
+raise an event
+
+```csharp
+// in some method
+SomethingHappened("bar");
+// or
+// SomethingHappened?.Invoke("bar");
+```
+
+摘录微软官方文档笔记，见[此处](.\\event-notes.md)。
 
 ## Core
 
@@ -279,6 +373,47 @@ public decimal Price
 
 SO也有相关[问题](https://stackoverflow.com/questions/2720142/programming-terms-field-member-properties-c)。
 
+### What is Indexers, and why should I use it?
+
+类似于带参数的属性，用以访问array / map等私有变量的成员。举例：
+
+```c#
+using System;
+
+class SampleCollection<T>
+{
+   // Declare an array to store the data elements.
+   private T[] arr = new T[100];
+
+   // Define the indexer to allow client code to use [] notation.
+   public T this[int i]
+   {
+      get => arr[i];
+      set => arr[i] = value;
+   }
+}
+
+class Program
+{
+   static void Main()
+   {
+      var stringCollection = new SampleCollection<string>();
+      stringCollection[0] = "Hello, World.";
+      Console.WriteLine(stringCollection[0]);
+   }
+}
+// The example displays the following output:
+//       Hello, World.
+```
+
+使用`this`关键字定义indexer，`value`关键字表示所赋值。
+
+### What is "using" statement?
+
+> [What are the uses of “using” in C#?](https://stackoverflow.com/questions/75401/what-are-the-uses-of-using-in-c)
+
+
+
 ## IO Related
 
 ### How to get the current/working directory?
@@ -310,3 +445,23 @@ Process.GetCurrentProcess().ProcessName;
 检查注册表的方式：
 
 > The version of .NET Framework (4.5 and later) installed on a machine is listed in the registry at HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full. If the Full subkey is missing, then .NET Framework 4.5 or above isn't installed.
+
+### How to debug cs projects using visual studio code?
+
+> https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger.md
+
+```
+// 创建工程目录
+mkdir MyNewProject
+cd MyNewProject
+dotnet new console // dotnet new --list 查看所有工程模板
+
+// vscode
+打开对应folder
+添加tasks.json 和 launch.json
+
+// 编写程序
+
+F5 debug
+```
+
