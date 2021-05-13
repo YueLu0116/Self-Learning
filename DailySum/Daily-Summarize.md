@@ -483,3 +483,15 @@ starts from 2021-03-25
 
   7. 【reference】[windows获取焦点](https://houkaifa.com/2019/02/25/WindowsInputCursor/)
 
+### May. 13th, 2021
+
+- windows
+  1. 【reference】[win10 dev tutorials](https://channel9.msdn.com/Series/Windows-10-development-for-absolute-beginners)
+  2. 【programming】[windows远程桌面实现](https://blog.csdn.net/fanxiushu/article/details/81905680)
+  3. 【reference】[windows message](https://docs.microsoft.com/en-us/windows/win32/learnwin32/window-messages)
+  4. 【Q&A】[windows编程路径图](https://www.zhihu.com/question/21761355)
+  5. 【Q&A】[What is MinGW](https://stackoverflow.com/questions/7790262/a-simple-explanation-of-what-is-mingw)
+  6. 【Q&A】[Windows Forms v.s. WPF](https://stackoverflow.com/questions/31154338/windows-forms-vs-wpf)
+- cloud game
+  1. 【reading】[Cloud gaming’s history of false starts and promising reboots](https://www.polygon.com/features/2020/10/15/21499273/cloud-gaming-history-onlive-stadia-google)
+  2. 【reading】[What Does “TLDR” Mean, and How Do You Use It?](https://www.howtogeek.com/435266/what-does-tldr-mean-and-how-do-you-use-it/#:~:text=TLDR%20(or%20TL%3BDR)%20is%20a%20common%20internet%20acronym,seems%20pretty%20easy%20to%20understand)

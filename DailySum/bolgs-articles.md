@@ -67,3 +67,12 @@
 [google ai bolg](https://ai.googleblog.com/)
 
 [Microsoft research blog](https://www.microsoft.com/en-us/research/blog/)
+
+[Windows Developer blogs](https://blogs.windows.com/windowsdeveloper/)
+
+[Blogs of Charles Petzold](http://www.charlespetzold.com/blog/)
+
+### Tutorials
+
+[Windows 10 development for absolute beginners](https://channel9.msdn.com/Series/Windows-10-development-for-absolute-beginners)
+
