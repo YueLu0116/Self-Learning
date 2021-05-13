@@ -2,6 +2,142 @@
 
 > personal questions generated in everyday programming. Answers mainly extracted from stackoverflow
 
+## Basics
+
+### How to correctly use global variables?
+
+> [How to declare a global variable in C++](https://stackoverflow.com/questions/9702053/how-to-declare-a-global-variable-in-c)
+
+global variables: any variable declared outside functions
+
+use global variables in other TUs:
+
+```cpp
+// a.cpp
+int x = 5;
+
+// b.h
+extern int x;
+//b.cpp
+#include "b.h"
+// use x
+void foo(){
+    std::cout << x;
+}
+```
+
+about const global variables: if a variable is marked as const, it is internal linkage.
+
+```cpp
+// a.cpp
+extern const int x = 5;
+// b.h
+extern const int x;
+// b.cpp
+#include "b.h"
+void foo(){
+    std::cout << x;
+}
+```
+
+use a global head file: include this head file everywhere I need to access it.
+
+```cpp
+// globals.h
+extern int x;
+// global.cpp
+int x = 5;
+```
+
+### Translation unit and linkage
+
+> [What is a “translation unit” in C++?](https://stackoverflow.com/questions/1106149/what-is-a-translation-unit-in-c)
+>
+> [Translation units and linkage](https://docs.microsoft.com/en-us/cpp/cpp/program-and-linkage-cpp?view=msvc-160)
+>
+> [What is external linkage and internal linkage?](https://stackoverflow.com/questions/1358400/what-is-external-linkage-and-internal-linkage)
+>
+> [Superiority of unnamed namespace over static?](https://stackoverflow.com/questions/4422507/superiority-of-unnamed-namespace-over-static)
+>
+> [Unnamed/anonymous namespaces vs. static functions](https://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions)
+
+1. about TU:
+
+> A translation unit is the **basic unit of compilation** in C++. It consists of the contents of **a single source file, plus the contents of any header files directly or indirectly included by it**, minus those lines that were ignored using conditional preprocessing statements.
+>
+> A single translation unit can be compiled into an object file, library, or executable program.
+
+2. about linkage: 
+   - external linkage: refers to things that exist **beyond a particular translation unit**. In other words, accessible through the whole program, which is the combination of all translation units;
+   - internal linkage: refers to everything only **in scope of a translation unit**.
+
+3. control the linkage use `extern` and `static` (If the linkage is not specified then the default linkage is `extern` (external linkage) for non-`const` symbols and `static` (internal linkage) for `const` symbols.):
+
+```cpp
+// In namespace scope or global scope.
+int i; // extern by default
+const int ci; // static by default
+extern const int eci; // explicitly extern
+static int si; // explicitly static
+
+// The same goes for functions (but there are no const functions).
+int f(); // extern by default
+static int sf(); // explicitly static 
+```
+
+4. use anonymous namespace for internal linkage is a better choice
+
+   - for user-defined types:
+
+     ```cpp
+     //legal code
+     static int sample_function() { /* function body */ }
+     static int sample_variable;
+     
+     //illegal code
+     static class sample_class { /* class body */ };
+     static struct sample_struct { /* struct body */ };
+     
+     //legal code
+     namespace 
+     {  
+          class sample_class { /* class body */ };
+          struct sample_struct { /* struct body */ };
+     }
+     ```
+
+   - access: unnamed namespaces are accessible within the file they're created in, as if you had an implicit using-clause to them.
+
+   - other usages: Putting methods in an anonymous namespace prevents you from accidentally violating the One Definition Rule, allowing you to never worry about naming your helper methods the same as some other method you may link in.
+
+### More about static key word
+
+> [The static keyword and its various uses in C++](https://stackoverflow.com/questions/15235526/the-static-keyword-and-its-various-uses-in-c/15235708)
+
+1. static variables: 
+
+   - If it's **in a namespace scope** (i.e. outside of functions and classes), then it can't be accessed from any other translation unit. 
+
+   - If it's a variable *in a function*, it can't be accessed from outside of the function, just like any other local variable. 
+
+     ```cpp
+     void foo()
+     {
+        static int x; //static storage duration - shared between calls
+     }
+     ```
+
+     
+
+   - class members have no restricted scope due to `static`, but can be addressed from the class as well as an instance. You can *declare* static members in a class, but they should usually still be *defined* in a translation unit (cpp file), and as such, there's only one per class.
+
+   - initialize orders: [static initialization order fiasco](https://stackoverflow.com/questions/3035422/static-initialization-order-fiasco)
+
+2. static functions:
+
+   - very rarely used for a free-standing function
+   - A static member function differs from a regular member function in that it can be called without an instance of a class, and since it has no instance, **it cannot access non-static members of the class**.
+
 ## Parallel Programming
 
 ### Why can't I use reference in a thread process function?
