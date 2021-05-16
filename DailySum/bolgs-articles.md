@@ -72,6 +72,8 @@
 
 [Blogs of Charles Petzold](http://www.charlespetzold.com/blog/)
 
+[Jon Skeet's SO](https://stackoverflow.com/users/22656/jon-skeet)
+
 ### Tutorials
 
 [Windows 10 development for absolute beginners](https://channel9.msdn.com/Series/Windows-10-development-for-absolute-beginners)

@@ -4,6 +4,14 @@
 
 ## Advances
 
+### What is CLR in .Net?
+
+> [Common Language Runtime (CLR) overview](https://docs.microsoft.com/en-us/dotnet/standard/clr)
+
+A runtime environment. Code that you develop with a language compiler that targets the runtime is called managed code.
+
+![CLR](images\clr.png)
+
 ### What is reflection?
 
 - 编译时不清楚某些对象的类型时，例如类、方法的等，利用回射检查（inspect）自身代码，确定这些类型。以一段java代码为例：
