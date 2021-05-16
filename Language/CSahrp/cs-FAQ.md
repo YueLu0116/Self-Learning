@@ -217,7 +217,11 @@ public override string ToString()
 }
 ```
 
+## OOP
 
+### What is record?
+
+[Record notes](.\Record Notes.md)
 
 ## Parallel Programming
 
