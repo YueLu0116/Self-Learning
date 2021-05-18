@@ -138,6 +138,46 @@ static int sf(); // explicitly static
    - very rarely used for a free-standing function
    - A static member function differs from a regular member function in that it can be called without an instance of a class, and since it has no instance, **it cannot access non-static members of the class**.
 
+### When to use scope resolution operator?
+
+> [scope resolution operator without a scope](https://stackoverflow.com/questions/75213/scope-resolution-operator-without-a-scope)
+>
+> [When to use “::” for global scope in C++?](https://stackoverflow.com/questions/17289896/when-to-use-for-global-scope-in-c)
+
+> You might need to use this operator when you have conflicting functions or variables in the same scope and you need to use a global one. 
+
+```c++
+void bar();    // this is a global function
+
+class foo {
+    void some_func() { ::bar(); }    // this function is calling the global bar() and not the class version
+    void bar();                      // this is a class member
+};
+```
+
+### How to initialize a container-like struct?
+
+Use *Aggregate initialization*: [reference](https://en.cppreference.com/w/cpp/language/aggregate_initialization)
+
+An example:
+
+```c++
+struct address {
+    int street_no;
+    char *street_name;
+    char *city;
+    char *prov;
+    char *postal_code;
+};
+address temp_addres = {
+  0,  // street_no
+  nullptr,  // street_name
+  "Hamilton",  // city
+  "Ontario",  // prov
+  nullptr,  // postal_code
+};
+```
+
 ## Parallel Programming
 
 ### Why can't I use reference in a thread process function?
@@ -238,8 +278,6 @@ std::wstring st = L"SomeText";
 std::wcout << st; // stream
 ```
 
-
-
 ## Errors and Exceptions handling
 
 ### Error: Expected a type specifier
@@ -298,6 +336,31 @@ std::filesystem::path cwd = std::filesystem::current_path() / "filename.txt";
 std::ofstream file(cwd.string());
 file.close();
 ```
+
+### How to get current time?
+
+> [How to get current time and date in C++?](https://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c)
+
+```c++
+#include <iostream>
+#include <chrono>
+#include <ctime>    
+
+int main()
+{
+    auto start = std::chrono::system_clock::now();
+    // Some computation here
+    auto end = std::chrono::system_clock::now();
+
+    std::chrono::duration<double> elapsed_seconds = end-start;
+    std::time_t end_time = std::chrono::system_clock::to_time_t(end);
+
+    std::cout << "finished computation at " << std::ctime(&end_time)
+              << "elapsed time: " << elapsed_seconds.count() << "s\n";
+}
+```
+
+
 
 ## Resource
 
