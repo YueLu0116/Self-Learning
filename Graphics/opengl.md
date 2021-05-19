@@ -108,3 +108,82 @@
 
    > [Why do we have to clear depth buffer in OpenGL during rendering?](https://stackoverflow.com/questions/19469194/why-do-we-have-to-clear-depth-buffer-in-opengl-during-rendering)
 
+### Draw a triangle
+
+#### Convet 3D coordinates to 2D points
+
+- process (managed by the graphics **pipeline** of opengl):
+
+  1. 3d coordinates to 2d coordinates;
+  2. 2d coordinates to actual colored pixels; 
+
+- what is **shader**?
+
+  > All of these steps are highly specialized (they have one specific function) and can easily be executed in parallel. Because of their parallel nature, graphics cards of today have thousands of small processing cores to quickly process your data within the graphics pipeline. The processing cores run small programs on the GPU for each step of the pipeline. These small programs are called shaders.
+
+  modern opengl requires user-defined **vertex** and **fragment** shader.
+
+  > - The main purpose of the vertex shader is to transform 3D coordinates into different 3D coordinates and the vertex shader allows us to do some basic processing on the vertex attributes.
+  > - The main purpose of the fragment shader is to calculate the final color of a pixel and this is usually the stage where all the advanced OpenGL effects occur. Usually the fragment shader contains data about the 3D scene that it can use to calculate the final pixel color (like lights, shadows, color of the light and so on).
+
+- inputs: vertex datas represented by **vertex attributes**.
+
+#### Vertex Shader
+
+1. **Construct normalized device coordinates**: OpenGL only processes 3D coordinates when they're in a specific range between `-1.0` and `1.0` on all 3 axes (`x`, `y` and `z`). Example:
+
+   ```cpp
+   float vertices[] = {
+       -0.5f, -0.5f, 0.0f,
+        0.5f, -0.5f, 0.0f,
+        0.0f,  0.5f, 0.0f
+   };  
+   ```
+
+2. **Create memory on GPU** : generate a **vertex buffer objects (VBO)** with **a unique ID** using `glGenBuffers`
+
+   ```cpp
+   unsigned int VBO;
+   glGenBuffers(1, &VBO);  
+   ```
+
+3. **Bind the buffer to a buffer type**: and we know that the variable `VBO` is a vertex buffer objects because it was binded to GL_ARRAY_BUFFER.
+
+   ```cpp
+   glBindBuffer(GL_ARRAY_BUFFER, VBO);  
+   ```
+
+4. **Copy data to the buffer**: use `glBufferData` (a function specifically targeted to copy user-defined data into the currently bound buffer.)
+
+5. **Write the vertex shader** using the opengl shading language (**GLSL**):
+
+   ```cpp
+   const char *vertexShaderSource = "#version 330 core\n"
+       "layout (location = 0) in vec3 aPos;\n"
+       "void main()\n"
+       "{\n"
+       "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+       "}\0";
+   ```
+
+6. Create a shader object and **attach the source code to it**:
+
+   ```cpp
+   unsigned int vertexShader;
+   vertexShader = glCreateShader(GL_VERTEX_SHADER);
+   glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+   glCompileShader(vertexShader);
+   
+   // check if success
+   int  success;
+   char infoLog[512];
+   glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+   if(!success)
+   {
+       glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+       std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+   }
+   ```
+
+   
+
