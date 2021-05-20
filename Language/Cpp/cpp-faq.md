@@ -178,6 +178,76 @@ address temp_addres = {
 };
 ```
 
+### Things on Enum
+
+> [Enumeration declaration](https://en.cppreference.com/w/cpp/language/enum)
+>
+> [Where to put the enum in a cpp program?](https://stackoverflow.com/questions/993505/where-to-put-the-enum-in-a-cpp-program)
+>
+> 
+
+1. unscoped  `enum`:
+
+   > If the underlying type is not fixed and the source value is out of range, the result is unspecified (until C++17)the behavior is undefined (since C++17).
+
+   ```cpp
+   // define
+   enum Color { red, green, blue };
+   Color r = red;
+   // types conversion
+   enum access_t { read = 1, write = 2, exec = 4 }; // enumerators: 1, 2, 4 range: 0..7
+   access_t x = static_cast<access_t>(8.0); // undefined behavior since C++17
+   access_t y = static_cast<access_t>(8);   // undefined behavior since C++17
+   ```
+
+2. scoped `enum`
+
+   > Each *enumerator* becomes **a named constant** of the enumeration's type, which is contained **within the scope of the enumeration**, and can be accessed using scope resolution operator. There are no implicit conversions from the values of a scoped enumerator to integral types, although [`static_cast`](https://en.cppreference.com/w/cpp/language/static_cast) may be used to **obtain the numeric value of the enumerator**.
+
+   ```cpp
+   enum class Color { red, green = 20, blue };
+   Color r = Color::blue;
+   // int n = r; // error: no implicit conversion from scoped enum to int
+   int n = static_cast<int>(r); // OK, n = 21
+   ```
+
+   More info:
+
+   > [What's an enum class and why should I care?](https://stackoverflow.com/questions/14041711/whats-an-enum-class-and-why-should-i-care)
+
+3. `enum struct|class name : type{...}`
+
+   `enum name(optional) : type{...}`
+
+4. Where should I put `enum` in my project? Mostly, put them in a common head files.
+
+## OOP
+
+### Can I access derived class member from base class?
+
+> [Can I access derived class member from base class?](https://stackoverflow.com/questions/2436125/c-access-derived-class-member-from-base-class-pointer)
+
+Example:
+
+```c++
+class Base
+{
+    public:
+    int base_int;
+};
+
+class Derived : public Base
+{
+    public:
+    int derived_int;
+};
+
+Base* basepointer = new Derived();
+basepointer-> //Access derived_int here, is it possible? If so, then how?
+```
+
+No, I can't...
+
 ## Parallel Programming
 
 ### Why can't I use reference in a thread process function?
