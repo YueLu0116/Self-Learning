@@ -20,3 +20,11 @@
 - I’d divide each issue into two units: **New Vocabulary** and **Writing Tools**. I’d then memorize the novel words and apply the newly-discovered sentence structures to my essays. I kept doing this for three years.
 - 主题鲜明：Scattered evidence, like objects in a spacious room, gives readers the impression they’re approaching a weak argument.
 
+## How to Learn
+
+### [Advice for Young Scientists-and Curious People in General](https://fs.blog/2021/05/advice-for-young-scientists/)
+
+> - “As there is no knowing in advance where a research enterprise may lead and what kind of skills it will require as it unfolds, this process of ‘equipping oneself’ has no predeterminable limits and is bad psychological policy….The great incentive to learning a new skill or supporting discipline is needing to use it.”
+
+- **Reading becomes counterproductive** when it serves as a substitute for doing the real thing, if that’s what someone is reading for. 
+- The best scientists begin with the understanding that they can never know anything and, besides, learning needs to be a lifelong process.

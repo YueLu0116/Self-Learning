@@ -495,3 +495,14 @@ starts from 2021-03-25
 - cloud game
   1. 【reading】[Cloud gaming’s history of false starts and promising reboots](https://www.polygon.com/features/2020/10/15/21499273/cloud-gaming-history-onlive-stadia-google)
   2. 【reading】[What Does “TLDR” Mean, and How Do You Use It?](https://www.howtogeek.com/435266/what-does-tldr-mean-and-how-do-you-use-it/#:~:text=TLDR%20(or%20TL%3BDR)%20is%20a%20common%20internet%20acronym,seems%20pretty%20easy%20to%20understand)
+
+May. 22th, 2021
+
+- c++
+  1. 【reference】[What are the new features in C++17?](https://stackoverflow.com/questions/38060436/what-are-the-new-features-in-c17)
+  2. 【Q&A】how to mix c and c++ codes in one project?
+     - [How to mix C and C++](https://isocpp.org/wiki/faq/mixing-c-and-cpp)
+     - [Combining C++ and C - how does #ifdef __cplusplus work?](https://stackoverflow.com/questions/3789340/combining-c-and-c-how-does-ifdef-cplusplus-work)
+  3. 【Q&A】[How to initialize const in a struct in C (with malloc)](https://stackoverflow.com/questions/9691404/how-to-initialize-const-in-a-struct-in-c-with-malloc)
+- windows:
+  1. 【Q&A】[What is COM (Component Object Model) in a nutshell? [closed\]](https://stackoverflow.com/questions/455687/what-is-com-component-object-model-in-a-nutshell)
