@@ -141,6 +141,10 @@ class TestAuthorAttribute
 > [c# lambda in MSDN](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions)
 >
 > [How to return value with anonymous method?](https://stackoverflow.com/questions/10520892/how-to-return-value-with-anonymous-method)
+>
+> [Meaning of () => Operator in C#, if it exists](https://stackoverflow.com/questions/3627840/meaning-of-operator-in-c-if-it-exists
+>
+> [Ask Question](https://stackoverflow.com/questions/ask)
 
 1. Types:
 
@@ -218,6 +222,13 @@ public override string ToString()
 ```
 
 ## OOP
+
+### Static class and static class members
+
+> [MSDN docs](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/static-classes-and-static-class-members)
+
+- static class: A static class cannot be instantiated and  **contains only static members**. A static class can be used as a convenient container for sets of methods that just operate on input parameters and do not have to get or set any internal instance fields.
+- static members: The static member is always accessed by the class name, not the instance name. Static methods and properties cannot access non-static fields and events in their containing type, and they cannot access an instance variable of any object unless it's explicitly passed in a method parameter. Although a field cannot be declared as `static const`, a [const](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/const) field is essentially static in its behavior. It belongs to the type, not to instances of the type. Therefore, `const` fields can be accessed by using the same `ClassName.MemberName` notation
 
 ### What is record?
 
@@ -424,7 +435,23 @@ class Program
 
 > [What are the uses of “using” in C#?](https://stackoverflow.com/questions/75401/what-are-the-uses-of-using-in-c)
 
+### How to use global variables in c#?
 
+> [How to use Global Variables in C#?](https://stackoverflow.com/questions/14368129/how-to-use-global-variables-in-c)
+
+Use a `static class`:
+
+```cs
+public static class Globals
+{
+    public const Int32 BUFFER_SIZE = 512; // Unmodifiable
+    public static String FILE_NAME = "Output.txt"; // Modifiable
+    public static readonly String CODE_PREFIX = "US-"; // Unmodifiable
+}
+
+// In the same namespace
+String code = Globals.CODE_PREFIX + value.ToString();
+```
 
 ## IO Related
 
