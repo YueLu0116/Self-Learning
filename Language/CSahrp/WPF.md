@@ -124,6 +124,12 @@
   }
   ```
 
-  
+- Resources
 
-  
+  > https://wpf-tutorial.com/wpf-application/resources/
+
+  1. what are resources? 
+  2. resources scopes: application, window, and local
+  3. static and dynamic resources.
+  4. how to use resources? Resources are given a key, using the x:Key attribute, which allows you to reference it from other parts of the application by using this key.
+

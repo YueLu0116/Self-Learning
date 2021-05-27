@@ -78,3 +78,4 @@
 
 [Windows 10 development for absolute beginners](https://channel9.msdn.com/Series/Windows-10-development-for-absolute-beginners)
 
+[learn anyting](https://learn-anything.xyz/)
