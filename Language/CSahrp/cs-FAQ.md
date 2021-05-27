@@ -467,6 +467,40 @@ Process.GetCurrentProcess().ProcessName;
 // Process.GetCurrentProcess().MainModule.FileName
 ```
 
+### How to write log-like files?
+
+> [How to add new line into txt file](https://stackoverflow.com/questions/8255533/how-to-add-new-line-into-txt-file)
+>
+> [Easiest way to read from and write to files](https://stackoverflow.com/questions/7569904/easiest-way-to-read-from-and-write-to-files)
+>
+> https://github.com/YueLu0116/UsefulCodes/blob/master/FileWriter/Program.cs
+
+```csharp
+using System;
+using System.IO;
+
+// log-like file writer using stream
+namespace FileWriter
+{
+    class Program
+    {
+        private const int writeTimes = 10;
+
+        static void Main(string[] args)
+        {
+            for(int id = 0; id < writeTimes; id++)
+            {
+                using (StreamWriter writertext = new StreamWriter("test.log", true))
+                {
+                    writertext.WriteLine(DateTime.Now.ToString() + ": test " + id.ToString());
+                }
+            }
+
+        }
+    }
+}
+```
+
 ## Miscellaneous
 
 ### Run as administrator
