@@ -48,7 +48,7 @@
 
 ### **Textures**
 
-- A texture resource is a structured collection of data designed to store texels. (**what is the difference between texture and buffer?) 1D, 2D, and 3D.
+- A texture resource is a structured collection of data designed to store texels. (what is the difference between texture and buffer?) 1D, 2D, and 3D.
 
 - block compression.
 
