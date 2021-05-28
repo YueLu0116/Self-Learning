@@ -133,3 +133,24 @@
   3. static and dynamic resources.
   4. how to use resources? Resources are given a key, using the x:Key attribute, which allows you to reference it from other parts of the application by using this key.
 
+- exceptions handling
+
+  1. If you don't handle the exception, your application will crash and Windows will have to deal with the problem.
+
+  2. handle methods:
+
+     - local: try-catch
+     - app: use `DispatcherUnhandledException`
+
+     ```xaml
+     <Application x:Class="WpfTutorialSamples.App"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 DispatcherUnhandledException="Application_DispatcherUnhandledException"
+                  StartupUri="WPF Application/ExceptionHandlingSample.xaml">
+         <Application.Resources>
+         </Application.Resources>
+     </Application>
+     ```
+
+     

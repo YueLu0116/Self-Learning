@@ -1,6 +1,8 @@
 # c# FAQ
 
 > [Hidden features of c#](https://stackoverflow.com/questions/9033/hidden-features-of-c)
+>
+> [awesome-dotnet](https://github.com/quozd/awesome-dotnet)
 
 ## Advances
 
