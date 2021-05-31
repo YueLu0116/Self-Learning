@@ -234,6 +234,12 @@ public override string ToString()
 
 [Record notes](.\Record Notes.md)
 
+### What happened if I "new" a sturct?
+
+[What does the keyword “new” do to a struct in C#?](https://stackoverflow.com/questions/9207488/what-does-the-keyword-new-do-to-a-struct-in-c)
+
+> When you create a struct object using the new operator, it gets created and the appropriate constructor is called. Unlike classes, structs can be instantiated without using the new operator. If you do not use new, the fields will remain unassigned and the object cannot be used until all of the fields are initialized.
+
 ## Parallel Programming
 
 ### How to **correctly** use Reader-Writer lock
