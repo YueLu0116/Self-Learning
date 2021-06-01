@@ -221,6 +221,59 @@ address temp_addres = {
 
 4. Where should I put `enum` in my project? Mostly, put them in a common head files.
 
+### What is "*&" in c++?
+
+> [Meaning of *& and **& in C++](https://stackoverflow.com/questions/5789806/meaning-of-and-in-c)
+
+That is taking the parameter by reference. So in the first case you are taking a pointer parameter by reference so whatever modification you do to **the value of the pointer** is reflected outside the function. 
+
+Example:
+
+```cpp
+void pass_by_value(int* p)
+{
+    //Allocate memory for int and store the address in p
+    p = new int;
+}
+
+void pass_by_reference(int*& p)
+{
+    p = new int;
+}
+
+int main()
+{
+    int* p1 = NULL;
+    int* p2 = NULL;
+
+    pass_by_value(p1); //p1 will still be NULL after this call
+    pass_by_reference(p2); //p2 's value is changed to point to the newly allocate memory
+
+    return 0;
+}
+```
+
+### What happens to a function's local memory after its ending?
+
+> [Can a local variable's memory be accessed outside its scope?](https://stackoverflow.com/questions/6441218/can-a-local-variables-memory-be-accessed-outside-its-scope)
+
+A great [answer](https://stackoverflow.com/a/6445794/11100389)!
+
+### The lift time of string literals
+
+```c++
+const char **p = nullptr;
+
+{
+    const char *t = "test";
+    p = &t;
+}
+
+cout << *p;
+```
+
+The value of `t` is the address of the string literal `"test"`, and that is not a variable you declared, **it's not on the stack and has static duration, which is the same with static variables** . It's a string literal, which is a constant defined in the program (similar to the integer literal `99` or the floating point literal `0.99`). Literals don't go out of scope as you expect, because they are not created or destroyed, they just *are*.
+
 ## OOP
 
 ### Can I access derived class member from base class?
@@ -393,6 +446,14 @@ private:
 ```
 
 参考：[Most vexing parse](https://en.wikipedia.org/wiki/Most_vexing_parse)
+
+### How to convert a const char* to string?
+
+```cpp
+const char* str="hello";
+std::string s = str;
+// or std::string str(s);
+```
 
 ## Utils
 
