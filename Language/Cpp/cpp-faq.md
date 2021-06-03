@@ -638,6 +638,8 @@ int main()
 
 ## Design Pattern
 
+### Singleton in cpp
+
 > [Is Meyers' implementation of the Singleton pattern thread safe?](https://stackoverflow.com/questions/1661529/is-meyers-implementation-of-the-singleton-pattern-thread-safe)
 >
 > :yum:[C++ Singleton design pattern](https://stackoverflow.com/questions/1008019/c-singleton-design-pattern)
