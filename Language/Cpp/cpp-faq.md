@@ -274,6 +274,52 @@ cout << *p;
 
 The value of `t` is the address of the string literal `"test"`, and that is not a variable you declared, **it's not on the stack and has static duration, which is the same with static variables** . It's a string literal, which is a constant defined in the program (similar to the integer literal `99` or the floating point literal `0.99`). Literals don't go out of scope as you expect, because they are not created or destroyed, they just *are*.
 
+### What is the meaning of "!!"?
+
+> [!! c operator, is a two NOT?](https://stackoverflow.com/questions/10307281/c-operator-is-a-two-not)
+>
+> [What is “!!” in C? [duplicate\]](https://stackoverflow.com/questions/14751973/what-is-in-c)
+>
+> [Defining double exclamation?](https://stackoverflow.com/questions/11374810/defining-double-exclamation)
+
+`!!a` is 1 if `a` is non-zero and 0 if `a` is 0. Turn everything to `int`.
+
+### My mentor told me to use forward declaration, but sometimes it can be failed...
+
+> [C++ class forward declaration](https://stackoverflow.com/questions/9119236/c-class-forward-declaration)
+
+> 1. `B` **only uses references or pointers** to `A`. Use forward declaration then you don't need to include `<A.h>`. This will in turn speed a little bit the compilation.
+>
+> ```cpp
+> class A ;
+> 
+> class B 
+> {
+>   private:
+>     A* fPtrA ;
+>   public:
+>     void mymethod(const& A) const ;
+> } ;
+> ```
+>
+> 2. `B` derives from `A` or `B` explicitly(or implicitly) uses objects of class `A`. You then need to include `<A.h>`
+>
+> ```cpp
+> #include <A.h>
+> 
+> class B : public A 
+> {
+> };
+> 
+> class C 
+> {
+>   private:
+>     A fA ;
+>   public:
+>     void mymethod(A par) ;   
+> }
+> ```
+
 ## OOP
 
 ### Can I access derived class member from base class?
@@ -301,7 +347,41 @@ basepointer-> //Access derived_int here, is it possible? If so, then how?
 
 No, I can't...
 
+### No default constructor exists for class xxx
+
+> [no default constructor exists for class](https://stackoverflow.com/questions/4981241/no-default-constructor-exists-for-class)
+
+A member of a class is self-defined class with a non-default constructer:
+
+```cpp
+class A
+{
+    A(/*...*/){/*...*/}
+    // ...
+}
+
+class B
+{
+    //...
+    A mA; // ERROR!
+    B(A _a):mA(_a){} // CORRECT! or define a default constructer for A
+}
+```
+
 ## Parallel Programming
+
+### How to create a thread function?
+
+> [Simple example of threading in C++](https://stackoverflow.com/questions/266168/simple-example-of-threading-in-c)
+
+```cpp
+void task1(std::string msg)
+{
+    std::cout << "task1 says: " << msg;
+}
+
+std::thread t1(task1, "Hello");
+```
 
 ### Why can't I use reference in a thread process function?
 
@@ -335,6 +415,104 @@ int main()
 
 ```c++
 auto thread1 = std::thread(SimpleThread, std::ref(a));
+```
+
+### Thread function is a class's member function
+
+> [Start thread with member function](https://stackoverflow.com/questions/10673585/start-thread-with-member-function)
+
+```cpp
+#include <thread>
+#include <iostream>
+
+class bar {
+public:
+    void foo() {
+      std::cout << "hello from member function" << std::endl;
+    }
+    // in another member function
+    std::thread spawn() {
+      return std::thread(&blub::test, this);
+    }
+    // or
+    std::thread spawn() {
+      return std::thread( [this] { this->test(); } );
+    }
+};
+
+// outside the class definition
+int main()
+{
+  std::thread t(&bar::foo, bar()); // !!
+  t.join();
+}
+```
+
+### A similar question to the last one: how std::bind works with member functions
+
+> [How std::bind works with member functions](https://stackoverflow.com/questions/37636373/how-stdbind-works-with-member-functions)
+
+example:
+
+```cpp
+// for normal functions
+double my_divide (double x, double y) {return x/y;}
+auto fn_half = std::bind (my_divide,_1,2);               // returns x/2
+
+std::cout << fn_half(10) << '\n';                        // 5
+
+// for member functions
+struct Foo {
+    void print_sum(int n1, int n2)
+    {
+        std::cout << n1+n2 << '\n';
+    }
+    int data = 10;
+};
+
+Foo foo;
+// for member fucntions
+// the first arguement of std::bing must be explicitly an pointer
+auto f = std::bind(&Foo::print_sum, &foo, 95, _1);
+f(5);
+```
+
+more on pointer to a member:
+
+```cpp
+#include <iostream>
+
+struct Foo {
+    int value;
+    void f() { std::cout << "f(" << this->value << ")\n"; }
+    void g() { std::cout << "g(" << this->value << ")\n"; }
+};
+
+void apply(Foo* foo1, Foo* foo2, void (Foo::*fun)()) {
+    (foo1->*fun)();  // call fun on the object foo1, applying a pointer to a member of a pointer to an object
+    (foo2->*fun)();  // call fun on the object foo2
+}
+
+int main() {
+    Foo foo1{1};
+    Foo foo2{2};
+
+    apply(&foo1, &foo2, &Foo::f);
+    apply(&foo1, &foo2, &Foo::g);
+}
+```
+
+> Since a pointer to a member function needs an object, it is necessary to use this operator which asks for an object. Internally, `std::bind()` arranges the same to happen.
+
+### How to make a thread sleep for a certain duration?
+
+`chrono` solution
+
+```cpp
+#include <chrono>
+#include <thread>
+
+std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 ```
 
 ## Types and Conversions
@@ -401,6 +579,108 @@ std::wstring st = L"SomeText";
 std::wcout << st; // stream
 ```
 
+### How to convert a const char* to string?
+
+```cpp
+const char* str="hello";
+std::string s = str;
+// or std::string str(s);
+```
+
+### How to change "int" to a formatted hex string?
+
+> [c++ std::cout in hexadecimal](https://stackoverflow.com/questions/28257957/c-stdcout-in-hexadecimal)
+
+```cpp
+#include <string>
+#include <iomanip> // setfill and setw
+#include <sstream>
+#include <iostream>
+
+int a = 15;
+// std::setw(n): It is used to sets the field width to be used on output operations.
+// std::setfill(c): use which character to fill the width.
+std::cout << std::hex << std::setfill('0') << std::setw(2) << a; // prints "0f"
+```
+
+```cpp
+// C++ code to demonstrate
+// the working of setfill() function
+  
+#include <iomanip>
+#include <ios>
+#include <iostream>
+  
+using namespace std;
+  
+int main()
+{
+  
+    // Initializing the integer
+    int num = 50;
+  
+    cout << "Before setting the fill char: \n"
+         << setw(10);
+    cout << num << endl;
+  
+    // Using setfill()
+    cout << "Setting the fill char"
+         << " setfill to *: \n"
+         << setfill('*')
+         << setw(10);
+    cout << num << endl;
+  
+    return 0;
+}
+```
+
+
+
+## Design Pattern
+
+> [Is Meyers' implementation of the Singleton pattern thread safe?](https://stackoverflow.com/questions/1661529/is-meyers-implementation-of-the-singleton-pattern-thread-safe)
+>
+> :yum:[C++ Singleton design pattern](https://stackoverflow.com/questions/1008019/c-singleton-design-pattern)
+
+how to:
+
+```cpp
+class S
+{
+    public:
+        static S& getInstance()
+        {
+            static S    instance; // Guaranteed to be destroyed.
+                                  // Instantiated on first use.
+            return instance;
+        }
+    private:
+        S() {}                    // Constructor? (the {} brackets) are needed here.
+
+        // C++ 03
+        // ========
+        // Don't forget to declare these two. You want to make sure they
+        // are inaccessible(especially from outside), otherwise, you may accidentally get copies of
+        // your singleton appearing.
+        S(S const&);              // Don't Implement
+        void operator=(S const&); // Don't implement
+
+        // C++ 11
+        // =======
+        // We can use the better technique of deleting the methods
+        // we don't want.
+    public:
+        S(S const&)               = delete;
+        void operator=(S const&)  = delete;
+
+        // Note: Scott Meyers mentions in his Effective Modern
+        //       C++ book, that deleted functions should generally
+        //       be public as it results in better error messages
+        //       due to the compilers behavior to check accessibility
+        //       before deleted status
+};
+```
+
 ## Errors and Exceptions handling
 
 ### Error: Expected a type specifier
@@ -447,14 +727,6 @@ private:
 
 参考：[Most vexing parse](https://en.wikipedia.org/wiki/Most_vexing_parse)
 
-### How to convert a const char* to string?
-
-```cpp
-const char* str="hello";
-std::string s = str;
-// or std::string str(s);
-```
-
 ## Utils
 
 ### How to get current (working) directory?
@@ -490,8 +762,6 @@ int main()
               << "elapsed time: " << elapsed_seconds.count() << "s\n";
 }
 ```
-
-
 
 ## Resource
 
