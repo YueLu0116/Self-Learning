@@ -28,3 +28,10 @@ $ git rebase maste
 Used situations:
 
 > Often, you’ll do this to make sure your commits apply cleanly on a remote branch — perhaps in a project to which you’re trying to contribute but that you don’t maintain.
+
+## How to push newly created local branch to a remote branch?
+
+> https://blog.csdn.net/ljj_9/article/details/79386306
+
+1. use `git branch` to check current branch;
+2. `git push origin dev_luyue:dev_luyue`
