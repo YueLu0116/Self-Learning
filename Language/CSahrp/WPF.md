@@ -153,4 +153,116 @@
      </Application>
      ```
 
-     
+
+## Basic Controls
+
+### TextBlock Control
+
+It allows you to **put text on the screen**, much like a Label control does, but in a simpler and less resource demanding way. A common understanding is that a Label is for short, one-line texts (but may include e.g. an image), while the TextBlock works very well for multiline strings as well, but can only contain text (strings).
+
+```xaml
+    <StackPanel>
+        <TextBlock Margin="10" Foreground="Red">
+			This is a TextBlock control<LineBreak />
+			with multiple lines of text.
+        </TextBlock>
+        <TextBlock Margin="10" TextTrimming="CharacterEllipsis" Foreground="Green">
+			This is a TextBlock control with text that may not be rendered completely, which will be indicated with an ellipsis.
+        </TextBlock>
+        <TextBlock Margin="10" TextWrapping="Wrap" Foreground="Blue">
+			This is a TextBlock control with automatically wrapped text, using the TextWrapping property.
+        </TextBlock>
+    </StackPanel>
+```
+
+### Label Control
+
+1. A Label can host any kind of control directly inside of it.
+
+2. The TextBlock only allows you to render a text string, while the Label also allows you to:
+
+   - Specify a border
+   - Render other controls, e.g. an image
+   - Use templated content through the ContentTemplate property
+   - **Use access keys to give focus to related controls**
+
+   The last bullet point is actually one of the main reasons for using a Label over the TextBlock control. Whenever you just want to render simple text, you should use the TextBlock control, since it's lighter and performs better than the Label in most cases.
+
+   ```xaml
+   <Window x:Class="WpfTutorialSamples.Basic_controls.LabelControlAdvancedSample"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           Title="LabelControlAdvancedSample" Height="180" Width="250">
+   	<StackPanel Margin="10">
+   		<Label Target="{Binding ElementName=txtName}">
+   			<StackPanel Orientation="Horizontal">
+   				<Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png" />
+   				<AccessText Text="_Name:" />
+   			</StackPanel>
+   		</Label>
+   		<TextBox Name="txtName" />
+   		<Label Target="{Binding ElementName=txtMail}">
+   			<StackPanel Orientation="Horizontal">
+   				<Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_blue.png" />
+   				<AccessText Text="_Mail:" />
+   			</StackPanel>
+   		</Label>
+   		<TextBox Name="txtMail" />
+   	</StackPanel>
+   </Window>
+   ```
+
+### TextBox Control
+
+1. The TextBox control allows the end-user to write plain text, either on a single line, for dialog input, or in multiple lines, like an editor.
+
+2. Prefill the textbox:
+
+   ```xaml
+   <TextBox Text="Hello, world!" />
+   ```
+
+3. Multi-line TextBox
+
+   ```xaml
+   <Window x:Class="WpfTutorialSamples.Basic_controls.TextBoxSample"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           Title="TextBoxSample" Height="160" Width="280">
+       <Grid Margin="10">
+   		<TextBox AcceptsReturn="True" TextWrapping="Wrap" />
+   	</Grid>
+   </Window>
+   ```
+
+   The AcceptsReturn makes the TextBox into a multi-line control by allowing the use of the Enter/Return key to go to the next line, and the TextWrapping property, which will make the text wrap automatically when the end of a line is reached.
+
+4. SelectionChanged event
+
+   ```xaml
+   <Window x:Class="WpfTutorialSamples.Basic_controls.TextBoxSelectionSample"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           Title="TextBoxSelectionSample" Height="150" Width="300">
+   	<DockPanel Margin="10">
+   		<TextBox SelectionChanged="TextBox_SelectionChanged" DockPanel.Dock="Top" />
+   		<TextBox Name="txtStatus" AcceptsReturn="True" TextWrapping="Wrap" IsReadOnly="True" />
+   
+   	</DockPanel>
+   </Window>
+   
+   
+   ```
+
+   ```csharp
+   private void TextBox_SelectionChanged(object sender, RoutedEventArgs e)
+   {
+       TextBox textBox = sender as TextBox;
+       txtStatus.Text = "Selection starts at character #" + textBox.SelectionStart + Environment.NewLine;
+       txtStatus.Text += "Selection is " + textBox.SelectionLength + " character(s) long" + Environment.NewLine;
+       txtStatus.Text += "Selected text: '" + textBox.SelectedText + "'";
+   }
+   ```
+
+   
+
