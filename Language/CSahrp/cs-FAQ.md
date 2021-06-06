@@ -477,6 +477,21 @@ Process.GetCurrentProcess().ProcessName;
 // Process.GetCurrentProcess().MainModule.FileName
 ```
 
+## Design pattern
+
+### Lazy Singleton
+
+> https://csharpindepth.com/Articles/Singleton
+
+```csharp
+class MyObject
+{
+    // return a newly created object MyObject
+    private static Lazy<MyObject> lazyIns = new Lazy<MyObject>(()=>new MyObject());
+    public static Instance{get{return lazyIns.Value;}}
+}
+```
+
 ## Miscellaneous
 
 ### Run as administrator

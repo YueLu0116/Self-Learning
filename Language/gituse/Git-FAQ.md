@@ -35,3 +35,41 @@ Used situations:
 
 1. use `git branch` to check current branch;
 2. `git push origin dev_luyue:dev_luyue`
+
+## How to use submodules?
+
+> [Git Tools - Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+
+1. What can I do with submodules?
+
+   Submodules allow you to keep a Git repository as a subdirectory of another Git repository. 
+
+2. How to add submodules to my git repository?
+
+   `git sumodule add <url>`
+
+3. What is the `.gitmodules` file?
+
+   This is a configuration file that stores the mapping between the project’s URL and the local subdirectory you’ve pulled it into.
+
+4. How to clone a repository with submodules?
+
+   ```
+   $ git clone <url-main-repo>
+   $ git submodule init
+   $ git submodule update
+   # or
+   $ git clone --recurse-submodules <url-main-repo>
+   ```
+
+5. Pulling in upstream changes from the remote submodule repos
+
+   ```
+   # go into the submodule's directory
+   $ git fetch
+   $ git merge origin/master
+   # an easier way
+   $ git submodule update --remote <submodule-name>
+   ```
+
+   
