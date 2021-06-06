@@ -82,3 +82,56 @@ Render a 3d geometory using a minimal vertex sharer and pixel shader.
      - world matrix: transform the object’s vertices into world space.
      - view matrix: store the camera’s view matrix that will transform the object’s vertices from world space into view space.
      - projection matrix: transform the object’s vertices from view space into clip space.
+
+### Minimum WindowProc callback function
+
+1. **Paint**: The window procedure must respond to the `WM_PAINT` window message. We don’t actually do any rendering with this message except erase the window’s background contents using the window class’s background brush.
+
+2. **Destroy**: In order to close the window, respond to the `WM_DESTROY` window message which simply calls the `PostQuitMessage` function.
+
+   ```cpp
+   LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+   {
+       PAINTSTRUCT paintStruct;
+       HDC hDC;
+   
+       switch (message)
+       {
+       case WM_PAINT:
+       {
+           hDC = BeginPaint(hwnd, &paintStruct);
+           EndPaint(hwnd, &paintStruct);
+       }
+       break;
+       case WM_DESTROY:
+       {
+           PostQuitMessage(0);
+       }
+       break;
+       default:
+           return DefWindowProc(hwnd, message, wParam, lParam);
+       }
+   
+       return 0;
+   }
+   ```
+
+3. Message processing function:
+
+   Basic procedure: Peek-Translate-Dispatch Message
+
+### Initialize DirectX
+
+**Steps**:
+
+1. Create the device and swap chain,
+2. Create a render target view of the swap chain’s back buffer,
+3. Create a texture for the depth-stencil buffer,
+4. Create a depth-stencil view from the depth-stencil buffer,
+5. Create a depth-stencil state object that defines the behaviour of the output merger stage,
+6. Create a rasterizer state object that defines the behaviour of the rasterizer stage.
+
+### About shaders
+
+
+
