@@ -320,6 +320,24 @@ The value of `t` is the address of the string literal `"test"`, and that is not 
 > }
 > ```
 
+### Difference between two ways on initializing smart pointers
+
+what's the difference?
+
+```cpp
+std::shared_ptr<Object> p1 = std::make_shared<Object>("foo");
+std::shared_ptr<Object> p2(new Object("foo"));
+```
+
+The difference is that `std::make_shared` performs one heap-allocation, whereas calling the `std::shared_ptr` constructor performs two.
+
+`std::shared_ptr` manages two entities:
+
+- the control block (stores meta data such as ref-counts, type-erased deleter, etc)
+- the object being managed
+
+`std::make_shared` performs a single heap-allocation accounting for the space necessary for both the control block and the data. In the other case, `new Obj("foo")` invokes a heap-allocation for the managed data and the `std::shared_ptr` constructor performs another one for the control block.
+
 ## OOP
 
 ### Can I access derived class member from base class?
@@ -764,6 +782,22 @@ int main()
               << "elapsed time: " << elapsed_seconds.count() << "s\n";
 }
 ```
+
+## Linkages
+
+### What is "incremental linking"?
+
+> [What is “incremental linking”?](https://stackoverflow.com/questions/3349521/what-is-incremental-linking)
+
+Incremental linking links your exe/dll in a way which makes it easier for the linker to update the existing exe/dll when you make a small change and re-compile.
+
+### What is pdb files?
+
+> [What is a PDB file?](https://stackoverflow.com/questions/3899573/what-is-a-pdb-file)
+
+**PDB** is an abbreviation for **P**rogram-Debug **D**ata **B**ase. As the name suggests, it is a repository (persistent storage such as databases) to maintain information required to run your program in debug mode. It contains many important information required to you debug your code (in Visual Studio) e.g. at what points you have put break points where you expect the debugger to break in Visual Studio.
+
+Generally it is not recommended to exclude the generation of `*.pdb` files. From production release stand-point what you should be doing is create the PDB files but don't ship them to customer site in product installer. Preserve all the generated PDB files on a symbol server from where it can be used/referenced in future if required. 
 
 ## Resource
 
