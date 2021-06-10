@@ -264,5 +264,10 @@ It allows you to **put text on the screen**, much like a Label control does, but
    }
    ```
 
-   
+
+### Button Control
+
+1. Add a button and write its "on-click" functions.
+2. format and include advanced contents in one button.
+3. Padding using `Windows.Resource` property.
 
