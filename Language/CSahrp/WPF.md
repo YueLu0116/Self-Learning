@@ -264,5 +264,21 @@ It allows you to **put text on the screen**, much like a Label control does, but
    }
    ```
 
-   
 
+### Button Control
+
+1. Add a button and write its "on-click" functions.
+2. format and include advanced contents in one button.
+3. Padding using `Windows.Resource` property.
+
+### Check Box
+
+## Q&A
+
+### What is the difference between Grid and Stackpanel?
+
+> [WPF Grid vs Stackpanel](https://stackoverflow.com/questions/452045/wpf-grid-vs-stackpanel)
+
+They are all containers.
+
+> You should use a Grid if you need things to line up horizontally and vertically. Use a StackPanel to create a row or column of things when those things don't need to line up with anything else. And DockPanel is slightly more complex than a StackPanel, but its markup isn't as cluttered as the Grid.

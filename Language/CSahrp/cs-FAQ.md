@@ -529,3 +529,12 @@ dotnet new console // dotnet new --list 查看所有工程模板
 F5 debug
 ```
 
+### Logs library for cs
+
+NLog: https://github.com/NLog/NLog
+
+Resources for NLog:
+
+[Configuration file](https://github.com/NLog/NLog/wiki/Configuration-file)
+
+[Configuration options](https://nlog-project.org/config/?tab=layout-renderers)
