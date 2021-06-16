@@ -1,6 +1,8 @@
 # Ansible quick notes
 
 > Based on the official [documents](https://docs.ansible.com/ansible/latest/user_guide/intro_getting_started.html#intro-getting-started)
+>
+> Chinese version reference:https://ansible-tran.readthedocs.io/en/latest/docs/intro.html
 
 ## Basic procedure
 
