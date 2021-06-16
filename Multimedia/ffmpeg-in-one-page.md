@@ -8,6 +8,8 @@
 - unofficial [examples](https://hhsprings.bitbucket.io/docs/programming/examples/ffmpeg/index.html#)
 - ffmpeg [wiki](https://trac.ffmpeg.org/wiki)
 - sdl2 library: https://www.libsdl.org/
+- my former notes (downloaded from lark): [pdf version](./pdfs/ffmpeg.pdf)
+- blogs: https://github.com/Eyevinn/streaming-onboarding
 
 ## Q&A
 

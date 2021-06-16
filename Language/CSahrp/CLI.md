@@ -8,3 +8,6 @@
 
 > Well, a managed object can be moved around in memory, which is the reason why the compiler doesn't let you take an address to it - that address *will* become outdated sooner or later.
 
+## [Walkthrough: Compile a C++/CLI Program that Targets the CLR in Visual Studio](https://docs.microsoft.com/en-us/cpp/dotnet/walkthrough-compiling-a-cpp-program-that-targets-the-clr-in-visual-studio?view=msvc-160)
+
+> C++/CLI is intended for use in console applications and in DLLs that wrap native C++ code and make it accessible from .NET programs.
