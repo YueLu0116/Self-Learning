@@ -538,3 +538,9 @@ Resources for NLog:
 [Configuration file](https://github.com/NLog/NLog/wiki/Configuration-file)
 
 [Configuration options](https://nlog-project.org/config/?tab=layout-renderers)
+
+### Best practices on performance
+
+> https://kevingosse.medium.com/performance-best-practices-in-c-b85a47bdd93a
+
+TODO
