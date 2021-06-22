@@ -11,3 +11,10 @@ Still, the outage comes amid a slew of recent cyberincidents that have impacted 
 From Newsletter
 
 How Amazon's New York City warehouse **fared** during the pandemic.
+
+## June. 19th, 2021
+
+https://zettelkasten.de/introduction/
+
+This **strikes a chord** with people investigating the Zettelkasten Method.
+

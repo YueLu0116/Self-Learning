@@ -544,3 +544,15 @@ Resources for NLog:
 > https://kevingosse.medium.com/performance-best-practices-in-c-b85a47bdd93a
 
 TODO
+
+### Get disk i/o using c#
+
+> https://bbs.csdn.net/topics/391913878
+
+TODO: don't seem to work well
+
+### .Net interactive environment
+
+https://andrewlock.net/exploring-dotnet-interactive-notebooks/?utm_source=csharpdigest&utm_medium=email&utm_campaign=367
+
+> Jupyter notebooks run as client-server applications, though you typically run both the client and server on your own machine. You author your notebook on the client in an IDE/editor, and your code is executed by sending it to the server (called the kernel). The results are then displayed in your notebook.

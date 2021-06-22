@@ -652,7 +652,15 @@ int main()
 }
 ```
 
+### How to convert int to string?
 
+> [Easiest way to convert int to string in C++](https://stackoverflow.com/questions/5590381/easiest-way-to-convert-int-to-string-in-c)
+
+```cpp
+#include <string> 
+
+std::string s = std::to_string(42);
+```
 
 ## Design Pattern
 
@@ -699,6 +707,82 @@ class S
         //       due to the compilers behavior to check accessibility
         //       before deleted status
 };
+```
+
+## Windows related
+
+### What is c++/winrt
+
+> [What is C++/WinRT exactly?](https://stackoverflow.com/questions/60021694/what-is-c-winrt-exactly)
+>
+> [How do I get the computer’s serial number? Consuming Windows Runtime classes in desktop apps](https://devblogs.microsoft.com/oldnewthing/20180108-00/?p=97735)
+
+c++ 17以来包含的windows运行时api。
+
+使用时需要先通过nuget获取cppwinrt，install后必须要**先build一下**，然后再去使用其中的头文件。
+
+应用举例：获取bios serial number
+
+```cpp
+#include <windows.h>
+#include <stdio.h> // Horrors! Mixing C and C++!
+
+#include "winrt/Windows.System.Profile.SystemManufacturers.h"
+
+int __cdecl wmain(int, char**)
+{
+  winrt::init_apartment();
+  {
+    auto serialNumber = winrt::Windows::System::Profile::
+         SystemManufacturers::SmbiosInformation::SerialNumber();
+    wprintf(L"Serial number = %ls\n", serialNumber.c_str());
+  }
+
+  // The last thread cleans up before uninitializing for good.
+  winrt::clear_factory_cache();
+  winrt::uninit_apartment();
+
+  return 0;
+}
+```
+
+### How to get exe name?
+
+Use GetModuleFileName api. Get the total path.
+
+```cpp
+#include <iostream>
+#include <Windows.h>
+
+using namespace std;
+
+int main ()
+{   LPWSTR buffer[MAX_PATH]; //or wchar_t * buffer;
+    GetModuleFileName(NULL, buffer, MAX_PATH) ;
+    cout<<buffer;
+}
+```
+
+### How to delete a registry key?
+
+The key point is we must first open the registry key. And we must know which is the key and which is the value.
+
+```cpp
+HKEY hKey = NULL;
+long lReturn = RegOpenKeyEx( HKEY_CURRENT_USER,
+                             _T("test1\\test2\\test3"),
+                             0L,
+                             KEY_SET_VALUE,
+                             &hKey );
+if (lReturn == ERROR_SUCCESS)
+{
+    lReturn = RegDeleteValue(hKey, _T("value1"));
+    lReturn = RegDeleteValue(hKey, _T("value2"));
+    lReturn = RegCloseKey(hKey);
+}
+
+lReturn = RegDeleteKey(HKEY_CURRENT_USER, _T("test1\\test2\\test3"));
+lReturn = RegDeleteKey(HKEY_CURRENT_USER, _T("test1\\test2"));
 ```
 
 ## Errors and Exceptions handling
