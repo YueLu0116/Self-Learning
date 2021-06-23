@@ -18,3 +18,9 @@ https://zettelkasten.de/introduction/
 
 This **strikes a chord** with people investigating the Zettelkasten Method.
 
+## June. 23th, 2021
+
+[What does IIRC mean?](https://www.dictionary.com/browse/iirc)
+
+IIRC is an internet abbreviation that stands for if I recall correctly or if I remember correctly, variously used when a person is retrieving information they may not be 100% sure of.
+
