@@ -17,3 +17,25 @@
 
 > https://en.wikipedia.org/wiki/Audio_normalization
 
+## Daily Command Line
+
+### How to rotate a video (e.g.  Rotate 90 clockwise)?
+
+> [Rotating videos with FFmpeg](https://stackoverflow.com/questions/3937387/rotating-videos-with-ffmpeg)
+
+```
+ffmpeg -i in.mov -vf "transpose=1" out.mov
+```
+
+```
+0 = 90CounterCLockwise and Vertical Flip (default)
+1 = 90Clockwise
+2 = 90CounterClockwise
+3 = 90Clockwise and Vertical Flip
+```
+
+### How to add a watermark to my video?
+
+> [How to add transparent watermark in center of a video with ffmpeg?](https://stackoverflow.com/questions/10918907/how-to-add-transparent-watermark-in-center-of-a-video-with-ffmpeg)
+
+TODO

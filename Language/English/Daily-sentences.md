@@ -24,3 +24,8 @@ This **strikes a chord** with people investigating the Zettelkasten Method.
 
 IIRC is an internet abbreviation that stands for if I recall correctly or if I remember correctly, variously used when a person is retrieving information they may not be 100% sure of.
 
+## June. 26th, 2021
+
+- From Newsletter
+
+It’s one of the first major contests to be held as the pandemic recedes, and it could be a **bellwether** for Democratic sentiment on issues like police reform, housing and education.

@@ -338,6 +338,135 @@ The difference is that `std::make_shared` performs one heap-allocation, whereas 
 
 `std::make_shared` performs a single heap-allocation accounting for the space necessary for both the control block and the data. In the other case, `new Obj("foo")` invokes a heap-allocation for the managed data and the `std::shared_ptr` constructor performs another one for the control block.
 
+### Oh! I forget how to use lambda in cpp  today...
+
+> [What is a lambda expression in C++11?](https://stackoverflow.com/questions/7627098/what-is-a-lambda-expression-in-c11)
+
+- The simplest version:
+
+```cpp
+void func3(std::vector<int>& v) {
+  std::for_each(v.begin(), v.end(), [](int) { /* do something here*/ });
+}
+```
+
+- add return types:
+
+```cpp
+void func4(std::vector<double>& v) {
+    std::transform(v.begin(), v.end(), v.begin(),
+        [](double d) -> double {
+            if (d < 0.0001) {
+                return 0;
+            } else {
+                return d;
+            }
+        });
+}
+```
+
+- capture other variables except the passed ones
+
+```cpp
+void func5(std::vector<double>& v, const double& epsilon) {
+    std::transform(v.begin(), v.end(), v.begin(),
+        [epsilon](double d) -> double {
+            if (d < epsilon) {
+                return 0;
+            } else {
+                return d;
+            }
+        });
+}
+```
+
+### Difference on casting an int to void between static and reinterpret cast
+
+> [When to use reinterpret_cast?](https://stackoverflow.com/questions/573294/when-to-use-reinterpret-cast)
+
+`static_cast`ing a pointer to and from `void*` preserves the address. 
+
+```cpp
+int* a = new int();
+void* b = static_cast<void*>(a);
+int* c = static_cast<int*>(b);
+```
+
+`reinterpret_cast` only guarantees that if you cast a pointer to a different type, *and then `reinterpret_cast` it back to the original type*, you get the original value.
+
+```cpp
+int* a = new int();
+void* b = reinterpret_cast<void*>(a);
+int* c = reinterpret_cast<int*>(b);
+```
+
+## Advances
+
+### The forwarding problem
+
+> [What are the main purposes of using std::forward and which problems it solves?](https://stackoverflow.com/questions/3582001/what-are-the-main-purposes-of-using-stdforward-and-which-problems-it-solves)
+
+如何保证两个函数的参数完全相同？例如在模板中，想要保证E == f：
+
+```cpp
+template <typename A, typename B, typename C>
+void f(A& a, B& b, C& c)
+{
+    E(a, b, c);
+}
+```
+
+以上左值引用在传入的参数是临时左值时失效：`f(1,2,3)`
+
+如果尝试：
+
+```cpp
+template <typename A, typename B, typename C>
+void f(const A& a, const B& b, const C& c)
+{
+    E(a, b, c);
+}
+```
+
+当尝试传入非常量时，E内不能修改。
+
+在泛型编程时，这种情况就需要对每个参数的所有情况进行遍历，有$2^N$ 次。
+
+cpp 11后引入了右值引用，引用运算遵循以下规则：
+
+> "[given] a type TR that is a reference to a type T, an attempt to create the type “lvalue reference to cv TR” creates the type “lvalue reference to T”, while an attempt to create the type “rvalue reference to cv TR” creates the type TR."
+
+```
+TR   R
+
+T&   &  -> T&  // lvalue reference to cv TR -> lvalue reference to T
+T&   && -> T&  // rvalue reference to cv TR -> TR (lvalue reference to T)
+T&&  &  -> T&  // lvalue reference to cv TR -> lvalue reference to T
+T&&  && -> T&& // rvalue reference to cv TR -> TR (rvalue reference to T)
+```
+
+即左值引用结果都是左值引用，右值引用结果是本身。
+
+And now we can use "perfect forwarding"
+
+```cpp
+template <typename A>
+void f(A&& a)
+{
+    E(static_cast<A&&>(a)); 
+}
+```
+
+That is what `std::forward` doing
+
+```cpp
+template <typename A>
+void f(A&& a)
+{
+    E(std::forward<A>(a);); 
+}
+```
+
 ## OOP
 
 ### Can I access derived class member from base class?

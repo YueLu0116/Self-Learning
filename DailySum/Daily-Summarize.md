@@ -511,3 +511,9 @@ May. 22th, 2021
 
 - media
   1. [nvcodec sdk](https://developer.nvidia.com/nvidia-video-codec-sdk)
+
+### June. 26th, 2021
+
+- tools
+  1. [inno setup](https://jrsoftware.org/isinfo.php)
+

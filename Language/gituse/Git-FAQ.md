@@ -36,6 +36,30 @@ Used situations:
 1. use `git branch` to check current branch;
 2. `git push origin dev_luyue:dev_luyue`
 
+## We talk about push branched above but how about push a new local repository to a remote one?
+
+> [Pushing from local repository to GitHub hosted remote](https://stackoverflow.com/questions/10573957/pushing-from-local-repository-to-github-hosted-remote)
+
+First create a new remote repository in github.
+
+Use the repo's url to establish local-remote repos' relationship:
+
+```
+git remote add origin git@github.com:username/reponame.git
+```
+
+First push:
+
+```
+git push origin master
+```
+
+And after all these:
+
+```
+git push
+```
+
 ## How to use submodules?
 
 > [Git Tools - Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
@@ -149,3 +173,14 @@ after:
 
 ![after cherry-pick](./images/after-cp.png)
 
+## How to pull a newly created remote branch to the local repo?
+
+I worked with my colleagues on a project and he created a new branch remotely and added some new features to that branch. I wanted to pull this branch to my local repository. What is the solution?
+
+> https://blog.csdn.net/tterminator/article/details/52225720
+
+```
+git fetch origin <remote-branch-name>:local-branch-name
+```
+
+This git command will create a new branch named local-branch-name and its content is the same with remote-branch-name.
