@@ -506,3 +506,8 @@ May. 22th, 2021
   3. 【Q&A】[How to initialize const in a struct in C (with malloc)](https://stackoverflow.com/questions/9691404/how-to-initialize-const-in-a-struct-in-c-with-malloc)
 - windows:
   1. 【Q&A】[What is COM (Component Object Model) in a nutshell? [closed\]](https://stackoverflow.com/questions/455687/what-is-com-component-object-model-in-a-nutshell)
+
+### June. 23th, 2021
+
+- media
+  1. [nvcodec sdk](https://developer.nvidia.com/nvidia-video-codec-sdk)
