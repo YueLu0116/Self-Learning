@@ -14,3 +14,25 @@
 :set nopaste
 ```
 
+## Daily Command Line
+
+### June.26th, 2021
+
+- copy multiple files to another folder
+
+```
+$ cp /home/ankur/folder/{file{1,2},xyz,abc} /home/ankur/dest
+```
+
+- copy a directory into another one
+
+```
+$ cp -R <source_folder> <destination_folder>
+```
+
+- rename a folder
+
+```
+$ mv <source_directory> <target_directory>
+```
+
