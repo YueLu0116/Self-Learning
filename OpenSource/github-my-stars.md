@@ -24,6 +24,22 @@ c#编写在console window中的下载进度条
 - [ ] TODO KeePassX is a cross platform port of the windows application “Keepass Password Safe“
 ### [Easy Watermark](https://github.com/rosuH/EasyWatermark)
 - [ ] TODO 添加水印
+### [notable](https://github.com/notable/notable)
+支持标签的markdown笔记软件
+### [openhardwaremonitor](https://github.com/openhardwaremonitor/openhardwaremonitor)
+c# 实现的硬件信息/状态检测工具
+### [Dependencies](https://github.com/lucasg/Dependencies)
+c#实现的依赖项检测工具
+### [ScreenToGif](https://github.com/NickeManarin/ScreenToGif)
+c# 实现的gif生成工具
+### [RevokeMsgPatcher](https://github.com/huiyadanli/RevokeMsgPatcher)
+微信多开工具
+### [EarTrumpet](https://github.com/File-New-Project/EarTrumpet)
+c# 实现的桌面端音量控制
+### [speedtest-cli](https://github.com/sivel/speedtest-cli)
+命令行网络测试工具
+### [issrc](https://github.com/jrsoftware/issrc)
+通过脚本发布安装包
 
 ## Libraries
 > Awesome libraries and packages which can be used in my projects
@@ -41,8 +57,11 @@ cpp日志库
 解析xml文件
 ### [uthash](https://github.com/troydhanson/uthash)
 c语言has map库
+### [curl](https://github.com/curl/curl)
 ### [curlpp-C++ wrapper around libcURL](https://github.com/jpbarrette/curlpp)
 curl的cpp封装
+### [Detours](https://github.com/microsoft/Detours)
+cpp hook lib
 
 ## Multimedia
 > Projects on audio and video processing
@@ -88,8 +107,22 @@ cpp命令行工具
 微软官方实现的cpp-stl
 ### [ThreadPool](https://github.com/progschj/ThreadPool)
 cpp实现的线程池
+### [folly](https://github.com/facebook/folly)
+facebook实现的cpp libs
+### [CppCoreGuidelines](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)
+cpp指南 by Bjarne Stroustrup and Herb Sutter
+
+## csharp
+### [libvideo](https://github.com/omansak/libvideo)
+c# lib for downloading videos on youtube
+### [awesome dotnet](https://github.com/quozd/awesome-dotnet)
+### [AsyncEx](https://github.com/StephenCleary/AsyncEx)
+c# 异步库
+### [Downloader](https://github.com/bezzad/Downloader)
+c# 入门级工程，简单的下载器，命令行实现
 
 ## Concurrency
+### [Is Parallel Programming Hard, And If So, What Can You Do About It?](https://github.com/paulmckrcu/perfbook)
 ### [IPC-Windows](https://github.com/microsoft/IPC)
 windows进程间通信
 ### [cppzmq](https://github.com/zeromq/cppzmq)
@@ -102,6 +135,7 @@ zmq消息队列教程
 ### [labuladong 的算法小抄](https://github.com/labuladong/fucking-algorithm)
 ### [Collection of various algorithms in mathematics, machine learning, computer science and physics implemented in C++ for educational purposes.](https://github.com/TheAlgorithms/C-Plus-Plus)
 cpp实现各类算法
+### [leetcode solutions by chenhao](https://github.com/haoel/leetcode)
 
 ## Operating Systems
 ### [windows_via_cpp](https://github.com/cggos/windows_via_cpp)
@@ -112,14 +146,15 @@ _windows via cpp_ 源码
 《操作系统导论》源码
 ### [SystemProgramming](https://github.com/angrave/SystemProgramming)
 c语言系统编程（并发-同步-网络-文件...）
+### [linux-insides](https://github.com/0xAX/linux-insides)
+linux内核分析
 
 ## Collections
 ### [python, golang, devops 基础知识、 系统设计、后端开发路线图](https://github.com/DasyDong/interview)
 ### [Awesome-Cheatsheets](https://github.com/LeCoupa/awesome-cheatsheets)
-### [awesome-for-beginners](https://github.com/MunGell/awesome-for-beginners)
-A list of awesome beginners-friendly projects.
 ### [awesome-Awesome lists about all kinds of interesting topics](https://github.com/sindresorhus/awesome)
 ### [awesome-mac](https://github.com/jaywcjlove/awesome-mac)
+### [awesome-windows](https://github.com/Awesome-Windows/Awesome)
 ### [CS-Notes](https://github.com/huangrt01/CS-Notes)
 ### [awesome-youtubers-An awesome list containing awesome YouTubers that teach about technology.](https://github.com/JoseDeFreitas/awesome-youtubers)
 ### [hacker-laws-zh-对开发人员有用的定律、理论、原则和模式](https://github.com/nusr/hacker-laws-zh)
@@ -128,8 +163,19 @@ A list of awesome beginners-friendly projects.
 ### [computer-science](https://github.com/ossu/computer-science)
 cs课程集成
 ### [awesome macOs command line](https://github.com/herrbischoff/awesome-macos-command-line)
-### [game developer roadmap 2020](https://github.com/utilForever/game-developer-roadmap)
 ### [The Art of Command Line](https://github.com/jlevy/the-art-of-command-line)
+### [cs-video-courses](https://github.com/Developer-Y/cs-video-courses)
+Computer science video courses
+### [awesome reverse engineering](https://github.com/wtsxDev/reverse-engineering)
+### [Best websites a programmer should visit](https://github.com/sdmg15/Best-websites-a-programmer-should-visit)
+### [the-book-of-secret-knowledge](https://github.com/trimstray/the-book-of-secret-knowledge)
+### [emoji-cheat-sheet](https://github.com/ikatyang/emoji-cheat-sheet)
+markdown emoji语法速查
+### [IconPark](https://github.com/bytedance/IconPark)
+开源icon集
+### [Practical-Cryptography-for-Developers-Book](https://github.com/nakov/Practical-Cryptography-for-Developers-Book)
+开发人员使用的密码学教程
+### [bitcoinbook](https://github.com/bitcoinbook/bitcoinbook)
 
 ## Networking
 ### [计算机网络-自顶向下方法-笔记](https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES)
@@ -151,6 +197,10 @@ High Performance TCP/UDP/HTTP Communication Component
 c#网络编程，[教程](https://www.youtube.com/playlist?list=PLXkn83W0QkfnqsK8I0RAz5AbUxfg3bOQ5)的源码
 ### [web proxy](https://github.com/justcoding121/titanium-web-proxy)
 轻量级的proxy server，c#实现
+### [websocketpp](https://github.com/zaphoyd/websocketpp)
+cpp websocket lib
+### [chromium](https://github.com/chromium/chromium)
+chromium源码
 
 ## AI
 ### [Deep-Learning-Papers-Reading-Roadmap](https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap)
@@ -164,3 +214,16 @@ c#网络编程，[教程](https://www.youtube.com/playlist?list=PLXkn83W0QkfnqsK
 ## Android
 ### [uamp-A sample audio app for Android](https://github.com/android/uamp)
 入门例子，kotlin实现
+
+## Graphics and games
+### [source codes for learning opengl](https://github.com/JoeyDeVries/LearnOpenGL)
+### [game developer roadmap 2020](https://github.com/utilForever/game-developer-roadmap)
+### [awesome graphics](https://github.com/ericjang/awesome-graphics)
+### [DirectX Graphics Samples](https://github.com/microsoft/DirectX-Graphics-Samples)
+
+## Projects
+### [1000 projects](https://github.com/vicky002/1000_Projects)
+### [awesome-for-beginners](https://github.com/MunGell/awesome-for-beginners)
+A list of awesome beginners-friendly projects.
+### [some cool projects](https://github.com/karan/Projects)
+### [source codes for d3d12book](https://github.com/d3dcoder/d3d12book)
