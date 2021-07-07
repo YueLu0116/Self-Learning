@@ -27,7 +27,6 @@
 - GoodSync - 本地及 FTP 文件同步工具，支持无人值守。
 - [密码管理工具：Microsoft Authenticator](https://sspai.com/post/65633)
 - [警惕租房陷阱、保留维权证据，供你随身携带的租房贴士](https://sspai.com/post/63270)
-- 
 
 ## Open Source
 

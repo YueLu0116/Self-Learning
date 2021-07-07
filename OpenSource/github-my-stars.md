@@ -1,8 +1,11 @@
 # github-my-stars
 
-### widgets
+## widgets
 
-- [安卓投屏](https://github.com/Genymobile/scrcpy)
+> Awesome things for productivity and convenience.
+
+### [安卓投屏](https://github.com/Genymobile/scrcpy)
+
 - [Unlock-Music-音乐解锁](https://github.com/ix64/unlock-music)
 - [YoutubeExplode-c#](https://github.com/Tyrrrz/YoutubeExplode)
 - [LightBulb-c#](https://github.com/Tyrrrz/LightBulb)
@@ -42,7 +45,6 @@
 - [Dopamine - audio player](https://github.com/digimezzo/dopamine-windows)
 - [streaming onboarding](https://github.com/Eyevinn/streaming-onboarding)
 - [vapoursynth - A video processing framework with simplicity in mind](https://github.com/vapoursynth/vapoursynth)
-- 
 
 ### Basics
 
