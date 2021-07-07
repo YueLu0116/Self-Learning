@@ -2,14 +2,23 @@
 
 starts from 2021-03-25
 
+### Tags
+
+- reading
+- reference
+- Q&A
+- tools
+- books
+- programming
+
 ### Mar. 25th, 2021
 
 - Multimedia
 
-  1. 【read later & TODO】[Understanding Rate Control Modes](https://slhck.info/video/2017/03/01/rate-control.html)
+  1. 【reading & TODO】[Understanding Rate Control Modes](https://slhck.info/video/2017/03/01/rate-control.html)
 
   2. 【reference】[头条技术学院课件](https://drive.google.com/file/d/1gl3oRlNA_xnt7PyjXeeRu1Q9wy4-mOOG/view)
-  3. 【resource】 [可测试用视频资源](https://www.its.bldrdoc.gov/vqeg/video-datasets-and-organizations.aspx)
+  3. 【reference】 [可测试用视频资源](https://www.its.bldrdoc.gov/vqeg/video-datasets-and-organizations.aspx)
 
 - Windows
 
@@ -284,19 +293,19 @@ starts from 2021-03-25
      >
      > - To implement a public property by using lazy initialization, define the backing field of the property as a Lazy<T>, and return the Value property from the get accessor of the property.
 
-  2. 【Q&A】[What is the difference between **`const`** and **`readonly`** in C#?](https://stackoverflow.com/questions/55984/what-is-the-difference-between-const-and-readonly-in-c)
+  2. 【Q&A】[~~What is the difference between **`const`** and **`readonly`** in C#?~~](https://stackoverflow.com/questions/55984/what-is-the-difference-between-const-and-readonly-in-c)
 
   3. 【reference】[Language Integrated Query (LINQ)](https://docs.microsoft.com/en-us/dotnet/csharp/linq/)
 
      > Language-Integrated Query (LINQ) is the name for a set of technologies based on the integration of query capabilities directly into the C# language.
 
-  4. 【reference】[Lambda expressions](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions)
+  4. 【reference】~~[Lambda expressions](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions)~~
 
      > - Any lambda expression can be converted to a delegate type.
      >
      > - Sometimes the compiler can't infer the types of input parameters. You can specify the types explicitly 
 
-  5. 【Q&A】[what is the difference between field, member, and properties?](https://stackoverflow.com/questions/2720142/programming-terms-field-member-properties-c)
+  5. 【Q&A】~~[what is the difference between field, member, and properties?](https://stackoverflow.com/questions/2720142/programming-terms-field-member-properties-c)~~
 
      > Often used as accessors to a private field of a class
 
@@ -318,11 +327,11 @@ starts from 2021-03-25
 
 - Csharp
 
-  1. 【Q&A】[How do I get the name of the current executable in C#?](https://stackoverflow.com/questions/616584/how-do-i-get-the-name-of-the-current-executable-in-c)
+  1. 【Q&A】~~[How do I get the name of the current executable in C#?](https://stackoverflow.com/questions/616584/how-do-i-get-the-name-of-the-current-executable-in-c)~~
 
-  2. 【Q&A】[How do I force my .NET application to run as administrator?](https://stackoverflow.com/questions/2818179/how-do-i-force-my-net-application-to-run-as-administrator)
+  2. 【Q&A】~~[How do I force my .NET application to run as administrator?](https://stackoverflow.com/questions/2818179/how-do-i-force-my-net-application-to-run-as-administrator)~~
 
-  3. 【Q&A】[How to: Determine which .NET Framework versions are installed](https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed)
+  3. 【Q&A】~~[How to: Determine which .NET Framework versions are installed](https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed)~~
 
      > The version of .NET Framework (4.5 and later) installed on a machine is listed in the registry at HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full. If the Full subkey is missing, then .NET Framework 4.5 or above isn't installed.
 
@@ -375,4 +384,136 @@ starts from 2021-03-25
 - cpp
 
   1. 【Q&A】[C++, How to determine if a Windows Process is running?](https://stackoverflow.com/questions/1591342/c-how-to-determine-if-a-windows-process-is-running)
+
+### Apr. 19th, 2021
+
+- Multimedia:
+  1. 【reference】[THE COMMUNITY FOR ENGINEERS WORKING WITH VIDEO](https://demuxed.com/)
+  2. 【books】[Video Encoding by the Numbers: Eliminate the Guesswork from your Streaming Video](https://www.amazon.com/Video-Encoding-Numbers-Eliminate-Guesswork/dp/0998453005/ref=sr_1_1?s=books&ie=UTF8&qid=1486396940&sr=1-1&keywords=jan+ozer)
+  3. 【reference TODO】[AV1 Bitstream Analyzer](https://medium.com/hackernoon/av1-bitstream-analyzer-d25f1c27072b#id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImRlOTU1NmFkNDY4MDMxMmMxMTdhZmFlZjI5MjBmNWY5OWE0Yzc5ZmQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2MTg4MzIyNzksImF1ZCI6IjIxNjI5NjAzNTgzNC1rMWs2cWUwNjBzMnRwMmEyamFtNGxqZGNtczAwc3R0Zy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExNTc3NDc2MTk2MTkwMzgwNTQ0NiIsImVtYWlsIjoiZGVyZWtsdTE5OTYwMTE2QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiIyMTYyOTYwMzU4MzQtazFrNnFlMDYwczJ0cDJhMmphbTRsamRjbXMwMHN0dGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiWXVlIEx1IiwicGljdHVyZSI6Imh0dHBzOi8vbGg0Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tb24wSVd5NW9uWXcvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQU1adXVja3JiTmNrVmYwSUFLdGtXRmxzQ3N1ZDNMRGo0QS9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoiWXVlIiwiZmFtaWx5X25hbWUiOiJMdSIsImlhdCI6MTYxODgzMjU3OSwiZXhwIjoxNjE4ODM2MTc5LCJqdGkiOiI0YWU4NjBjNTYxNjFjNmExMjI2YjU0NzFkZTk1MzFiYjRjYWNkYjA2In0.EX7SYFPGjjPYN9dEfWKY0_f43NT-IjiO4zXXzrb3qrFr1mjL3tNuLKq-yOEdLrNpwTe8gAcf8Vj2wBexuQ5dAy9lmPBzVe3GiWNa4vY7CyRuC1cT4McoJ6FOaUxJv2O5g4wglA0SaE9gcjz752VB89I2vv-T5h4NFHKekGNRS9d4ONFL_ahlAPnJml03KFHbBFchPvkJNwynIbQgSE8ibT23TbrgB0oO8_ArhykRv-fjiR6j-ckYPQe6Gw2CwLWYE_6tFybfcDylBVpCoaqiThrdtF-kthXVa4CAgfxmBc3yzND9wxkHJAEdQLevkUUWi2PJiunK2BGrB7WpWHMT4A)
+
+### Apr. 23th, 2021
+
+- cloud game
+
+  1. 【reference】[google input example](https://chromium.googlesource.com/chromium/chromium/+/8da845c82ec64ba85c8222e61c249244a492bebd/chrome/browser/ime_input.cc)
+
+  2. 【Q&A】[how do you use IME](https://stackoverflow.com/questions/434048/how-do-you-use-ime/1249990)
+
+  3. 【Q&A】[simulate input of non-acsii characters](https://stackoverflow.com/questions/15743053/simulate-input-of-non-ascii-characters)
+
+  4. 【reference】[Windows Hooks overview](https://docs.microsoft.com/en-us/windows/win32/winmsg/about-hooks)
+
+     > - The system maintains a separate **hook chain** for each type of hook. A hook chain is a list of pointers to special, application-defined callback functions called hook procedures.
+     >
+     > - To take advantage of a particular type of hook, the developer provides **a hook procedure** and uses the `SetWindowsHookEx` function to install it into the chain associated with the hook. 
+     >
+     > - `HookProc` is a placeholder for an application-defined name.
+     >
+     > - Each hook procedure in the chain determines whether to pass the event to the next procedure. A hook procedure passes an event to the next procedure by calling the CallNextHookEx function.
+
+  5. 【reference】[Mouse scroll](https://www.codeproject.com/Articles/1042516/Custom-Controls-in-Win-API-Scrolling)
+
+  6. 【Q&A】[how to achieve FPS-like mouse look camera](https://gamedev.stackexchange.com/questions/176550/fps-like-mouse-look-camera-winapi-problem)
+
+- Make
+
+  1. 【reference】[GYP](https://gyp.gsrc.io/index.md)
+
+- cpp
+
+  1. 【reference】[static keyword in cpp](https://stackoverflow.com/questions/15235526/the-static-keyword-and-its-various-uses-in-c/15235708)
+  2. 【reference】[cpp const](http://duramecho.com/ComputerInformation/WhyHowCppConst.html)
+  3. 【Q&A】[stdafx](https://stackoverflow.com/questions/4726155/what-is-stdafx-h-used-for-in-visual-studio#:~:text=4-,%22Stdafx.,compile%20time%20and%20Unnecessary%20Processing)
+
+- distribution
+
+  1. 【reference】[HDFS](https://hadoop.apache.org/docs/r1.2.1/hdfs_design.html)
+
+- Windows
+
+  1. 【Q&A】[buffered and unbuffered io](https://www.quora.com/Whats-the-difference-between-buffered-I-O-and-unbuffered-I-O)
+
+     > - Your program is doing the writes assuming it is doing the I/O, but the writes are actually getting buffered in DRAM.
+     >
+     > - the dirty buffers are flushed to disk thus writing their respective contents to corresponding blocks on disk -- this is the actual I/O.
+
+### Apr. 24th, 2021
+
+- GUI
+
+  1. 【Q&A】[What is difference between GTK and QT applications?](https://unix.stackexchange.com/questions/129355/what-is-difference-between-gtk-and-qt-applications)
+
+     > GNU/Linux tends to be more GTK oriented than Qt in the sense that the former is more commonly used, so you may want to prefer it when given the choice
+
+- Windows
+
+  1. 【reference】[Text Services Framework](https://docs.microsoft.com/en-us/windows/win32/tsf/text-services-framework)
+
+### Apr. 26th, 2021
+
+- cpp
+  1. 【programming TODO】[C++ libcurl console progress bar](https://stackoverflow.com/questions/1637587/c-libcurl-console-progress-bar)
+  2. 【reference】[Download file using libcurl in C/C++](https://stackoverflow.com/questions/1636333/download-file-using-libcurl-in-c-c)
+- windows
+  1. 【tools TODO】[windbg](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/debugger-download-tools)
+  2. 【reference】[debug api](https://docs.microsoft.com/en-us/windows/win32/api/debugapi/)
+
+### Apr. 29th, 2021
+
+- windows
+
+  1. 【reference】[UI Automation Fundamentals](https://docs.microsoft.com/en-us/windows/win32/winauto/entry-uiautocore-overview)
+
+  2. 【Q&A】[Extract text from rectangle on Windows screen without using OCR](https://stackoverflow.com/questions/55613130/extract-text-from-rectangle-on-windows-screen-without-using-ocr)
+
+     > If an application uses win32k apis, you will be able to get the text out by sending get window text. If application uses any other rendering on the screen, like opengl or directx, you will get nothing except by OCR. 
+
+  3. 【Q&A】[Get text from an edit control](https://stackoverflow.com/questions/5690333/get-text-from-an-edit-control)
+
+  4. 【Q&A】[Reading from a text field in another application's window](https://stackoverflow.com/questions/352236/reading-from-a-text-field-in-another-applications-window)
+
+  5. 【Q&A】[From the August 2001 issue of MSDN Magazine](https://docs.microsoft.com/en-us/archive/msdn-magazine/2001/august/c-q-a-getting-the-text-of-a-window-in-another-application;-making-backspace-work-in-the-explorer-bar)
+
+     > If the target window is owned by another process and has a caption, GetWindowText retrieves the window caption text. If the window does not have a caption, the return value is a null string. This behavior is by design.
+
+  6. 【Q&A】[How to use GetGuiThreadInfo](https://forums.codeguru.com/showthread.php?258913-How-to-use-GetGuiThreadInfo)
+
+     > You need to set cbSize member of the structure to sizeof(GUITHREADINFO) before calling GetGUIThreadInfo.
+
+  7. 【reference】[windows获取焦点](https://houkaifa.com/2019/02/25/WindowsInputCursor/)
+
+### May. 13th, 2021
+
+- windows
+  1. 【reference】[win10 dev tutorials](https://channel9.msdn.com/Series/Windows-10-development-for-absolute-beginners)
+  2. 【programming】[windows远程桌面实现](https://blog.csdn.net/fanxiushu/article/details/81905680)
+  3. 【reference】[windows message](https://docs.microsoft.com/en-us/windows/win32/learnwin32/window-messages)
+  4. 【Q&A】[windows编程路径图](https://www.zhihu.com/question/21761355)
+  5. 【Q&A】[What is MinGW](https://stackoverflow.com/questions/7790262/a-simple-explanation-of-what-is-mingw)
+  6. 【Q&A】[Windows Forms v.s. WPF](https://stackoverflow.com/questions/31154338/windows-forms-vs-wpf)
+- cloud game
+  1. 【reading】[Cloud gaming’s history of false starts and promising reboots](https://www.polygon.com/features/2020/10/15/21499273/cloud-gaming-history-onlive-stadia-google)
+  2. 【reading】[What Does “TLDR” Mean, and How Do You Use It?](https://www.howtogeek.com/435266/what-does-tldr-mean-and-how-do-you-use-it/#:~:text=TLDR%20(or%20TL%3BDR)%20is%20a%20common%20internet%20acronym,seems%20pretty%20easy%20to%20understand)
+
+May. 22th, 2021
+
+- c++
+  1. 【reference】[What are the new features in C++17?](https://stackoverflow.com/questions/38060436/what-are-the-new-features-in-c17)
+  2. 【Q&A】how to mix c and c++ codes in one project?
+     - [How to mix C and C++](https://isocpp.org/wiki/faq/mixing-c-and-cpp)
+     - [Combining C++ and C - how does #ifdef __cplusplus work?](https://stackoverflow.com/questions/3789340/combining-c-and-c-how-does-ifdef-cplusplus-work)
+  3. 【Q&A】[How to initialize const in a struct in C (with malloc)](https://stackoverflow.com/questions/9691404/how-to-initialize-const-in-a-struct-in-c-with-malloc)
+- windows:
+  1. 【Q&A】[What is COM (Component Object Model) in a nutshell? [closed\]](https://stackoverflow.com/questions/455687/what-is-com-component-object-model-in-a-nutshell)
+
+### June. 23th, 2021
+
+- media
+  1. [nvcodec sdk](https://developer.nvidia.com/nvidia-video-codec-sdk)
+
+### June. 26th, 2021
+
+- tools
+  1. [inno setup](https://jrsoftware.org/isinfo.php)
 

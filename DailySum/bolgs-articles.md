@@ -67,3 +67,19 @@
 [google ai bolg](https://ai.googleblog.com/)
 
 [Microsoft research blog](https://www.microsoft.com/en-us/research/blog/)
+
+[Windows Developer blogs](https://blogs.windows.com/windowsdeveloper/)
+
+[Blogs of Charles Petzold](http://www.charlespetzold.com/blog/)
+
+[Jon Skeet's SO](https://stackoverflow.com/users/22656/jon-skeet)
+
+[Hacker news](https://news.ycombinator.com/)
+
+[segment-fault](https://segmentfault.com/)
+
+### Tutorials
+
+[Windows 10 development for absolute beginners](https://channel9.msdn.com/Series/Windows-10-development-for-absolute-beginners)
+
+[learn anyting](https://learn-anything.xyz/)
