@@ -41,6 +41,14 @@ c# 实现的桌面端音量控制
 ### [issrc](https://github.com/jrsoftware/issrc)
 通过脚本发布安装包
 
+### [Flameshot](https://github.com/flameshot-org/flameshot)
+
+截图工具
+
+### [Academic CV](https://github.com/gboeing/cv)
+
+简历模板
+
 ## Libraries
 > Awesome libraries and packages which can be used in my projects
 ### [SharpZipLib](https://github.com/icsharpcode/SharpZipLib)
@@ -111,6 +119,10 @@ cpp实现的线程池
 facebook实现的cpp libs
 ### [CppCoreGuidelines](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)
 cpp指南 by Bjarne Stroustrup and Herb Sutter
+
+### [Orbit](https://github.com/google/orbit)
+
+C/C++ Performance Profiler from Google
 
 ## csharp
 ### [libvideo](https://github.com/omansak/libvideo)
