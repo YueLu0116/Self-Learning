@@ -5,6 +5,8 @@
 
 Link to this [page](./OpenSource/github-my-stars.md)
 
+[raspberry pi projects](https://all3dp.com/1/best-raspberry-pi-projects/)
+
 ## Blogs
 
 :dart:[酷壳](https://coolshell.cn/): 陈皓早期（2020年前）写作站点
@@ -32,6 +34,8 @@ Link to this [page](./OpenSource/github-my-stars.md)
 [Blogs of Charles Petzold](http://www.charlespetzold.com/blog/)：windows程序设计作者博客站点
 
 [Jon Skeet's SO](https://stackoverflow.com/users/22656/jon-skeet)：c#大牛的stackoverflow主页，内含他个人的各种网站链接
+
+[codedump的网络日志](https://www.codedump.info/)
 
 ## All about cpp
 
@@ -85,6 +89,8 @@ Link to this [page](./OpenSource/github-my-stars.md)
 
 [Game Development in C++ and Unreal Engine (Stanford CS193U)](https://www.tomlooman.com/stanford-cs193u/)
 
+[microsoft iot for beginners](https://github.com/microsoft/IoT-For-Beginners)
+
 ## Tech Articles
 
 ### General
@@ -107,6 +113,8 @@ Link to this [page](./OpenSource/github-my-stars.md)
 
 [计算机领域的三个重要思想：抽象，分层和高阶](https://ray-eldath.me/programming/three-important-ideas/)
 
+[When should I interrupt someone](https://news.ycombinator.com/item?id=26463910)
+
 ### Algorithms
 
 [The Boyer-Moore Fast String Searching Algorithm](https://www.cs.utexas.edu/users/moore/best-ideas/string-searching/)
@@ -121,7 +129,7 @@ Link to this [page](./OpenSource/github-my-stars.md)
 
 [Beej's Guide to Network Programming](https://beej.us/guide/bgnet/html//index.html)
 
-## OS
+### OS
 
 [十个问题理解epoll原理](http://t.cn/A6VWK8Un)
 
@@ -133,6 +141,7 @@ Link to this [page](./OpenSource/github-my-stars.md)
 
 [How to write a git commit](https://chris.beams.io/posts/git-commit/)
 
+[git - the simple guide](https://rogerdudler.github.io/git-guide/index.html)
 ### Doker
 
 [docker入门](https://mp.weixin.qq.com/s/uj5CO3WgcGQN_cHKPhpkfg)
@@ -149,12 +158,17 @@ Link to this [page](./OpenSource/github-my-stars.md)
 
 [awesome ffmpeg](https://github.com/transitive-bullshit/awesome-ffmpeg)
 
+[Anime Encoding Guide for x265 (HEVC) & AAC/OPUS (and Why to Never Use FLAC)](https://kokomins.wordpress.com/2019/10/10/anime-encoding-guide-for-x265-and-why-to-never-use-flac/)
+
 ### Others
 
 [Buliding the future of our desktop apps](https://engineering.atspotify.com/2021/04/07/building-the-future-of-our-desktop-apps/)
 
 [Type-safe generic data structures in C](https://iafisher.com/blog/2020/06/type-safe-generics-in-c)
 
+[CMake Part 1 – The Dark Arts](https://blog.feabhas.com/2021/07/cmake-part-1-the-dark-arts/)
+
+[动态追踪技术](https://blog.openresty.com.cn/cn/dynamic-tracing/)
 ## Resources
 
 [Free videos](https://www.its.bldrdoc.gov/vqeg/video-datasets-and-organizations.aspx)
@@ -165,5 +179,7 @@ Link to this [page](./OpenSource/github-my-stars.md)
 
 [优质图片视频和插图资源](https://github.com/neutraltone/awesome-stock-resources)
 
+## Helpers
 
+[Install Oh My Zsh with Agnoster Theme](https://inspirnathan.com/posts/22-install-ohmyzsh-with-agnoster-theme/):解决iterm2中使用agnoster主题乱码的问题
 

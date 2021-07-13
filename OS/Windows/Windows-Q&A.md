@@ -61,3 +61,13 @@ reference: https://superuser.com/a/117908
 5. 点击“将服务器添加到列表：显示”;
 6. 在将服务器添加到列表中添加允许保存凭据的服务器名称和类型，如 dcList item.contoso.com上的终端服务器，即“TERMSRV/dc.contoso.com”。当然也可以输入“TERMSRV/*”允许保存所有计算机的远程终端凭据。
 7. 最后在CMD命令行执行gpupdate /force 使修改的组策略生效，即可！
+
+## 远程桌面连接时，触控测试失效
+tldr:  
+```
+query session
+tscon rdp-tcp#71 /dest:console
+```
+关于windows rdp的其他参考文章：
+[UI自动化关闭远程桌面连接，鼠标键盘失效的解决方案](https://www.pianshen.com/article/79591080857/)  
+[如何关闭远程桌面后仍处于可交互状态](https://zvv.me/z/1478.html)
