@@ -37,6 +37,10 @@ Link to this [page](./OpenSource/github-my-stars.md)
 
 [codedump的网络日志](https://www.codedump.info/)
 
+[github engineering blogs](https://github.blog/category/engineering/)
+
+[learn ix](https://engineering.leanix.net/)
+
 ## All about cpp
 
 [Comeau C++ and C FAQ](https://web.archive.org/web/20181115023158/http://www.comeaucomputing.com/techtalk/#top): 内容稍老，更新至2014年
