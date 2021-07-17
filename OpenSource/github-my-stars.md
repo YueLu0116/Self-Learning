@@ -164,6 +164,7 @@ _windows via cpp_ 源码
 c语言系统编程（并发-同步-网络-文件...）
 ### [linux-insides](https://github.com/0xAX/linux-insides)
 linux内核分析
+### [mit6.s081 chinese version](https://github.com/huihongxiao/MIT6.S081)
 
 ## Collections
 ### [python, golang, devops 基础知识、 系统设计、后端开发路线图](https://github.com/DasyDong/interview)
