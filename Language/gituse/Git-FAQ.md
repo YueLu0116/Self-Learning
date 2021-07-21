@@ -184,3 +184,6 @@ git fetch origin <remote-branch-name>:local-branch-name
 ```
 
 This git command will create a new branch named local-branch-name and its content is the same with remote-branch-name.
+
+## I did something wrong, how can I make up those mistakes?
+TODO

@@ -240,6 +240,10 @@ public override string ToString()
 
 > When you create a struct object using the new operator, it gets created and the appropriate constructor is called. Unlike classes, structs can be instantiated without using the new operator. If you do not use new, the fields will remain unassigned and the object cannot be used until all of the fields are initialized.
 
+### Interface, abstract, and virtual
+
+TODO
+
 ## Parallel Programming
 
 ### How to **correctly** use Reader-Writer lock
@@ -320,6 +324,12 @@ SomethingHappened("bar");
 ```
 
 摘录微软官方文档笔记，见[此处](.\\event-notes.md)。
+
+### c# background and foreground thread
+
+> [Thread.IsBackground property](https://docs.microsoft.com/en-us/dotnet/api/system.threading.thread.isbackground?view=net-5.0)
+
+Background threads are identical to foreground threads, except that background threads do not prevent a process from terminating. Once all foreground threads belonging to a process have terminated, the common language runtime ends the process. Any remaining background threads are stopped and do not complete.
 
 ## Core
 
@@ -463,6 +473,18 @@ String code = Globals.CODE_PREFIX + value.ToString();
 
 [The guideline of using flag](https://docs.microsoft.com/en-us/dotnet/api/system.flagsattribute?view=net-5.0)
 
+### What is the meaning of "?." in c#?
+
+> [What does question mark and dot operator ?. mean in C# 6.0?](https://stackoverflow.com/questions/28352072/what-does-question-mark-and-dot-operator-mean-in-c-sharp-6-0)
+
+null operator: "Evaluate the first operand; if that's null, stop, with a result of null. Otherwise, evaluate the second operand (as a member access of the first operand)."
+
+### What is the meaning of "??" in c#?
+
+> [What do two question marks together mean in C#?](https://stackoverflow.com/questions/446835/what-do-two-question-marks-together-mean-in-c)
+
+It's the null coalescing operator: "If whatever is to the left is not null, use that, otherwise use what's to the right."
+
 ## IO Related
 
 ### How to get the current/working directory?
@@ -556,3 +578,19 @@ TODO: don't seem to work well
 https://andrewlock.net/exploring-dotnet-interactive-notebooks/?utm_source=csharpdigest&utm_medium=email&utm_campaign=367
 
 > Jupyter notebooks run as client-server applications, though you typically run both the client and server on your own machine. You author your notebook on the client in an IDE/editor, and your code is executed by sending it to the server (called the kernel). The results are then displayed in your notebook.
+
+### What is the difference between .net, .net standard, .net framework, and .net core?
+
+> [.Net Framework Vs .Net Core Vs .Net Standard](https://www.c-sharpcorner.com/article/net-framework-vs-net-core-vs-net-standard/)
+>
+> [What is the future of .NET](https://www.c-sharpcorner.com/article/future-of-dot-net/)
+
+Tldr:
+
+.net framework: 桌面端
+
+.net core：跨平台
+
+.net standard: 统一上面二者的基础库
+
+.net: 从上层统一，未来以一个架构适应所有系统

@@ -514,6 +514,6 @@ May. 22th, 2021
 
 ### June. 26th, 2021
 
-- tools
-  1. [inno setup](https://jrsoftware.org/isinfo.php)
+- ~~tools~~
+  1. ~~[inno setup](https://jrsoftware.org/isinfo.php)~~
 
