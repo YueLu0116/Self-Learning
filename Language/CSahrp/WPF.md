@@ -282,3 +282,8 @@ It allows you to **put text on the screen**, much like a Label control does, but
 They are all containers.
 
 > You should use a Grid if you need things to line up horizontally and vertically. Use a StackPanel to create a row or column of things when those things don't need to line up with anything else. And DockPanel is slightly more complex than a StackPanel, but its markup isn't as cluttered as the Grid.
+
+### What is the difference between TextBlock and TextBox?
+
+> [Is there any difference between WPF TextBlock and TextBox?](https://stackoverflow.com/questions/18204245/is-there-any-difference-between-wpf-textblock-and-textbox)
+

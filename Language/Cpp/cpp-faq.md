@@ -400,6 +400,16 @@ void* b = reinterpret_cast<void*>(a);
 int* c = reinterpret_cast<int*>(b);
 ```
 
+### How to new a 2D array?
+
+> [How do I declare a 2d array in C++ using new?](https://stackoverflow.com/questions/936687/how-do-i-declare-a-2d-array-in-c-using-new)
+
+If your row length is a compile time constant, C++11 allows
+
+```cpp
+auto arr2d = new int [nrows][CONSTANT];
+```
+
 ## Advances
 
 ### The forwarding problem
@@ -466,6 +476,12 @@ void f(A&& a)
     E(std::forward<A>(a);); 
 }
 ```
+
+### Specialized Template
+
+1. The compiler finds only one specialization. The compiler uses this specialization.
+2. The compiler finds more than one specialization. The compiler uses the most specialized one. If this process ends in more than one specialization, the compiler throws an error.
+3. The compiler finds no specialization. It uses the primary specialization.
 
 ## OOP
 
