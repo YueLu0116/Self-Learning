@@ -65,7 +65,9 @@ Link to this [page](./OpenSource/github-my-stars.md)
 
 ## Python
 
+## Rust
 
+[Rust by example](https://doc.rust-lang.org/rust-by-example/)
 
 ## AI
 
@@ -94,6 +96,8 @@ Link to this [page](./OpenSource/github-my-stars.md)
 [Game Development in C++ and Unreal Engine (Stanford CS193U)](https://www.tomlooman.com/stanford-cs193u/)
 
 [microsoft iot for beginners](https://github.com/microsoft/IoT-For-Beginners)
+
+[Qt5](https://qmlbook.github.io/)
 
 ## Tech Articles
 
