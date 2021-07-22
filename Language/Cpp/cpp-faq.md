@@ -410,6 +410,23 @@ If your row length is a compile time constant, C++11 allows
 auto arr2d = new int [nrows][CONSTANT];
 ```
 
+### Why and when should I use union?
+
+> [What is union, exactly](https://zh.cppreference.com/w/c/language/union)
+>
+> [Purpose of Unions in C and C++](https://stackoverflow.com/questions/2310483/purpose-of-unions-in-c-and-c)
+
+> The purpose of union is to save memory by using the same memory region for storing different objects at different times.
+
+### The capacity and size of a vector
+
+> [Difference between std::resize(n) and std::shrink_to_fit in C++?](https://stackoverflow.com/questions/60400758/difference-between-stdresizen-and-stdshrink-to-fit-in-c)
+
+> Vectors have two "length" attributes that mean different things:
+>
+> - `size` is the number of usable elements in the vector. It is the number of things you have stored. This is a conceptual length.
+> - `capacity` is how many elements would fit into the amount of memory the vector has currently allocated.
+
 ## Advances
 
 ### The forwarding problem
@@ -482,6 +499,10 @@ void f(A&& a)
 1. The compiler finds only one specialization. The compiler uses this specialization.
 2. The compiler finds more than one specialization. The compiler uses the most specialized one. If this process ends in more than one specialization, the compiler throws an error.
 3. The compiler finds no specialization. It uses the primary specialization.
+
+### std::variant and std::visit
+
+> https://kheresy.wordpress.com/2017/10/16/cpp17-variant/
 
 ## OOP
 
