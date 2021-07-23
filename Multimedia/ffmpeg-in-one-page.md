@@ -17,7 +17,15 @@
 
 > https://en.wikipedia.org/wiki/Audio_normalization
 
-## Daily Command Line
+### What are Rate Control Modes ?
+
+> https://slhck.info/video/2017/03/01/rate-control.html
+
+### What is the difference between mono and stereo?
+
+> https://music.stackexchange.com/questions/24631/what-is-the-difference-between-mono-and-stereo
+
+## Practices
 
 ### How to rotate a video (e.g.  Rotate 90 clockwise)?
 
@@ -37,5 +45,9 @@ ffmpeg -i in.mov -vf "transpose=1" out.mov
 ### How to add a watermark to my video?
 
 > [How to add transparent watermark in center of a video with ffmpeg?](https://stackoverflow.com/questions/10918907/how-to-add-transparent-watermark-in-center-of-a-video-with-ffmpeg)
+
+TODO
+
+### Create a video from many pictures
 
 TODO
