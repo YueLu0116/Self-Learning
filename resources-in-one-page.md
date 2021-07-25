@@ -67,11 +67,9 @@ Link to this [page](./OpenSource/github-my-stars.md)
 
 ## Rust
 
-<<<<<<< HEAD
-[Learn rust with too many linked lists](https://rust-unofficial.github.io/too-many-lists/)
-=======
+[Learn rust with too many linked lists](https://rust-unofficial.github.io/too-many-lists/)  
+
 [Rust by example](https://doc.rust-lang.org/rust-by-example/)
->>>>>>> 5ef195f5ae5b3e3c8c63027e9afc798b7774e4de
 
 ## AI
 
