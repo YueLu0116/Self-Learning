@@ -26,6 +26,13 @@ IIRC is an internet abbreviation that stands for if I recall correctly or if I r
 
 ## June. 26th, 2021
 
-- From Newsletter
+- From Newsletters
 
 It’s one of the first major contests to be held as the pandemic recedes, and it could be a **bellwether** for Democratic sentiment on issues like police reform, housing and education.
+
+## June. 27th, 2021
+
+- From Newsletters
+
+Five people have been confirmed dead, and as many as 156 people remain unaccounted for.
+

@@ -64,3 +64,9 @@
 "I consider that a man’s brain originally is like a little empty attic, and you have to stock it with such furniture as you choose. **A fool takes in all the lumber of every sort that he comes across, so that the knowledge which might be useful to him gets crowded out, or at best is jumbled up with a lot of other things so that he has a difficulty in laying his hands upon it.**"
 
 — Sherlock Holmes, A Study in Scarlet
+
+### [The 40/60 Rule: A Real-World Secret to Mastering Any New Skill](https://medium.com/personal-growth/the-40-60-rule-a-real-world-secret-to-mastering-any-new-skill-87dce92bf200)
+
+- For a lot of skills, it’s much better to spend about two thirds of your time testing yourself on it rather than absorbing it.
+- Reading or listening to best practices is only valuable if you start doing or applying that knowledge. 
+

@@ -238,6 +238,8 @@ chromium源码
 ### [awesome graphics](https://github.com/ericjang/awesome-graphics)
 ### [DirectX Graphics Samples](https://github.com/microsoft/DirectX-Graphics-Samples)
 
+### [Source code for d3d12book](https://github.com/d3dcoder/d3d12book)
+
 ## Projects
 ### [1000 projects](https://github.com/vicky002/1000_Projects)
 ### [awesome-for-beginners](https://github.com/MunGell/awesome-for-beginners)
