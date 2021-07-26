@@ -67,6 +67,8 @@ Link to this [page](./OpenSource/github-my-stars.md)
 
 ## Rust
 
+[Learn rust with too many linked lists](https://rust-unofficial.github.io/too-many-lists/)  
+
 [Rust by example](https://doc.rust-lang.org/rust-by-example/)
 
 ## AI
@@ -177,6 +179,9 @@ Link to this [page](./OpenSource/github-my-stars.md)
 [CMake Part 1 – The Dark Arts](https://blog.feabhas.com/2021/07/cmake-part-1-the-dark-arts/)
 
 [动态追踪技术](https://blog.openresty.com.cn/cn/dynamic-tracing/)
+
+[Ninja - a small build system with a focus on speed](https://ninja-build.org/)
+
 ## Resources
 
 [Free videos](https://www.its.bldrdoc.gov/vqeg/video-datasets-and-organizations.aspx)
