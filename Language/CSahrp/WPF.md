@@ -64,11 +64,11 @@
 
   window properities: Icon, ResizeMode , ...
 
-- App.xaml: The declarative starting point of your application. Define global resources that may be used and accessed from all over an application.
+- App.xaml: The declarative starting point of your application. Define **global resources** that may be used and accessed from all over an application.
 
   > .NET will go to this class for starting instructions and then start the desired Window or Page from there. This is also the place to subscribe to important application events, like application start, unhandled exceptions and so on.
 
-  StartupUri: instructs which Window or Page to start up when the application is launched. We can use 	`event` to manipulate the startup window before showing it.
+  StartupUri: instructs which Window or Page to start up when the application is launched. We can use`event` to manipulate the startup window before showing it.
 
   ```xaml
   <Application x:Class="WpfTutorialSamples.App"
@@ -102,7 +102,7 @@
   }
   ```
 
-- command line: using evetn
+- command line: using event
 
   ```xaml
   <Application x:Class="WpfTutorialSamples.App"
@@ -139,9 +139,97 @@
   > https://wpf-tutorial.com/wpf-application/resources/
 
   1. what are resources? 
+
+     类似于一般程序中的变量，定义后在其他地方也可以使用。作用域可以是控件，当前窗口，或者是整个应用。
+
+     类型可以参考[Built-in types for common XAML language primitives](https://docs.microsoft.com/en-us/dotnet/desktop/xaml-services/types-for-primitives)
+
   2. resources scopes: application, window, and local
+
+     当前控件举例：
+
+     ```xaml
+     <StackPanel Margin="10">
+         <StackPanel.Resources>
+             <sys:String x:Key="ComboBoxTitle">Items:</sys:String>
+         </StackPanel.Resources>
+         <Label Content="{StaticResource ComboBoxTitle}" />
+     </StackPanel>
+     ```
+
+     其中x:Key 后的字符串相当于该资源的名称，可以在别处引用。
+
+     窗口资源：
+
+     ```xaml
+     <!-- in App.xaml -->
+     <Window.Resources>
+         <sys:String x:Key="strHelloWorld">Hello, world!</sys:String>
+     </Window.Resources>
+     ```
+
+     整个应用的资源：
+
+     ```xaml
+     
+     <Application.Resources>
+         <sys:String x:Key="strApp">Hello, Application world!</sys:String>
+     </Application.Resources>
+     ```
+
   3. static and dynamic resources.
-  4. how to use resources? Resources are given a key, using the x:Key attribute, which allows you to reference it from other parts of the application by using this key.
+
+     静态资源类型一次解析，动态资源使用到时再解析。
+
+  4. how to use resources in codes behind? 
+
+     通过窗口、控件或当前应用的`FindResource`函数。
+
+     ```xaml
+     <Window x:Class="WpfTutorialSamples.WPF_Application.ResourcesFromCodeBehindSample"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             Title="ResourcesFromCodeBehindSample" Height="175" Width="250">
+         <Window.Resources>
+             <sys:String x:Key="strWindow">Hello, Window world!</sys:String>
+         </Window.Resources>
+         <DockPanel Margin="10" Name="pnlMain">
+             <DockPanel.Resources>
+                 <sys:String x:Key="strPanel">Hello, Panel world!</sys:String>
+             </DockPanel.Resources>
+     
+             <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="10">
+                 <Button Name="btnClickMe" Click="btnClickMe_Click">Click me!</Button>
+             </WrapPanel>
+     
+             <ListBox Name="lbResult" />
+         </DockPanel>
+     </Window>
+     ```
+
+     ```csharp
+     using System;
+     using System.Windows;
+     
+     namespace WpfTutorialSamples.WPF_Application
+     {
+     	public partial class ResourcesFromCodeBehindSample : Window
+     	{
+     		public ResourcesFromCodeBehindSample()
+     		{
+     			InitializeComponent();
+     		}
+     
+     		private void btnClickMe_Click(object sender, RoutedEventArgs e)
+     		{
+     			lbResult.Items.Add(pnlMain.FindResource("strPanel").ToString());
+     			lbResult.Items.Add(this.FindResource("strWindow").ToString());
+     			lbResult.Items.Add(Application.Current.FindResource("strApp").ToString());
+     		}
+     	}
+     }
+     ```
 
 - exceptions handling
 
@@ -459,7 +547,7 @@ namespace DataBinding
         {
             if (lbUsers.SelectedItem != null)
             {
-                (lbUsers.SelectedItem as User).Name = "Liu Dan";
+                (lbUsers.SelectedItem as User).Name = "Yao Bohui";
             }
         }
 
@@ -496,6 +584,8 @@ namespace DataBinding
     }
 }
 ```
+
+类似于[mvvm](https://riptutorial.com/design-patterns/example/27289/model-view-viewmodel--mvvm-)
 
 ### Value converts
 
