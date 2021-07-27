@@ -664,6 +664,101 @@ namespace DataBinding
 >
 > where you just want to change the way a certain value is shown and not necessarily convert it into a different type, the **StringFormat** property might very well be enough.
 
+## Commands
+
+### What are commands?
+
+commands解决了两个痛点：
+
+1. 一个功能可能由多个控件调用，例如打开文件，可能是通过菜单栏、快捷键或鼠标右键引起的条目。commands在一处定义，多出可以调用到；
+2. 一个功能是否该被调用。例如复制文字的快捷键只应该在有文字被选中的时候才生效。commands通过一个方法决定与之关联的所有接口是否被响应；
+
+### Command bindings
+
+> At the root, they consist of the ICommand interface, which only defines an event and two methods: Execute() and CanExecute(). The first one is for performing the actual action, while the second one is for determining whether the action is currently available. To perform the actual action of the command, you need a link between the command and your code and this is where the CommandBinding comes into play.
+
+### How to use commands
+
+A simple example:
+
+```xaml
+<Window x:Class="WpfTutorialSamples.Commands.CommandCanExecuteSample"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CommandCanExecuteSample" Height="200" Width="250">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Cut" CanExecute="CutCommand_CanExecute" Executed="CutCommand_Executed" />
+        <CommandBinding Command="ApplicationCommands.Paste" CanExecute="PasteCommand_CanExecute" Executed="PasteCommand_Executed" />
+    </Window.CommandBindings>
+    <DockPanel>
+        <WrapPanel DockPanel.Dock="Top" Margin="3">
+            <Button Command="ApplicationCommands.Cut" Width="60">_Cut</Button>
+            <Button Command="ApplicationCommands.Paste" Width="60" Margin="3,0">_Paste</Button>
+        </WrapPanel>
+        <TextBox AcceptsReturn="True" Name="txtEditor" />
+    </DockPanel>
+</Window>
+```
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Input;
+
+namespace WpfTutorialSamples.Commands
+{
+	public partial class CommandCanExecuteSample : Window
+	{
+		public CommandCanExecuteSample()
+		{
+			InitializeComponent();
+		}
+
+		private void CutCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = (txtEditor != null) && (txtEditor.SelectionLength > 0);
+		}
+
+		private void CutCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			txtEditor.Cut();
+		}
+
+		private void PasteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = Clipboard.ContainsText();
+		}
+
+		private void PasteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			txtEditor.Paste();
+		}
+	}
+}
+```
+
+### Use default commands
+
+Note commandTarget
+
+```xaml
+<Window x:Class="WpfTutorialSamples.Commands.CommandsWithCommandTargetSample"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CommandsWithCommandTargetSample" Height="200" Width="250">
+    <DockPanel>
+        <WrapPanel DockPanel.Dock="Top" Margin="3">
+            <Button Command="ApplicationCommands.Cut" CommandTarget="{Binding ElementName=txtEditor}" Width="60">_Cut</Button>
+            <Button Command="ApplicationCommands.Paste" CommandTarget="{Binding ElementName=txtEditor}" Width="60" Margin="3,0">_Paste</Button>
+        </WrapPanel>
+        <TextBox AcceptsReturn="True" Name="txtEditor" />
+    </DockPanel>
+</Window>
+```
+
+
+
 ## Q&A
 
 ### What is the difference between Grid and Stackpanel?
