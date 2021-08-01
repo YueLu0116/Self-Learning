@@ -6,11 +6,14 @@
 >
 > 1. xaml 结构熟悉， 常用界面控件熟悉，
 > 2. 使用 visual blend 设计界面， 自定义控件，模板
->
 > 3. 数据绑定   mvvm
 > 4. C# 语言
 > 5. C/C++ 动态库编写， C#调用C++库
 > 6. C# 库编写
+>
+> Other references:
+>
+> [microsoft official docs](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/overview/?view=netdesktop-5.0)
 
 ## XAML
 
@@ -757,7 +760,21 @@ Note commandTarget
 </Window>
 ```
 
+## Dialog
 
+### open files dialog
+
+Microsoft.Win32 OpenFileDialog class
+
+use filter: `openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";`
+
+### save files dialog
+
+Microsoft.Win32 SaveFileDialog class
+
+### other dialogs
+
+> Windows Forms comes with a range of dialogs which we haven't talked about in this tutorial yet, for the simple reason that they don't exist in WPF. The most important one is definitely the [FolderBrowserDialog](http://msdn.microsoft.com/en-us/library/system.windows.forms.folderbrowserdialog.aspx), which lets the user select a folder within the file system, but other dialogs missing in WPF include the [ColorDialog](http://msdn.microsoft.com/en-us/library/system.windows.forms.colordialog.aspx), the[FontDialog](http://msdn.microsoft.com/en-us/library/system.windows.forms.fontdialog.aspx), the[PrintPreviewDialog](http://msdn.microsoft.com/en-us/library/system.windows.forms.printpreviewdialog.aspx) and the [PageSetupDialog](http://msdn.microsoft.com/en-us/library/system.windows.forms.pagesetupdialog.aspx).
 
 ## Q&A
 
@@ -774,3 +791,14 @@ They are all containers.
 > [Is there any difference between WPF TextBlock and TextBox?](https://stackoverflow.com/questions/18204245/is-there-any-difference-between-wpf-textblock-and-textbox)
 
 > TextBlock is more lightweight control for displaying text and TextBox is used when you require user input or edit existing text.
+
+### What is the meaning of "xmlns=http:\\\\..."?
+
+> https://stackoverflow.com/a/1181936/11100389
+
+namespace
+
+### What is the meaning of "xmlns:x..."?
+
+> https://stackoverflow.com/a/4573989/11100389
+
