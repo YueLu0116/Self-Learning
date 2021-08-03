@@ -427,6 +427,17 @@ auto arr2d = new int [nrows][CONSTANT];
 > - `size` is the number of usable elements in the vector. It is the number of things you have stored. This is a conceptual length.
 > - `capacity` is how many elements would fit into the amount of memory the vector has currently allocated.
 
+### Rounding integer division
+
+> [Rounding integer division (instead of truncating)](https://stackoverflow.com/questions/2422712/rounding-integer-division-instead-of-truncating)
+
+```cpp
+unsigned int round_closest(unsigned int dividend, unsigned int divisor)
+{
+    return (dividend + (divisor / 2)) / divisor;
+}
+```
+
 ## Advances
 
 ### The forwarding problem

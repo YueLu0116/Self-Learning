@@ -20,10 +20,21 @@ More info:
 
 Just like `merge` command, `rebase` also integrate changes from one branch into another. However, git rebase makes the git tree more clean (like a linear history).
 
+![git-rebase-1](./images/basic-rebase-1.png)
+
 ```
 $ git checkout experiment
-$ git rebase maste
+$ git rebase master
 ```
+
+![git-rebase-2](./images/basic-rebase-2.png)
+
+```
+$ git checkout master
+$ git merge experiment
+```
+
+![git-rebase-3](./images/basic-rebase-3.png)
 
 Used situations:
 
@@ -36,7 +47,7 @@ Used situations:
 1. use `git branch` to check current branch;
 2. `git push origin dev_luyue:dev_luyue`
 
-## We talk about push branched above but how about push a new local repository to a remote one?
+## We talk about push branches above but how about push a new local repository to a remote one?
 
 > [Pushing from local repository to GitHub hosted remote](https://stackoverflow.com/questions/10573957/pushing-from-local-repository-to-github-hosted-remote)
 
@@ -187,3 +198,64 @@ This git command will create a new branch named local-branch-name and its conten
 
 ## I did something wrong, how can I make up those mistakes?
 TODO
+
+## How to clone a specific branch
+
+> https://stackoverflow.com/a/4568323/11100389
+
+```
+git clone -b <branch> <remote_repo>
+```
+
+The command above will fetch all the branches.
+
+To prevent fetching all the branches, just add --single-branch
+
+```
+git clone -b opencv-2.4 --single-branch https://github.com/Itseez/opencv.git
+```
+
+## What is the difference between git pull and fetch
+
+> [What is the difference between 'git pull' and 'git fetch'?](https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch)
+
+> In the simplest terms, `git pull` does a `git fetch` followed by a `git merge`.
+>
+> You can do a **`git fetch`** at any time to update your remote-tracking branches under `refs/remotes/<remote>/`. This operation never changes any of your own local branches under `refs/heads`, and is safe to do without changing your working copy. I have even heard of people running `git fetch` periodically in a cron job in the background (although I wouldn't recommend doing this).
+>
+> A **`git pull`** is what you would do to bring a local branch up-to-date with its remote version, while also updating your other remote-tracking branches.
+
+## Git branches and merge
+
+> http://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+
+fast-forward merge and three-way merge:
+
+> - when you try to merge one commit with a commit that can be reached by following the first commit’s history, Git simplifies things by moving the pointer forward because there is no divergent work to merge together — this is called a “fast-forward.”
+> - Because the commit on the branch you’re on isn’t a direct ancestor of the branch you’re merging in, Git has to do some work. In this case, Git does a simple three-way merge, using the two snapshots pointed to by the branch tips and the common ancestor of the two.
+
+## Resolve conflicts
+
+1. Use `git status` to see which files are unmerged at any point after a merge conflict;
+
+2. Open those files manually and resolve those conflicts. Run `git add` on each file to mark it as resolved. Staging the file marks it as resolved in Git.
+
+   ```
+   <<<<<<< HEAD:index.html
+   <div id="footer">contact : email.support@github.com</div>
+   =======
+   <div id="footer">
+    please contact us at support@github.com
+   </div>
+   >>>>>>> iss53:index.html
+   ```
+
+   Or use `git mergetool` to resolve these conflicts graphically.
+
+3. Run `git status` again to verify that all conflicts have been resolved.
+
+4. Commit.
+
+## Git pull warnings
+
+> https://stackoverflow.com/questions/62653114/how-to-deal-with-this-git-warning-pulling-without-specifying-how-to-reconcile

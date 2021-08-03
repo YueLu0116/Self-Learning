@@ -36,3 +36,9 @@ It’s one of the first major contests to be held as the pandemic recedes, and i
 
 Five people have been confirmed dead, and as many as 156 people remain unaccounted for.
 
+## Aug. 4th, 2021
+
+[reddit post](https://www.reddit.com/r/rickandmorty/comments/ok1dws/and_the_cycle_begins_anew/)
+
+Incest jokes were not totally my cup of tea but I still found it humorous.
+
