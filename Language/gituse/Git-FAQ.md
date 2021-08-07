@@ -259,3 +259,17 @@ fast-forward merge and three-way merge:
 ## Git pull warnings
 
 > https://stackoverflow.com/questions/62653114/how-to-deal-with-this-git-warning-pulling-without-specifying-how-to-reconcile
+
+## Resources
+
+- [git control from missing semeter](https://missing.csail.mit.edu/2020/version-control/)
+
+> git cat-file -p <hash_number>: to read the content ( or blob ) of a git object
+>
+> git log --all --graph --decorate: show git graphical logs
+>
+> git checkout \<hash\>: forward or backward
+>
+> git diff \<hash\> <file_name>: show a specific file's difference between the commit and current position
+>
+> git merge --continue: resolve conflicts and do continuely merge
