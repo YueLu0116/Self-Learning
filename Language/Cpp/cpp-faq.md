@@ -896,8 +896,18 @@ int main() {
 ### std::atomic in c++
 
 > [What exactly is std::atomic?](https://stackoverflow.com/questions/31978324/what-exactly-is-stdatomic)
+>
+> [atomic<>weapons](https://channel9.msdn.com/Shows/Going+Deep/Cpp-and-Beyond-2012-Herb-Sutter-atomic-Weapons-1-of-2)
 
+about memory model:
 
+- *sequential consistency* (default). This just means all loads and stores must be "as if" they happened in **the order you wrote them** within each thread.
+- memory_order_relaxed: out-of-order loads and stores; i.e., if it requires atomicity but not **ordering**;
+- memory_order_acquire/release: keep particular loads and stores in order.
+
+Advice:
+
+> Mutexes are great, and C++11 standardizes them. But sometimes for performance reasons you want lower-level primitives. Although to be frank, unless you are an expert and working on some serious low-level code, you should probably stick to mutexes and condition variables.
 
 ## Types and Conversions
 
