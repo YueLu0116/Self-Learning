@@ -71,3 +71,36 @@ tscon rdp-tcp#71 /dest:console
 关于windows rdp的其他参考文章：
 [UI自动化关闭远程桌面连接，鼠标键盘失效的解决方案](https://www.pianshen.com/article/79591080857/)  
 [如何关闭远程桌面后仍处于可交互状态](https://zvv.me/z/1478.html)
+
+## About dll
+
+### dll main可能导致的死锁
+
+> [dll best practices](https://docs.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-best-practices)
+>
+> You cannot call any function in DllMain that directly or indirectly tries to acquire the loader lock. Otherwise, you will introduce the possibility that your application deadlocks or crashes.
+
+### dll 动态加载
+
+> https://docs.microsoft.com/en-us/windows/win32/dlls/about-dynamic-link-libraries
+>
+> In run-time dynamic linking, a module uses the **LoadLibrary or LoadLibraryEx** function to load the DLL at run time. After the DLL is loaded, the module calls the **GetProcAddress function** to get the addresses of the exported DLL functions. The module calls the exported DLL functions using **the function pointers** returned by GetProcAddress. This eliminates the need for an import library.
+
+### dll动态加载引用计数
+
+>https://docs.microsoft.com/en-us/windows/win32/dlls/run-time-dynamic-linking
+>
+>If the call to LoadLibrary or LoadLibraryEx specifies a DLL whose code is **already mapped into the virtual address space of the calling process**, the function simply **returns a handle to the DLL and increments the DLL reference count.** Note that two DLLs that have the same base file name and extension but are found in different directories are not considered to be the same DLL.
+
+### dll入口函数只会在加载后启动的线程内调用
+
+> https://docs.microsoft.com/en-us/windows/win32/dlls/run-time-dynamic-linking 
+>
+> The entry-point is not called for threads that existed before LoadLibrary or LoadLibraryEx is called.
+
+### import library: lib file
+
+> https://docs.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-creation
+>
+> An import library (.lib) file contains information the linker needs to resolve external references to exported DLL functions, so the system can locate the specified DLL and exported DLL functions at run time. You can create an import library for your DLL when you build your DLL.
+

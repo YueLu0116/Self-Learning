@@ -42,3 +42,8 @@ Five people have been confirmed dead, and as many as 156 people remain unaccount
 
 Incest jokes were not totally my cup of tea but I still found it humorous.
 
+## Aug. 7th, 2021
+
+> https://www.vox.com/the-goods/22573682/shein-future-of-fast-fashion-explained?mc_cid=2aa7bc61e9&mc_eid=e7d1f9e13b
+
+From personal experience, however, “familiar” doesn’t properly contextualize how pervasive the brand is, at least online.

@@ -438,6 +438,93 @@ unsigned int round_closest(unsigned int dividend, unsigned int divisor)
 }
 ```
 
+### How to use `if constexpr`?
+
+Condition judgement finished in compiling time. In a constexpr if statement, the value of *condition* must be a [contextually converted constant expression of type bool](https://en.cppreference.com/w/cpp/language/constant_expression#Converted_constant_expression)
+
+```cpp
+#include <iostream>
+
+template<typename T>
+auto print_type_info(const T& t) {
+    if constexpr (std::is_integral<T>::value) {
+        return t + 1;
+    } else {
+        return t + 0.001;
+    }
+}
+int main() {
+    std::cout << print_type_info(5) << std::endl;
+    std::cout << print_type_info(3.14) << std::endl;
+}
+```
+
+### The "<<" operator is binary
+
+> [About overloading <<](https://www.learncpp.com/cpp-tutorial/overloading-the-io-operators/)
+>
+> Consider the expression `std::cout << point`. If the operator is <<, what are the operands? The left operand is the std::cout object, and the right operand is your Point class object. std::cout is actually an object of type std::ostream. 
+
+For example:
+
+```cpp
+#include <iostream>
+ 
+class Point
+{
+private:
+    double m_x{};
+    double m_y{};
+    double m_z{};
+ 
+public:
+    Point(double x=0.0, double y=0.0, double z=0.0)
+      : m_x{x}, m_y{y}, m_z{z}
+    {
+    }
+ 
+    friend std::ostream& operator<< (std::ostream& out, const Point& point);
+};
+ 
+std::ostream& operator<< (std::ostream& out, const Point& point)
+{
+    // Since operator<< is a friend of the Point class, we can access Point's members directly.
+    out << "Point(" << point.m_x << ", " << point.m_y << ", " << point.m_z << ')'; // actual output done here
+ 
+    return out; // return std::ostream so we can chain calls to operator<<
+}
+ 
+int main()
+{
+    const Point point1{2.0, 3.0, 4.0};
+ 
+    std::cout << point1 << '\n';
+ 
+    return 0;
+}
+```
+
+### What is the size of int, double... in c++?
+
+> [What does the C++ standard state the size of int, long type to be?](https://stackoverflow.com/questions/589575/what-does-the-c-standard-state-the-size-of-int-long-type-to-be)
+>
+> [c data types - wikipedia](https://en.wikipedia.org/wiki/C_data_types)
+
+The C++ standard does not specify the size of integral types in bytes, but it specifies **minimum ranges** they must be able to hold. 
+
+So I should use `int32_t` to specify the size when do binary transportation.
+
+### How to implement make_unique in c++?
+
+> https://changkun.de/modern-cpp/zh-cn/05-pointers/index.html#5-3-std-unique-ptr
+
+```cpp
+template<typename T, typename ...Args>
+std::unique_ptr<T> make_unique( Args&& ...args ) {
+  return std::unique_ptr<T>( new T( std::forward<Args>(args)... ) );
+}
+```
+
 ## Advances
 
 ### The forwarding problem
@@ -515,6 +602,31 @@ void f(A&& a)
 
 > https://kheresy.wordpress.com/2017/10/16/cpp17-variant/
 
+## Template
+
+### The true meaning of `typename`
+
+> [Officially, what is typename for?](https://stackoverflow.com/questions/1600936/officially-what-is-typename-for)
+
+The keyword `typename` was introduced to specify that the identifier that follows is a type. Consider the following example:
+
+```cpp
+template <class T>
+Class MyClass
+{
+  typename T::SubType * ptr;
+  ...
+};
+```
+
+Here, `typename` is used to clarify that `SubType` is a **type** of `class T`. Thus, `ptr` is a pointer to the type `T::SubType`. Without `typename`, `SubType` would be considered **a static member**. Thus
+
+```cpp
+T::SubType * ptr
+```
+
+would be a multiplication of value `SubType` of type `T` with `ptr`.
+
 ## OOP
 
 ### Can I access derived class member from base class?
@@ -560,6 +672,41 @@ class B
     //...
     A mA; // ERROR!
     B(A _a):mA(_a){} // CORRECT! or define a default constructer for A
+}
+```
+
+### What is the meaning and usage of "::*"?
+
+> [Pointer to class data member “::*”](https://stackoverflow.com/questions/670734/pointer-to-class-data-member)
+
+An simple example:
+
+```cpp
+#include <iostream>
+
+class bowl {
+public:
+    int apples;
+    int oranges;
+};
+
+int count_fruit(bowl * begin, bowl * end, int bowl::*fruit)
+{
+    int count = 0;
+    for (bowl * iterator = begin; iterator != end; ++ iterator)
+        count += iterator->*fruit;
+    return count;
+}
+
+int main()
+{
+    bowl bowls[2] = {
+        { 1, 2 },
+        { 3, 5 }
+    };
+    std::cout << "I have " << count_fruit(bowls, bowls + 2, & bowl::apples) << " apples\n";
+    std::cout << "I have " << count_fruit(bowls, bowls + 2, & bowl::oranges) << " oranges\n";
+    return 0;
 }
 ```
 
@@ -709,6 +856,48 @@ int main() {
 
 std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 ```
+
+### What is std::future?
+
+Thread A creates thread B, and after some time, A needs the results of B. Usage example:
+
+```cpp
+#include <iostream>
+#include <future>
+#include <thread>
+
+int main() {
+    // 将一个返回值为7的 lambda 表达式封装到 task 中
+    // std::packaged_task 的模板参数为要封装函数的类型
+    std::packaged_task<int()> task([](){return 7;});
+    // 获得 task 的期物
+    std::future<int> result = task.get_future(); // 在一个线程中执行 task
+    std::thread(std::move(task)).detach();
+    std::cout << "waiting...";
+    result.wait(); // 在此设置屏障，阻塞到期物的完成
+    // 输出执行结果
+    std::cout << "done!" << std:: endl << "future result is " << result.get() << std::endl;
+    return 0;
+}
+```
+
+### unique_lock v.s. lock_guard
+
+> https://stackoverflow.com/a/20516876/11100389
+
+> The difference is that you can lock and unlock a `std::unique_lock`. `std::lock_guard` will be locked only once on construction and unlocked on destruction.
+
+### When to use cv and when to use semaphore?
+
+- A condition variable is generally used to avoid busy waiting
+
+- Semaphores are good for producer/consumer situations where producers are allocating resources and consumers are consuming them. They're better used when you have a shared resource that can be available and unavailable based on some integer number of available things.
+
+### std::atomic in c++
+
+> [What exactly is std::atomic?](https://stackoverflow.com/questions/31978324/what-exactly-is-stdatomic)
+
+
 
 ## Types and Conversions
 
@@ -886,6 +1075,28 @@ class S
 };
 ```
 
+### What is RAII pattern?
+
+> [What is meant by Resource Acquisition is Initialization (RAII)?](https://stackoverflow.com/questions/2321511/what-is-meant-by-resource-acquisition-is-initialization-raii)
+
+There has been a bit of a movement to try to rename this concept as Scope-Bound Resource Management.  In short, things that we have a finite supply of and so we need to be able to control their usage. The 'Scope-bound' aspect means that the lifetime of the object is bound to the scope of a variable, so when the variable goes out of scope then the destructor will release the resource. For example:
+
+```cpp
+class ManagedResourceHandle {
+public:
+   ManagedResourceHandle(RawResourceHandle* rawHandle_) : rawHandle(rawHandle_) {};
+   ~ManagedResourceHandle() {delete rawHandle; }
+   ... // omitted operator*, etc
+private:
+   RawResourceHandle* rawHandle;
+};
+
+ManagedResourceHandle handle(createNewResource());
+handle->performInvalidOperation();
+```
+
+
+
 ## Windows related
 
 ### What is c++/winrt
@@ -1008,6 +1219,12 @@ private:
 
 参考：[Most vexing parse](https://en.wikipedia.org/wiki/Most_vexing_parse)
 
+### Why should I use noexcept?
+
+> https://www.modernescpp.com/index.php/c-core-guidelines-the-noexcept-specifier-and-operator
+
+> First, an exception specifier documents the behaviour of the function. If a function is specified as noexcept, it can be safely used in a non-throwing function. Second, it is an optimisation opportunity for the compiler. noexcept may not call std::unexpectedand may not unwind the stack. 
+
 ## Utils
 
 ### How to get current (working) directory?
@@ -1043,6 +1260,16 @@ int main()
               << "elapsed time: " << elapsed_seconds.count() << "s\n";
 }
 ```
+
+### How to define the application version in visual studio?
+
+> https://stackoverflow.com/questions/20362394/how-do-i-add-version-information-to-the-compiled-exe-file-in-visual-studio
+>
+> Right-click the **Resource Files** folder in your solution, Add, Resource, Version. Just edit the fields as you want them. 
+
+Bonus: [the difference between file version and production version](https://stackoverflow.com/questions/752162/whats-the-difference-between-a-dlls-fileversion-and-productversion)
+
+> File and product versions are only likely to be different if the assembly in question is not just part of one product (e.g. a reusable third party library), if just used in a single application there seems little reason not to keep them the same.
 
 ## Linkages
 
