@@ -125,6 +125,8 @@ Link to this [page](./OpenSource/github-my-stars.md)
 
 [When should I interrupt someone](https://news.ycombinator.com/item?id=26463910)
 
+[40 Best Quotes That Made Me A Developer](https://www.devglan.com/blog/best-developer-quotes)
+
 ### Algorithms
 
 [The Boyer-Moore Fast String Searching Algorithm](https://www.cs.utexas.edu/users/moore/best-ideas/string-searching/)
