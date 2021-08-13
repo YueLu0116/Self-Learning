@@ -525,6 +525,46 @@ std::unique_ptr<T> make_unique( Args&& ...args ) {
 }
 ```
 
+### I want to return a local variable's pointer, but it will be destroyed after the function returns, so what can I do?
+
+> [Returning a pointer of a local variable C++](https://stackoverflow.com/questions/19042552/returning-a-pointer-of-a-local-variable-c)
+>
+> [What is the lifetime of a static variable in a C++ function?](https://stackoverflow.com/questions/246564/what-is-the-lifetime-of-a-static-variable-in-a-c-function)
+
+Method 1: New memory on heap. But may cause memory leakage when I forget to free it.
+
+```cpp
+int * count()
+{
+    int myInt = 5;
+
+    int * p = new int;
+    *p = myInt;
+
+    return p;
+}
+```
+
+Method 2: Return a smart pointer. But when I'm working on functions others' defined, I can't return what I want.
+
+```cpp
+unique_ptr<int> count()
+{
+   unique_ptr<int> value(new int(5));
+   return value;
+}
+```
+
+Method 3: Return a static variable's location.
+
+```cpp
+int* count()
+{
+    static int myInt = 5;
+    return &myInt;
+}
+```
+
 ## Advances
 
 ### The forwarding problem
@@ -1234,6 +1274,45 @@ private:
 > https://www.modernescpp.com/index.php/c-core-guidelines-the-noexcept-specifier-and-operator
 
 > First, an exception specifier documents the behaviour of the function. If a function is specified as noexcept, it can be safely used in a non-throwing function. Second, it is an optimisation opportunity for the compiler. noexcept may not call std::unexpectedand may not unwind the stack. 
+
+### Precompile header files should be put in the first position or it will cause compile error
+
+> [Why stdfax.h should be the first include on MFC applications? ](https://stackoverflow.com/questions/16040689/why-stdfax-h-should-be-the-first-include-on-mfc-applications)
+
+error: class xxx is not a class or namespace name.
+
+### Error: "conversion to inaccessible base class 'xx' is not allowed"
+
+> [C++ inheritance - inaccessible base?](https://stackoverflow.com/questions/4847100/c-inheritance-inaccessible-base)
+
+The default inheritance type of a `class` in C++ is `private`, so any `public` and `protected` members from the base class are limited to `private`.
+
+```cpp
+class Bar : public Foo
+{
+    // ...
+}
+```
+
+### std::cout uint8_t just print a blank
+
+> [uint8_t can't be printed with cout](https://stackoverflow.com/questions/19562103/uint8-t-cant-be-printed-with-cout)
+
+> `uint8_t` will most likely be a `typedef` for `unsigned char`. The `ostream` class has a special overload for `unsigned char`, i.e. it prints the character with the number 5, which is non-printable, hence the empty space.
+
+Solutions 1:
+
+```cpp
+uint8_t aa=5;
+cout << "value is " << unsigned(aa) << endl;
+```
+
+Solutions 2:
+
+```c++
+uint8_t aa = 5;
+cout<<"value is "<< +aa <<endl; // value is 5
+```
 
 ## Utils
 
