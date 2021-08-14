@@ -184,6 +184,8 @@ Link to this [page](./OpenSource/github-my-stars.md)
 
 [Ninja - a small build system with a focus on speed](https://ninja-build.org/)
 
+[ssd 101](https://zhuanlan.zhihu.com/p/70895745)
+
 ## Resources
 
 [Free videos](https://www.its.bldrdoc.gov/vqeg/video-datasets-and-organizations.aspx)
