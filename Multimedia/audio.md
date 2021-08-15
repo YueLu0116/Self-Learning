@@ -86,3 +86,46 @@ Programming
    - swr_init
 
    - libavutil [samples manipulation](https://ffmpeg.org/doxygen/2.3/group__lavu__sampmanip.html) API
+
+### Aug. 15th, 2021
+
+#### Windows audio api
+
+[**Endpoint devices**](https://docs.microsoft.com/en-us/windows/win32/coreaudio/audio-endpoint-devices)
+
+1. 系统对adapter的屏蔽；
+2. 捕获从一个终端设备出来的音频流：
+   1. Select a microphone from a collection of endpoint devices.
+   2. Activate an audio-capture interface on that microphone.
+
+[**MMDevice api**](https://docs.microsoft.com/en-us/windows/win32/coreaudio/mmdevice-api)
+
+这个api使得音频客户端（应用程序）可以发现设备，检测兼容性等；
+
+**Endpoint id and properties**
+
+[**Stream Management**](https://docs.microsoft.com/en-us/windows/win32/coreaudio/stream-management)
+
+1. 首先调用`IAudioClient`接口：
+
+   1. Discover which audio formats the endpoint device supports.
+   2. Get the endpoint buffer size.
+   3. Get the stream format and latency.
+   4. Start, stop, and reset the stream that flows through the endpoint device.
+   5. Access additional audio services.
+
+2. 通过`GetService`方法来获取其他接口的方法：
+
+   > WASAPI consists of several interfaces. The first of these is the [**IAudioClient**](https://docs.microsoft.com/en-us/windows/desktop/api/Audioclient/nn-audioclient-iaudioclient) interface. To access the WASAPI interfaces, a client first obtains a reference to the **IAudioClient** interface of an audio endpoint device by calling the [**IMMDevice::Activate**](https://docs.microsoft.com/en-us/windows/desktop/api/Mmdeviceapi/nf-mmdeviceapi-immdevice-activate) method with parameter *iid* set to **REFIID** IID_IAudioClient. The client calls the [**IAudioClient::Initialize**](https://docs.microsoft.com/en-us/windows/desktop/api/Audioclient/nf-audioclient-iaudioclient-initialize) method to initialize a stream on an endpoint device. After initializing a stream, the client can obtain references to the other WASAPI interfaces by calling the [**IAudioClient::GetService**](https://docs.microsoft.com/en-us/windows/desktop/api/Audioclient/nf-audioclient-iaudioclient-getservice) method.
+
+[**Render a stream**](https://docs.microsoft.com/en-us/windows/win32/coreaudio/rendering-a-stream#:~:text=The%20following%20code%20example%20shows%20how%20to%20play%20an%20audio%20stream%20on%20the%20default%20rendering%20device%3A) and [**Capture a stream**](https://docs.microsoft.com/en-us/windows/win32/coreaudio/capturing-a-stream#:~:text=The%20following%20code%20example%20shows%20how%20to%20record%20an%20audio%20stream%20from%20the%20default%20capture%20device)
+
+[**Loopback Recording**](https://docs.microsoft.com/en-us/windows/win32/coreaudio/loopback-recording)
+
+> A client of WASAPI can capture the audio stream that is being played by a rendering endpoint device.
+>
+> To open a stream in loopback mode, the client must:
+>
+> - Obtain an [**IMMDevice**](https://docs.microsoft.com/en-us/windows/desktop/api/Mmdeviceapi/nn-mmdeviceapi-immdevice) interface for the rendering endpoint device.
+> - Initialize a capture stream in loopback mode on the rendering endpoint device.
+

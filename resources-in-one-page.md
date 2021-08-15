@@ -145,6 +145,8 @@ Link to this [page](./OpenSource/github-my-stars.md)
 
 [十个问题理解epoll原理](http://t.cn/A6VWK8Un)
 
+[linux and shell tutorials](https://archlinuxstudio.github.io/ShellTutorial/#/)
+
 ### Git
 
 [How Git servers work, and how to keep yours secure](https://gemini.nytpu.com/gemlog/2021-03-07.gmi)
