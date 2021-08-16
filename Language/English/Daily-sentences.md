@@ -47,3 +47,10 @@ Incest jokes were not totally my cup of tea but I still found it humorous.
 > https://www.vox.com/the-goods/22573682/shein-future-of-fast-fashion-explained?mc_cid=2aa7bc61e9&mc_eid=e7d1f9e13b
 
 From personal experience, however, “familiar” doesn’t properly contextualize how pervasive the brand is, at least online.
+
+## Aug. 15th, 2021
+
+> https://blog.perrysun.com/2021/07/15/for-developers-safari-is-crap-and-outdated/
+
+**Don’t get me wrong**, Safari is very good web browser, delivering fast performance and solid privacy features.
+
