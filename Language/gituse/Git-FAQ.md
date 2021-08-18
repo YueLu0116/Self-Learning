@@ -40,6 +40,21 @@ Used situations:
 
 > Often, you’ll do this to make sure your commits apply cleanly on a remote branch — perhaps in a project to which you’re trying to contribute but that you don’t maintain.
 
+## When to use rebase and when to use merge?
+
+> [Merging vs. Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
+>
+> [When do you use Git rebase instead of Git merge?](https://stackoverflow.com/questions/804115/when-do-you-use-git-rebase-instead-of-git-merge)
+
+- **Merge**: Let's say you have created a branch for the purpose of developing a single feature. When you want to bring those changes back to master, you probably want **merge** (you don't care about maintaining all of the interim commits).
+- **Rebase**:  A second scenario would be if you started doing some development and then another developer made an unrelated change. You probably want to pull and then rebase to base your changes from the current version from the repository.
+
+## How to rebase onto a remote branch?
+
+> [git rebase onto remote updates](https://stackoverflow.com/questions/2916958/git-rebase-onto-remote-updates)
+
+Use `git pull --rebase`
+
 ## How to push newly created local branch to a remote branch?
 
 > https://blog.csdn.net/ljj_9/article/details/79386306
@@ -153,11 +168,62 @@ This is line B, or otherwise #2.
 
 > When talking in terms of git, patch file still means the same thing, but using diff + patch yourself would be a nightmare. For example, you will always have to have two versions of the file (or even the whole repository) checked out in order to compare them. Doesn't sound that good, does it? So git takes care of all of the hard work for you - it compares your local file with what is there in the repository you are working with, and can show it to you as a "diff", or apply that "diff" as a patch aka commit your changes, or even let you apply some patch file that you have already. 
 
+All the stuff above introduce what patches are. How to make patch files and apply patch in git?
+
+> https://juejin.cn/post/6844903646384095245
+
+1. make patches:
+
+   one commit one patch
+
+   Make **n** patches before a certain commit (included):
+
+   `git format-patch <sh1> -n`
+
+   Make patches between two commits:
+
+   `git format-patch <sh1>..<sh2> `
+
+2. apply patches
+
+   `git apply <path_to_patch_file> `
+
+## About git reset
+
+> [Git Reset](https://www.atlassian.com/git/tutorials/undoing-changes/git-reset)
+
+`git reset` will modify the state of the three trees. The ref pointer modification always happens and is an update to the third tree, the Commit tree. The command line arguments `--soft, --mixed`, and `--hard` direct how to modify the Staging Index, and Working Directory trees.
+
+**--hard**
+
+The Commit History ref pointers are updated to the specified commit. Then, the Staging Index and Working Directory are reset to match that of the specified commit. 
+
+**--mixed**
+
+The Staging Index is reset to the state of the specified commit. Any changes that have been undone from the Staging Index are moved to the Working Directory.
+
+**--soft**
+
+The Staging Index and the Working Directory are left untouched. 
+
+## About git revert
+
+> [git revert](https://www.atlassian.com/git/tutorials/undoing-changes/git-revert)
+
+ A revert operation will take **the specified commit**, inverse the changes from that commit, and create a new "revert commit".
+
+**reset vs. revert**
+
+- `git revert` undoes a single commit—it does not "revert" back to the previous state of a project by removing all subsequent commits.
+- First, it doesn’t change the project history, which makes it a “safe” operation for commits that have already been published to a shared repository. 
+
 ## "Reset, restore and revert" in git
 
 > [What's the difference between Git Revert, Checkout and Reset?](https://stackoverflow.com/questions/8358035/whats-the-difference-between-git-revert-checkout-and-reset)
 >
 > [Why do I get conflicts when I do git revert?](https://stackoverflow.com/questions/46275070/why-do-i-get-conflicts-when-i-do-git-revert)
+>
+> [Resetting, Checking Out & Reverting](https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting)
 
 Git revert doesn't "take you back to" that commit and pretend that subsequent commits didn't happen. It applies a logical negation of a single commit - and *that commit alone* - leaving subsequent commits in place.
 
