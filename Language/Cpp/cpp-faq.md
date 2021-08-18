@@ -71,7 +71,7 @@ int x = 5;
    - external linkage: refers to things that exist **beyond a particular translation unit**. In other words, accessible through the whole program, which is the combination of all translation units;
    - internal linkage: refers to everything only **in scope of a translation unit**.
 
-3. control the linkage use `extern` and `static` (If the linkage is not specified then the default linkage is `extern` (external linkage) for non-`const` symbols and `static` (internal linkage) for `const` symbols.):
+3. control the linkage use `extern` and `static` (If the linkage is not specified then **the default linkage is `extern` (external linkage) for non-`const` symbols and `static` (internal linkage) for `const` symbols**.):
 
 ```cpp
 // In namespace scope or global scope.
@@ -106,7 +106,7 @@ static int sf(); // explicitly static
      }
      ```
 
-   - access: unnamed namespaces are accessible within the file they're created in, as if you had an implicit using-clause to them.
+   - access: **unnamed namespaces are accessible within the file they're created in**, as if you had an implicit using-clause to them.
 
    - other usages: Putting methods in an anonymous namespace prevents you from accidentally violating the One Definition Rule, allowing you to never worry about naming your helper methods the same as some other method you may link in.
 
