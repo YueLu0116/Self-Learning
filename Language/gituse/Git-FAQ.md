@@ -326,6 +326,53 @@ fast-forward merge and three-way merge:
 
 > https://stackoverflow.com/questions/62653114/how-to-deal-with-this-git-warning-pulling-without-specifying-how-to-reconcile
 
+## What is the difference between pull request and merge request?
+
+> [Pull request vs Merge request](https://stackoverflow.com/questions/22199432/pull-request-vs-merge-request)
+>
+> [Making a Pull Request](https://www.atlassian.com/git/tutorials/making-a-pull-request)
+
+First of all, GitLab's ["merge request"](http://doc.gitlab.com/ce/api/merge_requests.html) feature is equivalent to GitHub's ["pull request"](https://help.github.com/articles/using-pull-requests/) feature. Both are means of pulling changes from another branch or fork into your branch and merging the changes with your existing code. 
+
+Second, there are three main workflows:
+
+- Feature Branch Workflow
+- Gitflow Workflow (develop and master branch)
+- Forking Workflow (the pull request’s source repository will differ from its destination repository)
+
+## More about fetch
+
+> [git fetch](https://www.atlassian.com/git/tutorials/syncing/git-fetch)
+
+- Comparison 
+
+fetch is a safer version of git pull. We can inspect the commits first and then merge them into the local repository.
+
+- local and remote isolation 
+
+All commits are stored in `./.git/objects`, and the refs for local branches are stored in `./.git/refs/heads`, and the refs for remote branches are stored in `./.git/refs/remotes`
+
+- usage
+
+1. fetch a remote branch
+
+```
+git fetch <repo_name> <origin/branch_name>
+git checkout <origin/branch_name>
+git checkout -b <new-branch_name>
+```
+
+2. Synchronization 
+
+```
+git fetch origin
+git log --oneline main..origin/main
+git checkout main
+git merge origin/main
+```
+
+
+
 ## Resources
 
 - [git control from missing semeter](https://missing.csail.mit.edu/2020/version-control/)
