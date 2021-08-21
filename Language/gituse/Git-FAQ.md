@@ -371,7 +371,23 @@ git checkout main
 git merge origin/main
 ```
 
+## git checkout and two new (2021.8) alternatives
 
+> [New in Git: switch and restore](https://www.banterly.net/2021/07/31/new-in-git-switch-and-restore/)
+
+True use of checkout:
+
+`git checkout <tree-ish> -- <pathspec>`
+
+If I am on the develop branch, `git checkout main -- test.txt` will make test file's state to the main branch's.
+
+`git switch <branch_name>`
+
+`git switch -d <ish>` detached head
+
+`git switch -c <new_branch_name>` create and switch to a new branch.
+
+`git restore -- test.txt` 
 
 ## Resources
 
