@@ -62,7 +62,7 @@ Use `git pull --rebase`
 1. use `git branch` to check current branch;
 2. `git push origin dev_luyue:dev_luyue`
 
-## We talk about push branches above but how about push a new local repository to a remote one?
+## How about push a new local repository to a remote one?
 
 > [Pushing from local repository to GitHub hosted remote](https://stackoverflow.com/questions/10573957/pushing-from-local-repository-to-github-hosted-remote)
 
@@ -72,12 +72,13 @@ Use the repo's url to establish local-remote repos' relationship:
 
 ```
 git remote add origin git@github.com:username/reponame.git
+git remote add origin https://github.com/username/reponame
 ```
 
 First push:
 
 ```
-git push origin master
+git push --set-upstream origin master
 ```
 
 And after all these:
@@ -261,9 +262,6 @@ git fetch origin <remote-branch-name>:local-branch-name
 ```
 
 This git command will create a new branch named local-branch-name and its content is the same with remote-branch-name.
-
-## I did something wrong, how can I make up those mistakes?
-TODO
 
 ## How to clone a specific branch
 
