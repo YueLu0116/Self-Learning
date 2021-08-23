@@ -55,3 +55,300 @@ cd someproject
 cargo build
 ```
 
+## Basics
+
+### Variables
+
+1. In rust variables are **immutable** by default:
+
+   ```rust
+   let x = 5;
+   // vs
+   let mut x = 5;
+   ```
+
+2. Immutable is not equal to **constant**:
+
+   1. Constants must be declared with `const` keyword and the type of value must be annotated.
+
+      ```rust
+      const MAX_POINTS: u32 = 100_000;
+      ```
+
+   2. Constants may be set only to a constant expression, not the result of a function call or any other value that could only be computed at runtime.
+
+3. Variables **shadowing**:
+
+   Can change a type of a variable with a same name. (Reuse variable names)
+
+   ```rust
+   let spaces = "   ";
+   let spaces = spaces.len();
+   ```
+
+### Data types
+
+1. When there are many types are possible for a declared variable, type annotation must be added:
+
+   ```rust
+   let guess: u32 = "42".parse().expect("Not a number!");
+   ```
+
+2. Scalar types: integers, floating-point numbers, Booleans, and characters.
+
+3. Compound types: tuples and arrays.
+
+   Tuple:
+
+   ```rust
+   fn main() {
+       let x: (i32, f64, u8) = (500, 6.4, 1);
+       let five_hundred = x.0;
+       let six_point_four = x.1;
+       let one = x.2;
+   }
+   ```
+
+   Array:
+
+   ```rust
+   let a = [3; 5]; // let a = [3, 3, 3, 3, 3];
+   ```
+
+### Functions
+
+1. In function signatures, you *must* declare the type of each **parameter**:
+
+   ```rust
+   fn main() {
+       another_function(5, 6);
+   }
+   
+   fn another_function(x: i32, y: i32) {
+       println!("The value of x is: {}", x);
+       println!("The value of y is: {}", y);
+   }
+   ```
+
+2. :dart:**Expression and statement**: The `6` in the statement `let y = 6;` is an expression that evaluates to the value `6`. Calling a function is an expression. Calling a macro is an expression. The block that used to create new scopes, `{}`, is an expression. Expressions can be part of statements:
+
+   ```rust
+   fn main() {
+       let x = 5;
+       let y = {
+           let x = 3;
+           x + 1
+       };
+       println!("The value of y is: {}", y);
+   }
+   ```
+
+3. Return values: Declare their type after an arrow (`->`). The return value of the function is synonymous with the value of the **final expression** in the block of the body of a function. You can return early from a function by using the `return` keyword and specifying a value:
+
+   ```rust
+   fn main() {
+       let x = plus_one(5);
+   
+       println!("The value of x is: {}", x);
+   }
+   
+   fn plus_one(x: i32) -> i32 {
+       x + 1  // this is an expression. x+1; will cause an error, because it is a statement
+   }
+   ```
+
+### Control flow
+
+1. Condition in if **expression** must be a bool. The following codes will cause compiling error:
+
+   ```rust
+   fn main() {
+       let number = 3;
+   
+       if number {
+           println!("number was three");
+       }
+   }
+   ```
+
+   If can be used in let **statement**:
+
+   ```rust
+   fn main() {
+       let condition = true;
+       let number = if condition { 5 } else { 6 };
+   
+       println!("The value of number is: {}", number);
+   }
+   ```
+
+2. Loop: One of the uses of a `loop` is to retry an operation you know might fail, such as checking whether a thread has completed its job. However, you might need to pass the result of that operation to the rest of your code. 
+
+   ```rust
+   fn main() {
+       let mut counter = 0;
+   
+       let result = loop {
+           counter += 1;
+   
+           if counter == 10 {
+               break counter * 2;
+           }
+       };
+   
+       println!("The result is {}", result);
+   }
+   ```
+
+3. For loop:
+
+   ```rust
+   fn main() {
+       let a = [10, 20, 30, 40, 50];
+   
+       for element in a.iter() {
+           println!("the value is: {}", element);
+       }
+   }
+   ```
+
+### Comments
+
+Normal comments and documentation comments.
+
+## Ownership
+
+> Tags: safety, no garbage collection, borrowing, slices.
+
+### Overview
+
+1. String types:
+
+   Literal string: `let x = "hello";` is on stack, immutable;
+
+   String: `let s = String::from("hello");` is on heap, and can be mutable:
+
+   ```rust
+   let mut s = String::from("hello");
+   s.push_str(", world!"); // push_str() appends a literal to a String
+   println!("{}", s); // This will print `hello, world!`
+   ```
+
+2. The memory is automatically returned once the variable that owns it goes out of scope:
+
+   ```rust
+   {
+     let s = String::from("hello"); // s is valid from this point forward
+   
+     // do stuff with s
+   } // this scope is now over, and s is no longer valid
+   ```
+
+3. Assignment and move:
+
+   Assignment in rust for types like String is equal to "move".
+
+   ```rust
+   let s1 = String::from("hello");
+   let s2 = s1;
+   
+   println!("{}, world!", s1);  // error! s1 is invaild
+   ```
+
+4. Use clone to realize deep copy:
+
+   ```rust
+   let s1 = String::from("hello");
+   let s2 = s1.clone();
+   println!("s1 = {}, s2 = {}", s1, s2);
+   ```
+
+5. Stack only data is deep copied:
+
+   > - All the integer types, such as `u32`.
+   > - The Boolean type, `bool`, with values `true` and `false`.
+   > - All the floating point types, such as `f64`.
+   > - The character type, `char`.
+   > - Tuples, if they only contain types that also implement `Copy`. For example, `(i32, i32)` implements `Copy`, but `(i32, String)` does not.
+
+6. Functions and ownership:
+
+   1. Passing a variable to a function will move or copy, just as assignment does. 
+   2. Returning values can also transfer ownership. 
+
+### Reference and borrowing
+
+1. Having reference in rust is called borrowing.
+
+   ```rust
+   fn calculate_length(s: &String) -> usize { // s is a reference to a String
+       s.len()
+   } // Here, s goes out of scope. But because it does not have ownership of what
+     // it refers to, nothing happens.
+   ```
+
+2. Reference is immutable by default:
+
+   ```rust
+   fn main() {
+       let s = String::from("hello");
+   
+       change(&s);
+   }
+   
+   fn change(some_string: &String) {
+       some_string.push_str(", world");   // error!
+   }
+   ```
+
+   Change to mutable:
+
+   ```rust
+   fn main() {
+       let mut s = String::from("hello");
+   
+       change(&mut s);
+   }
+   
+   fn change(some_string: &mut String) {
+       some_string.push_str(", world");
+   }
+   ```
+
+   Some restrictions to avoid data race:
+
+   1. You can have only one mutable reference to a particular piece of data in a particular scope.
+   2. We *also* cannot have a mutable reference while we have an immutable one. 
+   3. Reference scope starts from where it is introduced and continues through **the last time** that reference is used.
+
+3. Rust compiler can detect dangling references during compilation time.
+
+### Slice Types
+
+Slice type is like a small version of reference which does not have ownership too. “string slice” is written as `&str`.
+
+```rust
+fn first_word(s: &String) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
+}
+
+fn main() {
+    let mut s = String::from("hello world");
+
+    let word = first_word(&s);
+
+    s.clear(); // error!
+
+    println!("the first word is: {}", word);
+}
+```
+
+note for the error: if we have an immutable reference to something, we cannot also take a mutable reference. Because `clear` needs to truncate the `String`, it needs to get a mutable reference. Rust disallows this, and compilation fails.
