@@ -352,3 +352,65 @@ fn main() {
 ```
 
 note for the error: if we have an immutable reference to something, we cannot also take a mutable reference. Because `clear` needs to truncate the `String`, it needs to get a mutable reference. Rust disallows this, and compilation fails.
+
+## Struct
+
+### Basics
+
+1. Define and initialize:
+
+   ```rust
+   struct User {
+       username: String,
+       email: String,
+       sign_in_count: u64,
+       active: bool,
+   }
+   
+   let mut user1 = User {
+     email: String::from("someone@example.com"),
+     username: String::from("someusername123"),
+     active: true,
+     sign_in_count: 1,
+   };
+   
+   user1.email = String::from("anotheremail@example.com");
+   ```
+
+   > The entire instance must be mutable; Rust doesn’t allow us to mark only certain fields as mutable.
+
+2. Struct method:
+
+   Define:
+
+   ```rust
+   #[derive(Debug)]
+   struct Rectangle{
+       width: u32,
+       height: u32,
+   }
+   
+   impl Rectangle{
+       // this a associated **function**
+       // no parameters are self
+       fn square(size:u32)->Rectangle{
+           Rectangle{
+               width:size,
+               height:size,
+           }
+       }
+     
+       // methods
+       fn area(&self) -> u32{
+           self.width * self.height
+       }
+       // take self as a parameter.
+       // self can be borrowed or taken ownership (which is a rare situation)
+       // self can be mut and immut
+       fn can_hold(&self, rect:&Rectangle)->bool{
+           self.width >= rect.width && self.height >= rect.height
+       }
+   }
+   ```
+
+   
