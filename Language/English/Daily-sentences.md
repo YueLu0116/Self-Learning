@@ -54,3 +54,7 @@ From personal experience, however, “familiar” doesn’t properly contextuali
 
 **Don’t get me wrong**, Safari is very good web browser, delivering fast performance and solid privacy features.
 
+## Aug. 27th, 2021
+
+- “The United States cannot afford to remain **tethered** to policies creating a response to a world as it was 20 years ago,” he said on July 8. “We need to meet the threats where they are today.” （拘束, restricted）
+- So, does Biden’s argument still hold up? Yes, but with some major caveats. （警告: a warning or proviso of specific stipulations, conditions, or limitations.）

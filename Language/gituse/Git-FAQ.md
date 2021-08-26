@@ -387,6 +387,26 @@ If I am on the develop branch, `git checkout main -- test.txt` will make test fi
 
 `git restore -- test.txt` 
 
+## How to untrack some tracked and added files in git?
+
+> [How can I make Git “forget” about a file that was tracked, but is now in .gitignore?](https://stackoverflow.com/questions/1274057/how-can-i-make-git-forget-about-a-file-that-was-tracked-but-is-now-in-gitign)
+
+Untrack a file:
+
+`git rm --cached <file>`
+
+Untrack a folder:
+
+`git rm -r --cached <folder>`
+
+## How to checkout to a remote branch?
+
+> [How do I check out a remote Git branch?](https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch)
+
+If someone push a branch to the remote repository, how can I checkout to that branch locally?
+
+`git checkout -b test <name-of-remote>/test`
+
 ## Resources
 
 - [git control from missing semeter](https://missing.csail.mit.edu/2020/version-control/)

@@ -274,6 +274,23 @@ cout << *p;
 
 The value of `t` is the address of the string literal `"test"`, and that is not a variable you declared, **it's not on the stack and has static duration, which is the same with static variables** . It's a string literal, which is a constant defined in the program (similar to the integer literal `99` or the floating point literal `0.99`). Literals don't go out of scope as you expect, because they are not created or destroyed, they just *are*.
 
+> [other answer](https://stackoverflow.com/questions/41350090/why-string-literal-is-not-prvalue)
+
+> String literals cannot be moved from. They're arrays of fundamental types, so a move would be indistinguishable from a copy.
+>
+> And string literals have de-facto object identity since they have a lifetime that exceeds their local scope (another reason they cannot be moved from). That's why you can return a `const char*` of a literal from a function and still have the program work. Also, two string literals can refer to the same array of characters (their pointers can be identical) if the literals are of the same string. So "bar" and "bar" may point to the same memory.
+
+### I write a line of codes which arose my mentor's question
+
+```c++
+std::string str = "world";
+const char* = std::string("hello" + str").c_str();
+```
+
+> [value categories](https://zh.cppreference.com/w/cpp/language/value_category)
+
+"hello" is a lvalue, so `"hello" + str`  is just satisfied with std::string's copy constructor.
+
 ### What is the meaning of "!!"?
 
 > [!! c operator, is a two NOT?](https://stackoverflow.com/questions/10307281/c-operator-is-a-two-not)

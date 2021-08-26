@@ -95,6 +95,10 @@ Total: don't output anything even the error information.
 
 https://levelup.gitconnected.com/15-keyboard-shortcuts-that-advanced-linux-bash-users-always-use-661b340d5a8e
 
+### Difference between so many bash/zsh files
+
+https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/
+
 ## Daily Command Lines
 
 ### June. 26th, 2021
