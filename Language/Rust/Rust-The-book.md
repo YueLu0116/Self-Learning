@@ -413,4 +413,146 @@ note for the error: if we have an immutable reference to something, we cannot al
    }
    ```
 
+
+## Enum
+
+### Key points
+
+1. how to define:
+
+```rust
+enum IpAddrKind {
+    V4,
+    V6,
+}
+```
+
+2. can be assign types/different types/user defined types:
+
+```rust
+enum IpAddr {
+  V4(u8, u8, u8, u8),
+  V6(String),
+}
+
+let home = IpAddr::V4(127, 0, 0, 1);
+
+let loopback = IpAddr::V6(String::from("::1"));
+```
+
+3. Can have methods:
+
+```rust
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+impl Message {
+  fn call(&self) {
+    // method body would be defined here
+  }
+}
+let m = Message::Write(String::from("hello"));
+m.call();
+```
+
+4. **Option** enum vs null
+
+Rust doesn't have null. Use Option enum instead
+
+```rust
+enum Option<T> {
+    Some(T),
+    None,
+}
+
+// use example:
+let some_number = Some(5);
+let some_string = Some("a string");
+let absent_number: Option<i32> = None;  // None must be indicated types
+```
+
+Option\<T\> must firstly be converted to T and then it can be calculated with T types.
+
+### Match and enum
+
+1. What is match
+
+   `match` allows you to compare a value against a series of **patterns** and then execute **code** based on which pattern matches.  If a pattern matches the value, the code associated with that pattern is executed. 
+
+   ```rust
+   fn value_in_cents(coin: Coin) -> u8 {
+       match coin {
+           Coin::Penny => {
+               println!("Lucky penny!");
+               1
+           }
+           Coin::Nickel => 5,
+           Coin::Dime => 10,
+           Coin::Quarter => 25,
+       }
+   }
+   ```
+
+2. Patterns and binded value
+
+   ```rust
+   #[derive(Debug)] // so we can inspect the state in a minute
+   enum UsState {
+       Alabama,
+       Alaska,
+       // --snip--
+   }
+   enum Coin {
+       Penny,
+       Nickel,
+       Dime,
+       Quarter(UsState),
+   }
+   fn value_in_cents(coin: Coin) -> u8 {
+       match coin {
+           Coin::Penny => 1,
+           Coin::Nickel => 5,
+           Coin::Dime => 10,
+           Coin::Quarter(state) => {
+               println!("State quarter from {:?}!", state);
+               25
+           }
+       }
+   }
+   ```
+
+3. Match and Option
+
+   ```rust
+   fn plus_one(x: Option<i32>) -> Option<i32> {
+     match x {
+       None => None,
+       Some(i) => Some(i + 1),
+     }
+   }
+   
+   let five = Some(5);
+   let six = plus_one(five);
+   let none = plus_one(None);
+   ```
+
+4. Use `if let` to simplify match expression:
+
+   ```rust
+   let some_u8_value = Some(0u8);
+   match some_u8_value {
+     Some(3) => println!("three"),
+     _ => (),
+   }
+   
+   // simplify
+   let some_u8_value = Some(0u8);
+   if let Some(3) = some_u8_value {
+     println!("three");
+   }
+   ```
+
    
