@@ -2,12 +2,10 @@
 
 ## widgets
 > Awesome things for productivity and convenience.
-### [安卓投屏](https://github.com/Genymobile/scrcpy)
+### [**安卓投屏**](https://github.com/Genymobile/scrcpy)
 安卓手机投屏到pc端，可以通过鼠标键盘操控，华为手机使用[示例](https://www.cnblogs.com/hanxiaobei/p/12941996.html)
-### [Unlock-Music-音乐解锁](https://github.com/ix64/unlock-music)
+### [**Unlock-Music-音乐解锁**](https://github.com/ix64/unlock-music)
 解决通过网易云音乐等app下载的音乐文件格式无法用一般播放器打开的问题
-### [YoutubeExplode](https://github.com/Tyrrrz/YoutubeExplode)
-- [ ] TODO
 ### [LightBulb](https://github.com/Tyrrrz/LightBulb)
 c#编写的随时间调整桌面亮度的工具，可通过经纬度确定时区
 ### [ShellProgressBar](https://github.com/Mpdreamz/shellprogressbar)
@@ -18,14 +16,8 @@ c#编写在console window中的下载进度条
 - [ ] TODO turns any device with a web browser into a secondary screen for your computer
 ### [sherlock](https://github.com/sherlock-project/sherlock)
 - [ ] TODO Hunt down social media accounts by username across social networks
-### [mermaid](https://github.com/mermaid-js/mermaid)
-- [ ] TODO 类似于markdown的流程图生成工具
-### [keepassx](https://github.com/keepassx/keepassx)
-- [ ] TODO KeePassX is a cross platform port of the windows application “Keepass Password Safe“
 ### [Easy Watermark](https://github.com/rosuH/EasyWatermark)
 - [ ] TODO 添加水印
-### [notable](https://github.com/notable/notable)
-支持标签的markdown笔记软件
 ### [openhardwaremonitor](https://github.com/openhardwaremonitor/openhardwaremonitor)
 c# 实现的硬件信息/状态检测工具
 ### [Dependencies](https://github.com/lucasg/Dependencies)
@@ -49,8 +41,24 @@ c# 实现的桌面端音量控制
 
 简历模板
 
+### [dotfiles](https://github.com/mathiasbynens/dotfiles)
+
+Sensible hacker defaults for macOS
+
+### [sumatrapdf](https://github.com/sumatrapdfreader/sumatrapdf)
+
+An old but awesome opensource project. Can be used to learn design thoughts and cpp.
+
+### [Useful scripts](https://github.com/oldratlee/useful-scripts)
+
+Useful scripts for making developer's everyday life easier and happier, involved java, shell etc.
+
+### [difftastic](https://github.com/Wilfred/difftastic)
+
+A syntax-aware diff
+
 ## Libraries
-> Awesome libraries and packages which can be used in my projects
+> Awesome libraries and packages which can be used in my projects.
 ### [SharpZipLib](https://github.com/icsharpcode/SharpZipLib)
 c#解压缩文件库
 ### [Spectre.Console-A library that makes it easier to create beautiful console applications.](https://github.com/spectresystems/spectre.console)
@@ -65,33 +73,72 @@ cpp日志库
 解析xml文件
 ### [uthash](https://github.com/troydhanson/uthash)
 c语言has map库
-### [curl](https://github.com/curl/curl)
 ### [curlpp-C++ wrapper around libcURL](https://github.com/jpbarrette/curlpp)
 curl的cpp封装
 ### [Detours](https://github.com/microsoft/Detours)
 cpp hook lib
 
+### [Google Snappy](https://github.com/google/snappy)
+
+A fast compressor/decompressor
+
+### [Orbit](https://github.com/google/orbit)
+
+C/C++ Performance Profiler from Google
+
 ## Multimedia
-> Projects on audio and video processing
+> Projects on audio and video processing.
 ### [OBS-Studio](https://github.com/obsproject/obs-studio)
 直播推流工具
 ### [audacity](https://github.com/audacity/audacity)
 音频编辑器
 ### [YUView](https://github.com/IENT/YUView)
 基于QT的支持YUV格式的播放器
-### [ffmpeg-libav-tutorial](https://github.com/leandromoreira/ffmpeg-libav-tutorial)
-### [digital_video_introduction](https://github.com/leandromoreira/digital_video_introduction)
-### [streaming onboarding](https://github.com/Eyevinn/streaming-onboarding)
-三个关于ffmpeg和视频基础知识的repos，其中还罗列了丰富的参考资料
-### [FFmpeg](https://github.com/FFmpeg/FFmpeg)
-ffmpeg源码
 ### [vlc-VLC media player](https://github.com/videolan/vlc)
 一个播放器
 ### [WebRTC Web demos and samples](https://github.com/webrtc/samples)
+
+webrtc示例
+
 ### [cscore](https://github.com/filoe/cscore)
 .net audio library
-### [Dopamine](https://github.com/digimezzo/dopamine-windows)
-基于cscore开发的音频播放器
+### [SDL source codes](https://github.com/libsdl-org/SDL)
+
+sdl源码
+
+### [media-autobuild_suite](https://github.com/m-ab-s/media-autobuild_suite)
+
+This Windows Batchscript helps setup a Mingw-w64 compiler environment for building ffmpeg and other media tools under Windows.
+
+### ==========ffmpeg==========
+
+### [FFmpeg](https://github.com/FFmpeg/FFmpeg)
+
+ffmpeg源码
+
+### [ffmpeg-libav-tutorial](https://github.com/leandromoreira/ffmpeg-libav-tutorial)
+
+ffmpeg 教程，入门
+
+### [digital_video_introduction](https://github.com/leandromoreira/digital_video_introduction)
+
+数字视频原理，同上作者
+
+### [streaming onboarding](https://github.com/Eyevinn/streaming-onboarding)
+
+视频基础知识的repos，其中还罗列了丰富的参考资料
+
+### [FFmpeg.AutoGen](https://github.com/Ruslan-B/FFmpeg.AutoGen)
+
+FFmpeg auto generated unsafe bindings for C#/.NET and Core (Linux, MacOS and Mono).
+
+### [NAudio](https://github.com/naudio/NAudio)
+
+Audio and MIDI library for .NET
+
+### [FFME](https://github.com/unosquare/ffmediaelement)
+
+FFME: The Advanced WPF MediaElement (based on FFmpeg)
 
 ## CPP
 > Tutorials, best tutorials and some marvelous tools on cpp
@@ -99,18 +146,16 @@ ffmpeg源码
 cpp协程库，现已经集成到cpp20
 ### [cmake-examples](https://github.com/ttroy50/cmake-examples)
 通过实例来学习cmake
-### [MyTinySTL](https://github.com/Alinshans/MyTinySTL)
-基于cpp11的小型stl
-### [cpp_tip_of_the_week](https://github.com/QuantlabFinancial/cpp_tip_of_the_week)
-### [Cplusplus-Concurrency-In-Practice](https://github.com/forhappy/Cplusplus-Concurrency-In-Practice)
-c++并发编程指南（稍老）
 ### [Cpp17](https://github.com/MeouSker77/Cpp17)
-cpp17教程
+cpp17教程一例
 ### [awesome-cpp](https://github.com/fffaraz/awesome-cpp)
+
+如题
+
 ### [modern-cpp-tutorial](https://github.com/changkun/modern-cpp-tutorial)
-现代cpp教程，已经更新cpp20
+现代cpp教程，已经更新cpp20，done
 ### [indicators-Activity Indicators for Modern C++](https://github.com/p-ranav/indicators)
-cpp命令行工具
+cpp实现的命令行工具
 ### [STL-msvc](https://github.com/microsoft/STL)
 微软官方实现的cpp-stl
 ### [ThreadPool](https://github.com/progschj/ThreadPool)
@@ -120,25 +165,53 @@ facebook实现的cpp libs
 ### [CppCoreGuidelines](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)
 cpp指南 by Bjarne Stroustrup and Herb Sutter
 
-### [Orbit](https://github.com/google/orbit)
-
-C/C++ Performance Profiler from Google
-
 ## csharp
-### [libvideo](https://github.com/omansak/libvideo)
-c# lib for downloading videos on youtube
 ### [awesome dotnet](https://github.com/quozd/awesome-dotnet)
+
+如题
+
 ### [AsyncEx](https://github.com/StephenCleary/AsyncEx)
 c# 异步库
 ### [Downloader](https://github.com/bezzad/Downloader)
 c# 入门级工程，简单的下载器，命令行实现
 
+### [dotnet scritps](https://github.com/filipw/dotnet-script)
+
+Run C# scripts from the .NET CLI.
+
+### [cake](https://github.com/cake-build/cake)
+
+Cake (C# Make) is a cross platform build automation system.
+
+### ========== wpf ==========
+
+### [WPF samples from microsoft](https://github.com/microsoft/WPF-Samples)
+
+Repository for WPF related samples
+
+### [Google Material Design](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit)
+
+Google's Material Design in XAML & WPF, for C# & VB.Net.
+
+### [Awesome WPF](https://github.com/Carlos487/awesome-wpf)
+
+A collection of awesome WPF resources, libraries and UI controls.
+
 ### [handy controls](https://github.com/HandyOrg/HandyControl)
 
 Contains some simple and commonly used WPF controls
 
+## Rust
+
+### [Rustlings](https://github.com/rust-lang/rustlings)
+
+Small exercises to get you used to reading and writing Rust code!
+
 ## Concurrency
 ### [Is Parallel Programming Hard, And If So, What Can You Do About It?](https://github.com/paulmckrcu/perfbook)
+
+大佬写的书，一直没时间读。。。
+
 ### [IPC-Windows](https://github.com/microsoft/IPC)
 windows进程间通信
 ### [cppzmq](https://github.com/zeromq/cppzmq)
@@ -149,15 +222,30 @@ zmq消息队列教程
 
 ## Algorithms
 ### [labuladong 的算法小抄](https://github.com/labuladong/fucking-algorithm)
-### [Collection of various algorithms in mathematics, machine learning, computer science and physics implemented in C++ for educational purposes.](https://github.com/TheAlgorithms/C-Plus-Plus)
+
+如题
+
+### [cpp algorithms](https://github.com/TheAlgorithms/C-Plus-Plus)
 cpp实现各类算法
 ### [leetcode solutions by chenhao](https://github.com/haoel/leetcode)
+
+“左耳朵耗子”实现的lc代码
+
+### [Algorithm implemented by Rust](https://github.com/douchuan/algorithm)
+
+算法第四版的Rust实现
 
 ## Operating Systems
 ### [windows_via_cpp](https://github.com/cggos/windows_via_cpp)
 _windows via cpp_ 源码
 ### [windows classic samples](https://github.com/microsoft/Windows-classic-samples)
+
+samples that demonstrate the API used in Windows classic desktop applications.
+
 ### [awesome windows](https://github.com/Awesome-Windows/Awesome)
+
+如题
+
 ### [Code from various chapters in OSTEP](https://github.com/remzi-arpacidusseau/ostep-code)
 《操作系统导论》源码
 ### [SystemProgramming](https://github.com/angrave/SystemProgramming)
@@ -166,16 +254,20 @@ c语言系统编程（并发-同步-网络-文件...）
 linux内核分析
 ### [mit6.s081 chinese version](https://github.com/huihongxiao/MIT6.S081)
 
+mit操作系统课程中文教材
+
+### [Understanding Linux Porcess](https://github.com/tobegit3hub/understand_linux_process)
+
+理解linux进程
+
 ## Collections
 ### [python, golang, devops 基础知识、 系统设计、后端开发路线图](https://github.com/DasyDong/interview)
 ### [Awesome-Cheatsheets](https://github.com/LeCoupa/awesome-cheatsheets)
 ### [awesome-Awesome lists about all kinds of interesting topics](https://github.com/sindresorhus/awesome)
 ### [awesome-mac](https://github.com/jaywcjlove/awesome-mac)
-### [awesome-windows](https://github.com/Awesome-Windows/Awesome)
 ### [CS-Notes](https://github.com/huangrt01/CS-Notes)
 ### [awesome-youtubers-An awesome list containing awesome YouTubers that teach about technology.](https://github.com/JoseDeFreitas/awesome-youtubers)
 ### [hacker-laws-zh-对开发人员有用的定律、理论、原则和模式](https://github.com/nusr/hacker-laws-zh)
-### [HelloGitHub](https://github.com/521xueweihan/HelloGitHub)
 ### [project-based-learning](https://github.com/tuvtran/project-based-learning)
 ### [computer-science](https://github.com/ossu/computer-science)
 cs课程集成
@@ -193,6 +285,10 @@ markdown emoji语法速查
 ### [Practical-Cryptography-for-Developers-Book](https://github.com/nakov/Practical-Cryptography-for-Developers-Book)
 开发人员使用的密码学教程
 ### [bitcoinbook](https://github.com/bitcoinbook/bitcoinbook)
+
+### [Awesome Productivity](https://github.com/eastlakeside/awesome-productivity-cn)
+
+绝妙的个人生产力
 
 ## Networking
 ### [计算机网络-自顶向下方法-笔记](https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES)
@@ -245,4 +341,6 @@ chromium源码
 ### [awesome-for-beginners](https://github.com/MunGell/awesome-for-beginners)
 A list of awesome beginners-friendly projects.
 ### [some cool projects](https://github.com/karan/Projects)
-### [source codes for d3d12book](https://github.com/d3dcoder/d3d12book)
+## Thoughts
+
+Obtain my own stars through GitHub api. 
