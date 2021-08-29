@@ -555,4 +555,76 @@ Option\<T\> must firstly be converted to T and then it can be calculated with T 
    }
    ```
 
+
+## Packages, Crates, and Modules
+
+### Definition of packages and crates
+
+1. A crate can be a **binary** or **library**.
+
+2. A package is one or more crates and contain one cargo.toml file.
+
+3. **Rules**: A package *must* contain zero or one library crates, and no more. It can contain as many binary crates as you’d like, but it must contain at least one crate (either library or binary).
+
+4. Crate root: a source file that the Rust compiler starts from and makes up the root module of your crate.
+
+   > - *src/main.rs* is the crate root of a binary crate with the same name as the package. 
+   > - the package contains a library crate with the same name as the package, and *src/lib.rs* is its crate root.
+
+### Use Modules
+
+1. Create a lib Crate:
+
+   ```rust
+   # cargo new --lib restaurant
+   
+   mod front_of_house {
+       mod hosting {
+           fn add_to_waitlist() {}
+   
+           fn seat_at_table() {}
+       }
+   
+       mod serving {
+           fn take_order() {}
+   
+           fn serve_order() {}
+   
+           fn take_payment() {}
+       }
+   }
+   
+   # module tree:
+   crate
+    └── front_of_house
+        ├── hosting
+        │   ├── add_to_waitlist
+        │   └── seat_at_table
+        └── serving
+            ├── take_order
+            ├── serve_order
+            └── take_payment
+   
+   ```
+
+   By using modules, we can group related definitions together and name why they’re related.
+
+2. Public and private: see the codes.
+
+3. Nested path:
+
+   ```rust
+   use std::cmp::Ordering;
+   use std::io;
+   // can be changed to
+   use std::{cmp::Ordering, io};
+   
+   use std::io;
+   use std::io::Write;
+   // can be changed to
+   use std::io::{self, Write};
+   ```
+
+   
+
    
