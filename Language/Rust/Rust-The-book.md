@@ -625,6 +625,160 @@ Option\<T\> must firstly be converted to T and then it can be calculated with T 
    use std::io::{self, Write};
    ```
 
+## Collections
+
+### vector
+
+1. Create and update a vector
+
+   ```rust
+   let vet: Vec<i32> = Vec::new();  // the "traditional" way
    
+   let vet2 = vec![1,2,3] // use vec! macro, rust compiler can infer the type
+   
+   let mut vet3 = Vec::new();  // new and push
+   vet.push(1);
+   vet.push(2);
+   //...
+   ```
+
+2. Read the elements
+
+   ```rust
+   let v = vec![1,2,3];
+   let third: &i32 = &v[2] // use reference to borrow
+                           // program will crash if out-of-boundary
+   match v.get(2) {
+     Some(third) => println!("The third element is {}", third),
+     None => println!("There is no third element."),
+   }                       // handle none to avoid program crash
+   ```
+
+3. The borrow rule
+
+   ```rust
+   let mut v = vec![1, 2, 3, 4, 5];
+   let first = &v[0];
+   v.push(6);
+   println!("The first element is: {}", first);
+   ```
+
+   > Adding a new element onto the end of the vector might require allocating new memory and copying the old elements to the new space, if there isn’t enough room to put all the elements next to each other where the vector currently is. In that case, the reference to the first element would be pointing to deallocated memory. The borrowing rules prevent programs from ending up in that situation.
+
+4. Iterate
+
+   ```rust
+   let v = vec![100, 32, 57];
+   for i in &v {
+     println!("{}", i);
+   }                          // read only
+   
+   let mut v = vec![100, 32, 57];
+   for i in &mut v {
+     *i += 50;
+   }                          // changeable
+   ```
+
+## Strings
+
+1. What are strings? String from std and string slices.
+
+2. Create a string
+
+   ```rust
+   let mut s1 = String::new();
+   
+   let s2 = "hello".to_string();
+   let s3 = String::from("world");
+   ```
+
+3. Update
+
+   ```rust
+   let mut s = String::from("foo");
+   s.push_str("bar");
+   ```
+
+   > The `push_str` method takes a string slice because we don’t necessarily want to take ownership of the parameter. 
+
+   ```rust
+   let s1 = String::from("tic");
+   let s2 = String::from("tac");
+   let s3 = String::from("toe");
+   
+   let s = s1 + "-" + &s2 + "-" + &s3;  // note s1 has been moved here and can no longer be used
+   ```
+
+   Add function signature:
+
+   ```rust
+   fn add(self, s: &str) -> String {
+   ```
+
+4. Rust string does not support indexing. (Utf8 reason)
+
+## HashMap
+
+1. Create
+
+   ```rust
+   use std::collections::HashMap;    // is a must
+   let mut scores = HashMap::new();
+   scores.insert(String::from("Blue"), 10);
+   scores.insert(String::from("Yellow"), 50);
+   ```
+
+   ```rust
+   use std::collections::HashMap;
+   let teams = vec![String::from("Blue"), String::from("Yellow")];
+   let initial_scores = vec![10, 50];
+   // use iterators and the collect method on a vector of tuples
+   let mut scores: HashMap<_, _> =
+   teams.into_iter().zip(initial_scores.into_iter()).collect();
+   ```
+
+2. Ownership
+
+   ```rust
+   use std::collections::HashMap;
+   let field_name = String::from("Favorite color");
+   let field_value = String::from("Blue");
+   let mut map = HashMap::new();
+   map.insert(field_name, field_value);
+   // field_name and field_value are invalid at this point, try using them and
+   // see what compiler error you get!
+   ```
+
+   > For types that implement the `Copy` trait, like `i32`, the values are copied into the hash map. For owned values like `String`, the values will be moved and the hash map will be the owner of those values
+
+3. Get values
+
+   ```rust
+   use std::collections::HashMap;
+   let mut scores = HashMap::new();
+   scores.insert(String::from("Blue"), 10);
+   scores.insert(String::from("Yellow"), 50);
+   let team_name = String::from("Blue");
+   let score = scores.get(&team_name);
+   ```
+
+4. Update
+
+   ```rust
+   // overwrite
+   use std::collections::HashMap;
+   let mut scores = HashMap::new();
+   scores.insert(String::from("Blue"), 10);
+   scores.insert(String::from("Blue"), 25);
+   println!("{:?}", scores);
+   // insert if it does not exist
+   use std::collections::HashMap;
+   let mut scores = HashMap::new();
+   scores.insert(String::from("Blue"), 10);
+   scores.entry(String::from("Yellow")).or_insert(50);
+   scores.entry(String::from("Blue")).or_insert(50);
+   println!("{:?}", scores);
+   ```
 
    
+
