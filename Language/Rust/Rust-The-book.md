@@ -717,7 +717,7 @@ Option\<T\> must firstly be converted to T and then it can be calculated with T 
 
 4. Rust string does not support indexing. (Utf8 reason)
 
-## HashMap
+### HashMap
 
 1. Create
 
@@ -780,5 +780,112 @@ Option\<T\> must firstly be converted to T and then it can be calculated with T 
    println!("{:?}", scores);
    ```
 
+   ## Error handling
    
+   Rust has no exceptions, just unrecoverable errors (panic!) and recoverable errors(Result\<T, E\>) instead.
+   
+   1. Get the backtrace after panic arose:
+   
+      ```bash
+      $ RUST_BACKTRACE=1 cargo run # debug mode is a must
+      ```
+   
+   2. Handle recoverable errors
+   
+      Use Result enum:
+   
+      ```rust
+      enum Result<T, E> {
+          Ok(T),
+          Err(E),
+      }
+      ```
+   
+      Use match to "catch" (different) errors:
+   
+      ```rust
+      use std::fs::File;
+      use std::io::ErrorKind;
+      
+      fn main() {
+          let f = File::open("hello.txt");
+      
+          let f = match f {
+              Ok(file) => file,
+              Err(error) => match error.kind() {
+                  ErrorKind::NotFound => match File::create("hello.txt") {
+                      Ok(fc) => fc,
+                      Err(e) => panic!("Problem creating the file: {:?}", e),
+                  },
+                  other_error => {
+                      panic!("Problem opening the file: {:?}", other_error)
+                  }
+              },
+          };
+      }
+      ```
+   
+      Use helper functions: unwrap and expect:
+   
+      > - If the `Result` value is the `Ok` variant, `unwrap` will return the value inside the `Ok`. If the `Result` is the `Err` variant, `unwrap` will call the `panic!` macro for us.
+   
+      ```rust
+      use std::fs::File;
+      
+      fn main() {
+          let f = File::open("hello.txt").unwrap();
+      }
+      ```
+   
+      > - `expect`, which is similar to `unwrap`, lets us also choose the `panic!` error message. 
+   
+      ```rust
+      use std::fs::File;
+      
+      fn main() {
+          let f = File::open("hello.txt").expect("Failed to open hello.txt");
+      }
+      ```
+   
+      Return errors:
+   
+      ```rust
+      use std::fs::File;
+      use std::io;
+      use std::io::Read;
+      
+      fn read_username_from_file() -> Result<String, io::Error> {
+          let f = File::open("hello.txt");
+      
+          let mut f = match f {
+              Ok(file) => file,
+              Err(e) => return Err(e),
+          };
+      
+          let mut s = String::new();
+      
+          match f.read_to_string(&mut s) {
+              Ok(_) => Ok(s),
+              Err(e) => Err(e),
+          }
+      }
+      ```
+   
+      shortcuts:
+   
+      ```rust
+      use std::fs::File;
+      use std::io;
+      use std::io::Read;
+      
+      fn read_username_from_file() -> Result<String, io::Error> {
+          let mut s = String::new();
+      
+          File::open("hello.txt")?.read_to_string(&mut s)?;
+      
+          Ok(s)
+      }
+      ```
+   
+      
 
