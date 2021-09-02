@@ -887,5 +887,16 @@ Option\<T\> must firstly be converted to T and then it can be calculated with T 
       }
       ```
    
-      
+
+## Generic
+
+See the codes
+
+## Trait
+
+This feature is like interface or abstract class in c++.
+
+1. How to define a trait?
+2. Other structs can implement traits.
+3. Default traits method.
 
