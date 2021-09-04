@@ -99,45 +99,55 @@ https://levelup.gitconnected.com/15-keyboard-shortcuts-that-advanced-linux-bash-
 
 https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/
 
-## Daily Command Lines
+### Curly braces around shell variables
 
-### June. 26th, 2021
+> [When do we need curly braces around shell variables?](https://stackoverflow.com/questions/8748831/when-do-we-need-curly-braces-around-shell-variables)
 
-- copy multiple files to another folder
+It is useful when I want to expand the variable names
+
+```bash
+"${foo}bar"
+```
+
+
+
+## Command Lines
+
+### Copy multiple files to another folder
 
 ```
 $ cp /home/ankur/folder/{file{1,2},xyz,abc} /home/ankur/dest
 ```
 
-- copy a directory into another one
+### Copy a directory into another one
 
 ```
 $ cp -R <source_folder> <destination_folder>
 ```
 
-- rename/move a folder
+### Rename/move a folder
 
 ```
 $ mv <source_directory> <target_directory>
 ```
 
-### July. 11th, 2021
+### Get current date information
 
-- get current date information
+`$ date`
 
-  `$ date`
+### Print the output of commands or variables
 
-- print the output of commands or variables
+`$ echo <command_name>`
 
-  `$ echo <command_name>`
+### Find the directory of a command
 
-- Find the directory of a command
+`$ which <command_name>`
 
-  `$ which <command_name>`
+### Return to the last-in directory
 
-- Return to the last-in directory
+`$ cd -`
 
-  `$ cd -`
+### Input and output
 
 - `< file_name`:从文件输入
 
@@ -145,13 +155,13 @@ $ mv <source_directory> <target_directory>
 
   `>> file_name`: append to a file
 
-- change the access control lists of files/directories
+### Change the access control lists of files/directories
 
-  `chmod o+w <file_name>`
+`chmod o+w <file_name>`
 
-  More information is in this [wiki](https://wiki.jikexueyuan.com/project/unix/file-permission.html)
+More information is in this [wiki](https://wiki.jikexueyuan.com/project/unix/file-permission.html)
 
-### July. 17th, 2021
+### Find command
 
 - `find [path] [options] [actions]`
 
@@ -171,6 +181,19 @@ $ mv <source_directory> <target_directory>
 
   [find command](https://shapeshed.com/unix-xargs/)
 
-  
+### Move files based on their extensions
 
-  
+```bash
+mv *.{mp3,ogg,wav} ../../Music
+```
+
+### Grep a keyword and get certain lines before/after it
+
+> [How do you grep a file and get the next 5 lines](https://stackoverflow.com/questions/19274127/how-do-you-grep-a-file-and-get-the-next-5-lines/19274215)
+
+```bash
+grep -A 5 'a-word' <file>
+```
+
+
+

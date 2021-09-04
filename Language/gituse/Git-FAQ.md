@@ -232,6 +232,23 @@ An example in https://stackoverflow.com/a/46275419/11100389
 
 Use `git reset --hard <commit>` on another branch will not affect other branches.
 
+## How to undo unstaged and untracked files?
+
+> [How to quickly undo staged and unstaged changes in git?](https://stackoverflow.com/questions/16160199/how-to-quickly-undo-staged-and-unstaged-changes-in-git)
+
+Use clean command:
+
+```
+git clean -fd
+```
+
+Another method:
+
+```
+git reset HEAD # unstage all changes
+git checkout . # discard all the changes
+```
+
 ## What is cherry-pick in git?
 
 > [What does cherry-picking a commit with Git mean?](https://stackoverflow.com/questions/9339429/what-does-cherry-picking-a-commit-with-git-mean)
@@ -407,6 +424,12 @@ If someone push a branch to the remote repository, how can I checkout to that br
 
 `git checkout -b test <name-of-remote>/test`
 
+## How to show information for a specific commit (based on SHA1)?
+
+> [Get information about a SHA-1 commit object?](https://stackoverflow.com/questions/7610073/get-information-about-a-sha-1-commit-object)
+
+
+
 ## Resources
 
 - [git control from missing semeter](https://missing.csail.mit.edu/2020/version-control/)
@@ -420,3 +443,8 @@ If someone push a branch to the remote repository, how can I checkout to that br
 > git diff \<hash\> <file_name>: show a specific file's difference between the commit and current position
 >
 > git merge --continue: resolve conflicts and do continuely merge
+
+- Some articles
+
+> [git 基本原理介绍](https://mp.weixin.qq.com/s/WvAhPoPVrB1ide1FzqSsGQ)
+
