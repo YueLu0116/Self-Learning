@@ -582,6 +582,33 @@ int* count()
 }
 ```
 
+### Liftime of c_str
+
+> [Is it a good idea to return " const char * " from a function?](https://stackoverflow.com/questions/2514539/is-it-a-good-idea-to-return-const-char-from-a-function)
+
+```cpp
+const char* foo(){
+  std::string str("hello");
+  return str.c_str();  // wrong! str will be deleted.
+}
+```
+
+### Sizeof array returns the array's size (in bytes)
+
+> [How do sizeof(arr) / sizeof(arr[0]) work?](https://stackoverflow.com/questions/33523585/how-do-sizeofarr-sizeofarr0-work)
+
+### Can I free a null pointer?
+
+> [Yes, I can](https://stackoverflow.com/questions/1938735/does-freeptr-where-ptr-is-null-corrupt-memory)
+>
+> The `free` function causes the space pointed to by `ptr` to be deallocated, that is, made available for further allocation. If `ptr` is a null pointer, no action occurs.
+
+## File Operations
+
+### Are seekp and seek exchangeable?
+
+> [Yes](https://stackoverflow.com/questions/14329261/are-seekp-seekg-interchangeable)
+
 ## Advances
 
 ### The forwarding problem
@@ -1392,6 +1419,10 @@ Incremental linking links your exe/dll in a way which makes it easier for the li
 **PDB** is an abbreviation for **P**rogram-Debug **D**ata **B**ase. As the name suggests, it is a repository (persistent storage such as databases) to maintain information required to run your program in debug mode. It contains many important information required to you debug your code (in Visual Studio) e.g. at what points you have put break points where you expect the debugger to break in Visual Studio.
 
 Generally it is not recommended to exclude the generation of `*.pdb` files. From production release stand-point what you should be doing is create the PDB files but don't ship them to customer site in product installer. Preserve all the generated PDB files on a symbol server from where it can be used/referenced in future if required. 
+
+### Link libraries in c++
+
+This [blog](https://segmentfault.com/a/1190000020240898) is very useful.
 
 ## Resource
 
