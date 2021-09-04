@@ -900,3 +900,79 @@ This feature is like interface or abstract class in c++.
 2. Other structs can implement traits.
 3. Default traits method.
 
+### One restriction:
+
+> One restriction to note with trait implementations is that we can implement a trait on a type only if either the trait or the type is local to our crate.
+>
+> This restriction is part of a property of programs called *coherence*, and more specifically the *orphan rule*, so named because the parent type is not present. This rule ensures that other people’s code can’t break your code and vice versa.
+
+### Default implementation:
+
+> Default implementations can call other methods in the same trait, even if those other methods don’t have a default implementation. 
+
+### Traits as parameters
+
+1. Trait bounding
+
+```rust
+pub fn notify(item: &impl Summary) {
+    println!("Breaking news! {}", item.summarize());
+}
+// equal to (syntax sugar)
+pub fn notify<T: Summary>(item: &T) {
+    println!("Breaking news! {}", item.summarize());
+}
+```
+
+2. Multiple trait bounds
+
+```rust
+pub fn notify<T: Summary + Display>(item: &T) {}
+```
+
+3. Where clauses
+
+```rust
+fn some_function<T, U>(t: &T, u: &U) -> i32
+    where T: Display + Clone,
+          U: Clone + Debug
+{}
+```
+
+4. Work with generic
+
+Specification
+
+```rust
+use std::fmt::Display;
+
+struct Pair<T> {
+    x: T,
+    y: T,
+}
+
+impl<T> Pair<T> {
+    fn new(x: T, y: T) -> Self {
+        Self { x, y }
+    }
+}
+
+impl<T: Display + PartialOrd> Pair<T> {
+    fn cmp_display(&self) {
+        if self.x >= self.y {
+            println!("The largest member is x = {}", self.x);
+        } else {
+            println!("The largest member is y = {}", self.y);
+        }
+    }
+}
+```
+
+Conditionally implement a trait for any type that implements another trait.
+
+```rust
+impl<T: Display> ToString for T {
+    // --snip--
+}
+```
+
