@@ -188,6 +188,8 @@ Link to this [page](./OpenSource/github-my-stars.md)
 
 [ssd 101](https://zhuanlan.zhihu.com/p/70895745)
 
+[Valgrind](https://valgrind.org/): detect many memory management and threading bugs, and profile your programs in detail. 
+
 ## Resources
 
 [Free videos](https://www.its.bldrdoc.gov/vqeg/video-datasets-and-organizations.aspx)
