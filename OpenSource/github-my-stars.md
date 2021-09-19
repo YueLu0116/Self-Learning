@@ -110,6 +110,18 @@ sdl源码
 
 This Windows Batchscript helps setup a Mingw-w64 compiler environment for building ffmpeg and other media tools under Windows.
 
+### [speechbrain](https://github.com/speechbrain/speechbrain)
+
+语音识别专题
+
+### [musikcube](https://github.com/clangen/musikcube)
+
+A cross-platform, terminal-based music player, audio engine, metadata indexer, and server in c++.
+
+### [SFML](https://github.com/SFML/SFML)
+
+Simple and Fast Multimedia Library. OOP version's sdl.
+
 ### ==========ffmpeg==========
 
 ### [FFmpeg](https://github.com/FFmpeg/FFmpeg)
@@ -165,6 +177,10 @@ facebook实现的cpp libs
 ### [CppCoreGuidelines](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)
 cpp指南 by Bjarne Stroustrup and Herb Sutter
 
+### [cpplinks](https://github.com/MattPD/cpplinks)
+
+A categorized list of C++ resources.
+
 ## csharp
 ### [awesome dotnet](https://github.com/quozd/awesome-dotnet)
 
@@ -206,6 +222,10 @@ Contains some simple and commonly used WPF controls
 ### [Rustlings](https://github.com/rust-lang/rustlings)
 
 Small exercises to get you used to reading and writing Rust code!
+
+### [Blog OS](https://github.com/phil-opp/blog_os)
+
+Writing an OS in Rust
 
 ## Concurrency
 ### [Is Parallel Programming Hard, And If So, What Can You Do About It?](https://github.com/paulmckrcu/perfbook)
@@ -290,6 +310,10 @@ markdown emoji语法速查
 
 绝妙的个人生产力
 
+### [Design patterns for humans](https://github.com/guanguans/design-patterns-for-humans-cn)
+
+设计模式超简单的解释
+
 ## Networking
 ### [计算机网络-自顶向下方法-笔记](https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES)
 ### [cpp-httplib](https://github.com/yhirose/cpp-httplib)
@@ -335,6 +359,14 @@ chromium源码
 ### [DirectX Graphics Samples](https://github.com/microsoft/DirectX-Graphics-Samples)
 
 ### [Source code for d3d12book](https://github.com/d3dcoder/d3d12book)
+
+### [Source codes for d3d11book](https://github.com/jjuiddong/Introduction-to-3D-Game-Programming-With-DirectX11)
+
+### [DirectXTK](https://github.com/microsoft/DirectXTK)
+
+## VR
+
+### [VR_Awesome](https://github.com/Vytek/VR-Awesome)
 
 ## Projects
 ### [1000 projects](https://github.com/vicky002/1000_Projects)
