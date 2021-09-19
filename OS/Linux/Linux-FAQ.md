@@ -14,7 +14,7 @@
 :set nopaste
 ```
 
-## Shell
+## Shell Programming
 
 ### What is the meaning of "#! /bin/sh"?
 
@@ -195,5 +195,11 @@ mv *.{mp3,ogg,wav} ../../Music
 grep -A 5 'a-word' <file>
 ```
 
+### How to use tmux
 
+> [Gentle Guide to Get Started With tmux](https://pragmaticpineapple.com/gentle-guide-to-get-started-with-tmux/)
+>
+> [How to close a tmux session](https://superuser.com/questions/777269/how-to-close-a-tmux-session)
+
+Session-Window-Pane
 
