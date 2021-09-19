@@ -603,6 +603,13 @@ const char* foo(){
 >
 > The `free` function causes the space pointed to by `ptr` to be deallocated, that is, made available for further allocation. If `ptr` is a null pointer, no action occurs.
 
+### How to typedef a function pointer using "using"
+
+```cpp
+typedef void (*FunctionPtr)();
+using FunctionPtr = void (*)();
+```
+
 ## File Operations
 
 ### Are seekp and seek exchangeable?
@@ -970,6 +977,42 @@ int main() {
 > https://stackoverflow.com/a/20516876/11100389
 
 > The difference is that you can lock and unlock a `std::unique_lock`. `std::lock_guard` will be locked only once on construction and unlocked on destruction.
+
+### What is shared_mutex
+
+> [difference between std::mutex and std::shared_mutex](https://stackoverflow.com/questions/46452973/difference-between-stdmutex-and-stdshared-mutex)
+>
+> [Reader/Writer Locks in C++](https://stackoverflow.com/questions/244316/reader-writer-locks-in-c)
+
+> The shared_mutex class is a synchronization primitive that can be used to protect shared data from being simultaneously accessed by multiple threads. In contrast to other mutex types which facilitate exclusive access, a shared_mutex has two levels of access:
+>
+> - shared - **several threads can share ownership of the same mutex**.
+> - exclusive - only one thread can own the mutex.
+>
+> Shared mutexes are usually used in situations when multiple readers can access the same resource at the same time without causing data races, but only one writer can do so.
+
+Write a read-write lock:
+
+```cpp
+#include <shared_mutex>
+
+typedef std::shared_mutex Lock;
+typedef std::unique_lock< Lock >  WriteLock;
+typedef std::shared_lock< Lock >  ReadLock;
+Lock myLock;
+void ReadFunction()
+{
+     ReadLock r_lock(myLock);
+     //Do reader stuff
+}
+void WriteFunction()
+{
+     WriteLock w_lock(myLock);
+     //Do writer stuff
+}
+```
+
+
 
 ### When to use cv and when to use semaphore?
 

@@ -6,6 +6,14 @@ Reference: [.gitignore](https://git-scm.com/docs/gitignore) in the man pages for
 
 ![how-to-write-gitignore](./images/gitignore-pattern.PNG)
 
+## How to remove added contents?
+
+> [Applying .gitignore to committed files](https://stackoverflow.com/questions/7527982/applying-gitignore-to-committed-files)
+
+```bash
+git rm --cached /path/to/file
+```
+
 ## What does the `fork` mean in github?
 
 Forking is nothing more than a clone on the GitHub server side. I can push and pull from the forked repo.

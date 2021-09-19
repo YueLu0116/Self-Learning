@@ -58,3 +58,10 @@ From personal experience, however, “familiar” doesn’t properly contextuali
 
 - “The United States cannot afford to remain **tethered** to policies creating a response to a world as it was 20 years ago,” he said on July 8. “We need to meet the threats where they are today.” （拘束, restricted）
 - So, does Biden’s argument still hold up? Yes, but with some major caveats. （警告: a warning or proviso of specific stipulations, conditions, or limitations.）
+
+## Sept. 20th, 2021
+
+- But Go has learned from its dynamic **brethren**.
+
+- **Right off the bat**, the Oasis gives you a seven-inch screen. (立即行动)
+

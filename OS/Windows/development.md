@@ -17,3 +17,41 @@ Check project configuration. **Linker**->**System**->**SubSystem** should be **W
 > https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-createmutexa
 
 Two or more processes can call CreateMutex to create the same named mutex. The first process actually creates the mutex, and subsequent processes with sufficient access rights simply open a handle to the existing mutex. 
+
+## API programming
+
+### Write callback using a class member function
+
+> [How can I make a callback function a member of my C++ class?](https://devblogs.microsoft.com/oldnewthing/20140127-00/?p=1963)
+
+```cpp
+class CountWindows
+{
+public:
+  int CountThem();
+private:
+  static BOOL CALLBACK StaticWndEnumProc(HWND hwnd, LPARAM lParam);
+  BOOL WndEnumProc(HWND hwnd);
+  int m_count;
+};
+BOOL CountWindows::StaticWndEnumProc(HWND hwnd, LPARAM lParam)
+{
+   CountWindows *pThis = reinterpret_cast<CountWindows* >(lParam);
+   return pThis->WndEnumProc(hwnd);
+}
+BOOL CountWindows::WndEnumProc(HWND hwnd)
+{
+    m_count++;
+    return TRUE;
+}
+int CountWindows::CountThem()
+{
+  m_count = 0;
+  EnumWindows(StaticWndEnumProc, reinterpret_cast<LPARAM>(this));
+  return m_count;
+}
+```
+
+The `WNDENUMPROC` is declared as a so-called *free function*, but member functions are not free. Neither are *function objects* (also known as *functors*) so you can’t use a `boost::function` as a window procedure either. The reason is that member functions and functors need to have a hidden `this` parameter, but free functions do not have a hidden `this` parameter.
+
+On the other hand, static methods are free functions. They can get away with it because they don’t have a hidden `this` parameter either.
