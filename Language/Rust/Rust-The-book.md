@@ -996,3 +996,9 @@ Three lifetime elision rules
 >
 > The third rule is if there are multiple input lifetime parameters, but one of them is `&self` or `&mut self` because this is a method, the lifetime of `self` is assigned to all output lifetime parameters. This third rule makes methods much nicer to read and write because fewer symbols are necessary.
 
+## Closures
+
+
+
+## Iterators
+
