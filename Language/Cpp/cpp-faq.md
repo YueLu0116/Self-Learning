@@ -60,6 +60,8 @@ int x = 5;
 > [Superiority of unnamed namespace over static?](https://stackoverflow.com/questions/4422507/superiority-of-unnamed-namespace-over-static)
 >
 > [Unnamed/anonymous namespaces vs. static functions](https://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions)
+>
+> [Tip of the Week #186: Prefer to Put Functions in the Unnamed Namespace](https://abseil.io/tips/186)
 
 1. about TU:
 
@@ -609,6 +611,16 @@ const char* foo(){
 typedef void (*FunctionPtr)();
 using FunctionPtr = void (*)();
 ```
+
+### What is the use of do while false?
+
+1. A disguised `goto`:
+
+   > [do {...} while(false)](https://stackoverflow.com/questions/2314066/do-whilefalse)
+
+2. FORCE a semicolon after the macro invocation
+
+   > [What should be done with macros that contain `if`?](https://www.cs.technion.ac.il/users/yechiel/c++-faq/macros-with-if.html)
 
 ## File Operations
 
