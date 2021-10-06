@@ -65,3 +65,13 @@ From personal experience, however, “familiar” doesn’t properly contextuali
 
 - **Right off the bat**, the Oasis gives you a seven-inch screen. (立即行动)
 
+## Oct. 6th, 2021
+
+From fs newsletter
+
+- Carefully **curate** your most trusted, inner circle and you’ll be surprised at how much more valuable you’ll become to the larger community of people in the world who care about the same things you do.
+
+  > curate: select, organize, and look after the items in (a collection or exhibition).
+
+- **The second** we get money, status, or power we’re not satisfied. We just want more. We think these things mean something, but they don’t.
+
