@@ -84,3 +84,11 @@ Get menu bar
 GetSystemMetrics(SM_CYMENU);
 ```
 
+### How to capture screen in Windows?
+
+> [Fastest method of screen capturing on Windows](https://stackoverflow.com/questions/5069104/fastest-method-of-screen-capturing-on-windows)
+>
+> [Chromium win/screen_capture_win_directx](https://chromium.googlesource.com/external/webrtc/+/b4c7b8365d9ed11099b4c5bdcc4eeab33923cd9c/webrtc/modules/desktop_capture/win/screen_capturer_win_directx.cc)
+
+
+
