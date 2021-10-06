@@ -72,6 +72,14 @@ tscon rdp-tcp#71 /dest:console
 [UI自动化关闭远程桌面连接，鼠标键盘失效的解决方案](https://www.pianshen.com/article/79591080857/)  
 [如何关闭远程桌面后仍处于可交互状态](https://zvv.me/z/1478.html)
 
+## 检测系统重启时间
+
+> [How can I find out when Windows was last restarted?](https://superuser.com/questions/523726/how-can-i-find-out-when-windows-was-last-restarted)
+
+```powershell
+wmic os get lastbootuptime
+```
+
 ## About dll
 
 ### dll main可能导致的死锁
