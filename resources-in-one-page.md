@@ -190,6 +190,8 @@ Link to this [page](./OpenSource/github-my-stars.md)
 
 [Valgrind](https://valgrind.org/): detect many memory management and threading bugs, and profile your programs in detail. 
 
+[12 Beautiful Computer History Books That You Should Read](https://mathladyhazel.medium.com/12-beautiful-computer-history-books-that-you-should-read-ea703a248b72)
+
 ## Resources
 
 [Free videos](https://www.its.bldrdoc.gov/vqeg/video-datasets-and-organizations.aspx)
