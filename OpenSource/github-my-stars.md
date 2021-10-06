@@ -203,6 +203,10 @@ Run C# scripts from the .NET CLI.
 
 Cake (C# Make) is a cross platform build automation system.
 
+### [AsyncGuidance](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md)
+
+异步编程指导
+
 ### ========== wpf ==========
 
 ### [WPF samples from microsoft](https://github.com/microsoft/WPF-Samples)
