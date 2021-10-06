@@ -69,3 +69,9 @@ An adapter is **an abstraction of the hardware and the software capability of yo
 
 If a point in a 3D coordinate system represents a position in space, then we can form an array of exact positions which will eventually become a 3D model. Of course, setting so many points would take up a lot of space in memory, so an easier and faster way has been employed. This method is set up using triangles. **Direct3D is designed solely around triangles and combining triangles to make shapes**. Instead of defining each and every corner of every triangle in the game, all you need to do is create a list of vertices, which contain the coordinates and information of each vertex, as well as **what order they go in**.
 
+### What is vertex shader?
+
+> [Tutorial 4: Buffers, Shaders, and HLSL](https://www.rastertek.com/dx11s2tut04.html)
+
+Vertex shaders are small programs that are written mainly for transforming the vertices from the vertex buffer into 3D space.
+
