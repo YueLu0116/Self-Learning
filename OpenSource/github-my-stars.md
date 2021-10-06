@@ -57,6 +57,10 @@ Useful scripts for making developer's everyday life easier and happier, involved
 
 A syntax-aware diff
 
+### [Syncthing](https://github.com/syncthing/syncthing)
+
+Open Source Continuous File Synchronization
+
 ## Libraries
 > Awesome libraries and packages which can be used in my projects.
 ### [SharpZipLib](https://github.com/icsharpcode/SharpZipLib)
@@ -313,6 +317,10 @@ markdown emoji语法速查
 ### [Design patterns for humans](https://github.com/guanguans/design-patterns-for-humans-cn)
 
 设计模式超简单的解释
+
+### [腾讯代码安全指南](https://github.com/Tencent/secguide)
+
+
 
 ## Networking
 ### [计算机网络-自顶向下方法-笔记](https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES)
