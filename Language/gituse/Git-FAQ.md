@@ -436,7 +436,16 @@ If someone push a branch to the remote repository, how can I checkout to that br
 
 > [Get information about a SHA-1 commit object?](https://stackoverflow.com/questions/7610073/get-information-about-a-sha-1-commit-object)
 
+## How to delete a branch (locally and remotely)?
 
+> [How do I delete a Git branch locally and remotely?](https://stackoverflow.com/questions/2003505/how-do-i-delete-a-git-branch-locally-and-remotely)
+
+Use "-d" command
+
+```bash
+$ git push -d <remote_name> <branch_name>
+$ git branch -d <branch_name>
+```
 
 ## Resources
 
