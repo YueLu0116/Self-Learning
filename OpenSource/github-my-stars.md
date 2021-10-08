@@ -65,6 +65,14 @@ Open Source Continuous File Synchronization
 
 Detect disk usages.
 
+### [NETworkManager](https://github.com/BornToBeRoot/NETworkManager)
+
+A powerful tool for managing networks and troubleshoot network problems! (for windows)
+
+### [KeePass](https://sourceforge.net/projects/keepass/)
+
+A lightweight and cross-platform password manager
+
 ## Libraries
 > Awesome libraries and packages which can be used in my projects.
 ### [SharpZipLib](https://github.com/icsharpcode/SharpZipLib)

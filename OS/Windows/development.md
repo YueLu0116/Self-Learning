@@ -90,5 +90,10 @@ GetSystemMetrics(SM_CYMENU);
 >
 > [Chromium win/screen_capture_win_directx](https://chromium.googlesource.com/external/webrtc/+/b4c7b8365d9ed11099b4c5bdcc4eeab33923cd9c/webrtc/modules/desktop_capture/win/screen_capturer_win_directx.cc)
 
+### What is exp files? What are the differences between exp and lib files?
 
+> [What is the use of .exp and what is the difference between .lib and .dll?](https://stackoverflow.com/questions/2727020/what-is-the-use-of-exp-and-what-is-the-difference-between-lib-and-dll)
 
+> A .exp file is an export file -- basically just about the same as a .lib file. It's used (at least primarily) when you have a circular dependency. For example, assume you have a DLL that acts as a plug-in for an executable. The executable supplies some exported functions for use by plug-in DLLs, but also needs to be able to call some functions in the plug-ins as well (e.g. to load and initialize a plug-in).
+>
+> The DLL won't link until the executable is built to provide a .lib file -- but the executable won't link until the DLL is built to provide a .lib file. To break the dependency, you run the linker against the executable, which fails (because it can't find a .lib file for the DLL), but *will* produce a .exp file. You then link the DLL against the .exp file for the executable. You can then re-run link to produce the executable, using the .lib file for the DLL.
