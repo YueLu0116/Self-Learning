@@ -998,7 +998,83 @@ Three lifetime elision rules
 
 ## Closures
 
+类似于cpp中的lambda函数。基本的格式：
 
+```rust
+let expensive_closure = |num| {
+  println!("calculating slowly...");
+  thread::sleep(Duration::from_secs(2));
+  num
+};
+```
+
+闭包的基本用法:
+
+> define the code to call at one point, store that code, and call it at a later point;
+
+不同于普通函数，闭包不需要特别指明返回类型等，因为它是匿名函数，只作用于特定的上下文。
+
+值得注意的是，一个闭包只适用于一个类型，例如下面的写法将导致错误：
+
+```rust
+let example_closure = |x| x;
+
+let s = example_closure(String::from("hello"));
+let n = example_closure(5);
+```
+
+使用闭包时的一个惯用伎俩是用一个结构体保存闭包本身和返回值，如下例：
+
+> The struct will execute the closure only if we need the resulting value, and it will cache the resulting value so the rest of our code doesn’t have to be responsible for saving and reusing the result. You may know this pattern as *memoization* or *lazy evaluation*.
+
+```rust
+impl<T> Cacher<T>
+where
+    T: Fn(u32) -> u32,
+{
+    fn new(calculation: T) -> Cacher<T> {
+        Cacher {
+            calculation,
+            value: None,
+        }
+    }
+
+    fn value(&mut self, arg: u32) -> u32 {
+        match self.value {
+            Some(v) => v,
+            None => {
+                let v = (self.calculation)(arg);
+                self.value = Some(v);
+                v
+            }
+        }
+    }
+}
+```
+
+闭包类型至少实现了下面三种traits里的一种：
+
+`Fn, FnOnce, and FnMut`
+
+> Closures can capture values from their environment in three ways, which directly map to the three ways a function can take a parameter: taking ownership, borrowing mutably, and borrowing immutably. These are encoded in the three `Fn` traits as follows:
+>
+> - `FnOnce` consumes the variables it captures from its enclosing scope, known as the closure’s *environment*. To consume the captured variables, the closure must take ownership of these variables and move them into the closure when it is defined. The `Once` part of the name represents the fact that the closure can’t take ownership of the same variables more than once, so it can be called only once.
+> - `FnMut` can change the environment because it mutably borrows values.
+> - `Fn` borrows values from the environment immutably.
+
+类似于lambda函数，闭包也可以capture外部参数：
+
+```rust
+fn main() {
+    let x = 4;
+
+    let equal_to_x = |z| z == x;
+
+    let y = 4;
+
+    assert!(equal_to_x(y));
+}
+```
 
 ## Iterators
 
