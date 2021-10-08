@@ -61,6 +61,10 @@ A syntax-aware diff
 
 Open Source Continuous File Synchronization
 
+### [WinDirStat](https://windirstat.net/index.html)
+
+Detect disk usages.
+
 ## Libraries
 > Awesome libraries and packages which can be used in my projects.
 ### [SharpZipLib](https://github.com/icsharpcode/SharpZipLib)

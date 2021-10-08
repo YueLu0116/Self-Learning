@@ -147,6 +147,8 @@ Link to this [page](./OpenSource/github-my-stars.md)
 
 [linux and shell tutorials](https://archlinuxstudio.github.io/ShellTutorial/#/)
 
+[穷佐罗的Linux书](https://zorrozou.github.io/)
+
 ### Git
 
 [How Git servers work, and how to keep yours secure](https://gemini.nytpu.com/gemlog/2021-03-07.gmi)
