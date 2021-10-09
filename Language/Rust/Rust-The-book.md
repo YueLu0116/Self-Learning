@@ -1078,3 +1078,36 @@ fn main() {
 
 ## Iterators
 
+- 基本用法，对“聚合”类型，例如vector，调用iter (or into_iter, item_mut)方法：
+
+```rust
+let v1 = vec![1, 2, 3];
+let v1_iter = v1.iter();
+for val in v1_iter {
+  println!("Got: {}", val);
+}
+```
+
+三种不同的iter方法：
+
+> If we want to create an iterator that takes ownership of `v1` and returns owned values, we can call `into_iter` instead of `iter`. Similarly, if we want to iterate over mutable references, we can call `iter_mut` instead of `iter`.
+
+- 所有迭代器都会实现Iterator traits和next方法：
+
+```rust
+pub trait Iterator {
+    type Item;
+
+    fn next(&mut self) -> Option<Self::Item>;
+
+    // methods with default implementations elided
+}
+```
+
+关于next方法需要注意：
+
+> Calling the `next` method on an iterator changes internal state that the iterator uses to keep track of where it is in the sequence. In other words, this code *consumes*, or uses up, the iterator. Each call to `next` eats up an item from the iterator. 
+
+- 迭代器相关方法：
+
+分为两类，一种是consume迭代器（例如sum），一种是产生其他的迭代器（例如map）。
