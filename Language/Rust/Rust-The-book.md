@@ -325,7 +325,7 @@ Normal comments and documentation comments.
 
 ### Slice Types
 
-Slice type is like a small version of reference which does not have ownership too. “string slice” is written as `&str`.
+Slice type is like **a small version of reference** which does not have ownership too. “string slice” is written as `&str`.
 
 ```rust
 fn first_word(s: &String) -> &str {
@@ -1111,3 +1111,7 @@ pub trait Iterator {
 - 迭代器相关方法：
 
 分为两类，一种是consume迭代器（例如sum），一种是产生其他的迭代器（例如map）。
+
+- 与普通循环的比较：
+
+> Iterators, although a high-level abstraction, get compiled down to roughly the same code as if you’d written the lower-level code yourself. Iterators are one of Rust’s *zero-cost abstractions*, by which we mean using the abstraction imposes no additional runtime overhead. 
