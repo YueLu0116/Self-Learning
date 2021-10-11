@@ -1115,3 +1115,22 @@ pub trait Iterator {
 - 与普通循环的比较：
 
 > Iterators, although a high-level abstraction, get compiled down to roughly the same code as if you’d written the lower-level code yourself. Iterators are one of Rust’s *zero-cost abstractions*, by which we mean using the abstraction imposes no additional runtime overhead. 
+
+## More About Cargo
+
+### Optimization Level
+
+Dev (debug)模式默认是0，release模式默认是3，优化级别就在0～3内，也可以进行自定义，方法是在cargo.toml文件内添加：
+
+```toml
+[profile.dev]
+opt-level = 1
+
+[profile.release]
+opt-level = 3
+```
+
+### How to publish my own crate?
+
+TODO
+
