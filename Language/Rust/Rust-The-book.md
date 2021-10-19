@@ -1178,3 +1178,6 @@ $ cargo run -p adder
 ```
 
 对于外部依赖，需要在每个package里的toml文件里说明依赖的版本（版本应该一样），这样可以保证一个workspace下外部依赖的版本统一，同时只需要下载一次。
+
+### Cargo install command to install binaries
+
