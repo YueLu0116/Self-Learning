@@ -1134,3 +1134,47 @@ opt-level = 3
 
 TODO
 
+### Cargo workspace
+
+Workspace类似于visual studio里的“解决方案”。比如一个exe依赖两个libs，通过顶层的toml文件来说明packages间的依赖，一个workspace生成一个target。
+
+文件结构如下：
+
+```
+├── Cargo.lock
+├── Cargo.toml
+├── add-one
+│   ├── Cargo.toml
+│   └── src
+│       └── lib.rs
+├── adder
+│   ├── Cargo.toml
+│   └── src
+│       └── main.rs
+└── target
+```
+
+顶层toml文件里说明workspace:
+
+```toml
+[workspace]
+members = [
+    "adder",
+    "add-one",
+]
+```
+
+adder作为binary依赖了add-one lib，它的toml里通过指定路径说明了这种依赖：
+
+```toml
+[dependencies]
+add-one = {path = "../add-one"}
+```
+
+命令行里通过-p参数指定运行哪个package：
+
+```bash
+$ cargo run -p adder
+```
+
+对于外部依赖，需要在每个package里的toml文件里说明依赖的版本（版本应该一样），这样可以保证一个workspace下外部依赖的版本统一，同时只需要下载一次。
