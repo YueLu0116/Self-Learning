@@ -1181,3 +1181,53 @@ $ cargo run -p adder
 
 ### Cargo install command to install binaries
 
+## Smart Pointers
+
+### Box\<T\>
+
+Box的作用是把数据存放在heap上，使用场景如下：
+
+> - When you have a type whose size can’t be known at compile time and you want to use a value of that type in a context that requires an exact size
+> - When you have a large amount of data and you want to transfer ownership but ensure the data won’t be copied when you do so
+> - When you want to own a value and you care only that it’s a type that implements a particular trait rather than being of a specific type
+
+```rust
+fn main() {
+    let b = Box::new(5);
+    println!("b = {}", b);
+}
+```
+
+一个典型的应用是解决rust编译器不知道recursive type大小的问题，例如如下类型将会产生错误
+
+```rust
+use crate::List::{Cons, Nil};
+
+fn main() {
+    let list = Cons(1, Cons(2, Cons(3, Nil)));
+}
+```
+
+> 注：*cons list*： to cons *x* onto *y*” informally means to construct a new container instance by putting the element *x* at the start of this new container, followed by the container *y*.
+>
+> Each item in a cons list contains two elements: the value of the current item and the next item. The last item in the list contains only a value called `Nil` without a next item.
+
+通过使用Box (**indirection**)，是的list中存放的是指针，可以解决error：
+
+```rust
+enum List {
+    Cons(i32, Box<List>),
+    Nil,
+}
+
+use crate::List::{Cons, Nil};
+
+fn main() {
+    let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
+}
+```
+
+Box的智能指针特性：
+
+1. `Deref` trait： allows `Box<T>` values to be treated like references.
+2. `Drop` trait： When a `Box<T>` value goes out of scope, the heap data that the box is pointing to is cleaned up.
