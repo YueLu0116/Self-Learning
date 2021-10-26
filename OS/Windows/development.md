@@ -97,3 +97,105 @@ GetSystemMetrics(SM_CYMENU);
 > A .exp file is an export file -- basically just about the same as a .lib file. It's used (at least primarily) when you have a circular dependency. For example, assume you have a DLL that acts as a plug-in for an executable. The executable supplies some exported functions for use by plug-in DLLs, but also needs to be able to call some functions in the plug-ins as well (e.g. to load and initialize a plug-in).
 >
 > The DLL won't link until the executable is built to provide a .lib file -- but the executable won't link until the DLL is built to provide a .lib file. To break the dependency, you run the linker against the executable, which fails (because it can't find a .lib file for the DLL), but *will* produce a .exp file. You then link the DLL against the .exp file for the executable. You can then re-run link to produce the executable, using the .lib file for the DLL.
+
+### How to tell is a window is a parent window (except the desktop)?
+
+Through spy++, we can see that every window is the child of desktop.
+
+```c++
+::GetAncestor(activedWnd, GA_PARENT) == ::GetDesktopWindow()
+```
+
+### How to create an application window on the second screen?
+
+> [Win32程序多显示器情况下显示窗口](https://blog.csdn.net/csharpupdown/article/details/69939050)
+
+```c++
+// in App.h
+class App
+{
+public:
+    App() 
+    {
+        mMonitorInfoVec.clear();
+        mMonitorInfoVec.reserve(::GetSystemMetrics(SM_CMONITORS));
+    }
+    // ...
+private:
+    static BOOL CALLBACK StaticMonitorEnumProc(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM lParam);
+    BOOL MonitorEnumProc(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lprcMonitor);
+    
+    struct ALLMONITORINFO {
+        HMONITOR mHmonitor;
+        RECT mRect;
+        bool mIsPrimary;
+    };
+    std::vector<ALLMONITORINFO> mMonitorInfoVec;
+    // ...
+}
+
+// in App.cpp
+BOOL App::StaticMonitorEnumProc(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM lParam)
+{
+    PlayerApp* pthis = reinterpret_cast<PlayerApp*>(lParam);
+    return pthis->MonitorEnumProc(hMonitor, hdcMonitor, lprcMonitor);
+}
+
+BOOL App::MonitorEnumProc(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lprcMonitor)
+{
+    ALLMONITORINFO monitorInfo;
+    monitorInfo.mHmonitor = hMonitor;
+    monitorInfo.mRect = *lprcMonitor;
+    HMONITOR priMonitor = ::MonitorFromWindow(nullptr, MONITOR_DEFAULTTOPRIMARY);
+    if (priMonitor == hMonitor)
+    {
+        monitorInfo.mIsPrimary = true;
+    }
+    else
+    {
+        monitorInfo.mIsPrimary = false;
+    }
+    mMonitorInfoVec.push_back(monitorInfo);
+    return TRUE;
+}
+
+// app initialization: create the window
+HRESULT App::Initialize(HINSTANCE hInstance) 
+{
+    long width = 0, height = 0, startX = 0, startY = 0;
+    //******
+    ::EnumDisplayMonitors(nullptr, nullptr, StaticMonitorEnumProc, reinterpret_cast<LPARAM>(this));
+    // only one monitor
+    if (mMonitorInfoVec.size() == 1)
+    {
+        RECT rect = mMonitorInfoVec[0].mRect;
+        width = rect.right - rect.left;
+        height = rect.bottom - rect.top;
+        startX = rect.left;
+        startY = rect.top;
+    }
+    else // second monitor
+    {
+        for (size_t mid = 0; mid < mMonitorInfoVec.size(); mid++)
+        {
+            if (!mMonitorInfoVec[mid].mIsPrimary)
+            {
+                RECT rect = mMonitorInfoVec[mid].mRect;
+                width = rect.right - rect.left;
+                height = rect.bottom - rect.top;
+                startX = rect.left;
+                startY = rect.top;
+                break;
+            }
+        }
+    }
+    hWnd = CreateWindow(
+        szWindowClass, szTitle,
+        WS_OVERLAPPEDWINDOW | WS_VISIBLE,
+        startX, startY, width, height,
+        NULL, NULL,
+        hInstance,
+        this);
+}
+```
+
