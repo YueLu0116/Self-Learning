@@ -85,3 +85,78 @@ bool InitializeDirect3dApp(HINSTANCE hInstance)
 deviceContext的`ClearRenderTargetView`方法进行渲染，将颜色绘制到RTV上；
 
 swapchain的present方法将backbuffer呈现到屏幕上。
+
+## 绘制
+
+渲染流水线：
+
+**Input Assembler Stage:** 接收几何输入。初始化阶段需要做的事情：
+
+> create a buffer and set the Primitive Topology, Input Layout, and active buffers.
+
+首先创建buffer，IA需要的buffer包括vertex buffer和index buffer。通过填写`D3D11_BUFFER_DESC`来完成。对于绘制简单的几何图形，只需要vertex buffer，还需要通过`D3D11_SUBRESOURCE_DATA`来填入vertex数据。然后调用`ID3D11Device::CreateBuffer()`来创建buffer。
+
+buffer创建好之后，通过填写`D3D11_INPUT_ELEMENT_DESC`来描述input layout对象。如下例：
+
+```c++
+struct Vertex    //Overloaded Vertex Structure
+{
+    Vertex(){}
+    Vertex(float x, float y, float z)
+        : pos(x,y,z){}
+
+    XMFLOAT3 pos;
+};
+D3D11_INPUT_ELEMENT_DESC layout[] =
+{
+    { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 }, 
+};
+```
+
+调用`ID3D11Device::CreateInputLayout()`函数来创建IA对象。
+
+之后需要将buffer和IA对象绑定到IA，注意，这里使用的是DeviceContext。此外还要设置图元拓扑：
+
+```c++
+ID3D11DeviceContext::IASetVertexBuffers();
+ID3D11DeviceContext::IASetInputLayout();
+ID3D11DeviceContext::IASetPrimitiveTopology();
+```
+
+最后，调用`ID3D11DeviceContext::IASetPrimitiveTopology()`方法将图元绘制(装载)到IA。
+
+**Vertex Shader Stage**: vs可以实现诸如平移、scaling、光线等变换。即使不需要这些变换，也要在流水线中实现这一步。shaders通过hlsl编写，下面简单的例子是直接返回输入的vertex：
+
+```c++
+float4 VS(float4 inPos : POSITION) : SV_POSITION
+{
+    return inPos;
+}
+```
+
+**栅格化阶段**：包括Hull Shader Stage, Tessellator Stage, Domain shader Stage。栅格化使得图形更为精细，添加细节。新增的图元都在GPU上实现，不涉及CPU，十分高效。
+
+Hull Shader Stage: (programmable) calculate how and where to add new vertices to a primitive to make it more detailed. 
+
+Tessellator Stage: take the input from the Hull Shader, and actually do the dividing of the primitive. 
+
+Domain shader stage: (programmable) take the Positions of the new vertices from the Hull Shader Stage, and transform the vertices recieved from the tessallator stage to create the more detail.
+
+**Geometry Shader Stage:**  以图元作为输入，可以进一步的创造或销毁图元。
+
+**Stream Output Stage：**接受vertex data，并送到不同的buffer中。过滤掉不完整的图元。
+
+**Rasterization Stage Stage:** 将输入的几何信息转为像素，同时将视口外的图元裁剪掉。
+
+**Pixel Shader Stage:** 输入和输出都是pixel fragment。计算最终的颜色，例如下例：
+
+```c++
+float4 PS() : SV_TARGET
+{
+    return float4(0.0f, 0.0f, 1.0f, 1.0f);
+}
+```
+
+**Output Merger Stage:** 通过深度测试，决定哪些pixel被渲染到RTV上。
+
+pipeline的最后，通过调用`IDXGISwapChain::Present();`方法将back buffer中的内容渲染到屏幕上。
