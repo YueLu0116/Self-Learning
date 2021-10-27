@@ -88,13 +88,13 @@ swapchain的present方法将backbuffer呈现到屏幕上。
 
 ## 绘制
 
-渲染流水线：
+### 渲染流水线
 
 **Input Assembler Stage:** 接收几何输入。初始化阶段需要做的事情：
 
 > create a buffer and set the Primitive Topology, Input Layout, and active buffers.
 
-首先创建buffer，IA需要的buffer包括vertex buffer和index buffer。通过填写`D3D11_BUFFER_DESC`来完成。对于绘制简单的几何图形，只需要vertex buffer，还需要通过`D3D11_SUBRESOURCE_DATA`来填入vertex数据。然后调用`ID3D11Device::CreateBuffer()`来创建buffer。
+首先创建buffer，IA需要的buffer包括vertex buffer和index buffer。通过填写`D3D11_BUFFER_DESC`来完成。对于绘制简单的几何图形，只需要vertex buffer，还需要通过`D3D11_SUBRESOURCE_DATA`来填入vertex**数据**。然后调用`ID3D11Device::CreateBuffer()`来创建buffer。
 
 buffer创建好之后，通过填写`D3D11_INPUT_ELEMENT_DESC`来描述input layout对象。如下例：
 
@@ -160,3 +160,42 @@ float4 PS() : SV_TARGET
 **Output Merger Stage:** 通过深度测试，决定哪些pixel被渲染到RTV上。
 
 pipeline的最后，通过调用`IDXGISwapChain::Present();`方法将back buffer中的内容渲染到屏幕上。
+
+### 实现
+
+**接口**
+
+```c++
+ID3D11Buffer* triangleVertBuffer;    // 描述顶点数据
+ID3D11VertexShader* VS;              // 存储着色器
+ID3D11PixelShader* PS;
+ID3D10Blob* VS_Buffer;               // 内存中的着色器信息
+ID3D10Blob* PS_Buffer;
+ID3D11InputLayout* vertLayout;       // IA对象
+```
+
+**修改后的InitScene**
+
+1. **着色器**相关：编译-》创建-》设置着色器
+
+   运行时编译调用：`D3DX11CompileFromFile`函数
+
+   创建：`ID3D11Device::CreateVertexShader()`
+
+   设置：调用`ID3D11DeviceContext::VSSetShader()`和`ID3D11DeviceContext::PSSetShader()`
+
+2. **缓冲(顶点)**相关：描述、创建和设置缓冲到IA：
+
+   填写`D3D11_BUFFER_DESC`描述缓冲，填写`D3D11_SUBRESOURCE_DATA`来描述数据;
+
+   调用`ID3D11Device::CreateBuffer()`创建缓冲；
+
+   调用`ID3D11Devicecontext::IASetVertexBuffers()`设置缓冲到IA；
+
+3. **IA对象**相关：创建和设置
+
+   调用`ID3D11Device::CreateInputLayout() `来创建IA对象；
+
+   调用`ID3D11DeviceContext::IASetInputLayout()`来设置（绑定）IA对象到IA;
+
+4. **其他**：设置图元拓扑、视口相关、渲染
