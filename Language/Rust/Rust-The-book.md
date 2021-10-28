@@ -1231,3 +1231,75 @@ Box的智能指针特性：
 
 1. `Deref` trait： allows `Box<T>` values to be treated like references.
 2. `Drop` trait： When a `Box<T>` value goes out of scope, the heap data that the box is pointing to is cleaned up.
+
+### Deref trait
+
+`Deref` trait 使得可以对智能指针进行解引用。
+
+一般的解引用：
+
+```rust
+fn main() {
+    let x = 5;
+    let y = &x;
+
+    assert_eq!(5, x);
+    assert_eq!(5, *y);
+}
+```
+
+`Box<T>`实现了`Deref` trait, 因此可以直接解引用，与一般情况无异：
+
+```rust
+fn main() {
+    let x = 5;
+    let y = Box::new(x);
+
+    assert_eq!(5, x);
+    assert_eq!(5, *y);
+}
+```
+
+也可以自己实现智能指针，实现`Deref` trait使得可以被解引用
+
+```rust
+struct MyBox<T>(T);
+use std::ops::Deref;
+
+impl<T> MyBox<T> {
+    fn new(x: T) -> MyBox<T> {
+        MyBox(x)
+    }
+}
+
+impl<T> Deref for MyBox<T> {
+    type Target = T;    // an associated type
+
+    fn deref(&self) -> &Self::Target {
+        &self.0         // returns a reference to the value we want to access with the * operator. 
+    }
+}
+```
+
+**Deref coercion**
+
+> Deref coercion converts a type (that implement the `Deref` trait) into a reference to another type.
+
+例如：
+
+```rust
+fn hello(name: &str) {
+    println!("Hello, {}!", name);
+}
+
+fn main() {
+    let m = MyBox::new(String::from("Rust"));
+    hello(&m);  // turn &MyBox<String> into &String by calling deref
+}
+```
+
+Deref coercion and mutability, three rules:
+
+> - From `&T` to `&U` when `T: Deref<Target=U>`
+> - From `&mut T` to `&mut U` when `T: DerefMut<Target=U>`
+> - From `&mut T` to `&U` when `T: Deref<Target=U>`
