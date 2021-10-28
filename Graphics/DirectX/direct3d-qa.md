@@ -75,3 +75,13 @@ If a point in a 3D coordinate system represents a position in space, then we can
 
 Vertex shaders are small programs that are written mainly for transforming the vertices from the vertex buffer into 3D space.
 
+### What are dirty regions?
+
+> [Texture Dirty Regions](https://docs.microsoft.com/en-us/windows/win32/direct3d9/texture-dirty-regions)
+
+Applications can optimize which subset of a texture is copied by specifying "dirty" regions on textures.
+
+### How to compile shaders in visual studio?
+
+> [DirectX11--HLSL编译着色器的三种方法](https://www.cnblogs.com/X-Jun/p/10066282.html)
+

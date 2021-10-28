@@ -18,6 +18,10 @@ Check project configuration. **Linker**->**System**->**SubSystem** should be **W
 
 Two or more processes can call CreateMutex to create the same named mutex. The first process actually creates the mutex, and subsequent processes with sufficient access rights simply open a handle to the existing mutex. 
 
+### About window station
+
+> 
+
 ## API programming
 
 ### Write callback using a class member function
@@ -98,7 +102,7 @@ GetSystemMetrics(SM_CYMENU);
 >
 > The DLL won't link until the executable is built to provide a .lib file -- but the executable won't link until the DLL is built to provide a .lib file. To break the dependency, you run the linker against the executable, which fails (because it can't find a .lib file for the DLL), but *will* produce a .exp file. You then link the DLL against the .exp file for the executable. You can then re-run link to produce the executable, using the .lib file for the DLL.
 
-### How to tell is a window is a parent window (except the desktop)?
+### How to tell if a window is a parent window (except the desktop)?
 
 Through spy++, we can see that every window is the child of desktop.
 
@@ -199,3 +203,172 @@ HRESULT App::Initialize(HINSTANCE hInstance)
 }
 ```
 
+### What is the Z-order of windows?
+
+> [Window features](https://docs.microsoft.com/en-us/windows/win32/winmsg/window-features)
+
+The z-order of a window indicates the window's position in a stack of overlapping windows. This window stack is oriented along an imaginary axis, the z-axis, extending outward from the screen. The window at the top of the z-order overlaps all other windows. 
+
+### What is a top-level window?
+
+> [What exactly is a top-level window in win32 programming?](https://stackoverflow.com/questions/18244379/what-exactly-is-a-top-level-window-in-win32-programming)
+
+A window that has no parent, or **whose parent is the desktop window**, is called a top-level window.
+
+### How to change wide char to char?
+
+> https://blog.csdn.net/lightspear/article/details/54695123
+
+Use `WideCharToMultiByte` twice
+
+```c++
+std::string WcahrToChar(const wchar_t* wp, size_t encode = CP_ACP)
+{
+    std::string str;
+    int len = ::WideCharToMultiByte(encode, 0, wp, ::wcslen(wp), nullptr, 0, nullptr, nullptr);
+    char* mChar = new(std::nothrow)char[len + 1];
+    ::WideCharToMultiByte(encode, 0, wp, ::wcslen(wp), mChar, len, nullptr, nullptr);
+    mChar[len] = '\0';
+    str = mChar;
+    delete[]mChar;
+    return str;
+}
+```
+
+### 【UI】How to create a progress bar and make it begin to move?
+
+> [How to Use Progress Bar Controls](https://docs.microsoft.com/en-us/windows/win32/controls/create-progress-bar-controls)
+
+### Details about WM_CREATE
+
+> [WM_CREATE message](https://docs.microsoft.com/en-us/windows/win32/winmsg/wm-create)
+
+The message is sent before `CreateWindow` returns. The window procedure of the new window receives this message after the window is created, but **before the window becomes visible**.
+
+### 【UI】How to tell which button is clicked?
+
+> [winapi BN_CLICKED how to identify which button was clicked?](https://stackoverflow.com/questions/20640330/winapi-bn-clicked-how-to-identify-which-button-was-clicked)
+
+Create the button: note the menu id
+
+```c++
+HWND buttonCtrl = ::CreateWindow(L"Button", L"Start Unity",
+                                 WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
+                                 btx, bty, btWidth, btHeight,
+                                 parentHwnd, (HMENU)IDB_START, (HINSTANCE)GetWindowLongPtr(parentHwnd, GWLP_HINSTANCE), nullptr);
+```
+
+In WndProc:
+
+```c++
+case WM_COMMAND:
+{
+    switch (HIWORD(wParam))
+    {
+        case BN_CLICKED:
+            {
+                if (LOWORD(wParam) == IDB_START)
+                {
+                    // ...
+                }
+                else if (LOWORD(wParam) == IDB_RESTORE)
+                {
+                    // ...
+                }
+                break;
+            }
+    }
+    break;
+}
+```
+
+### How to hide the Windows system task bar through Windows api?
+
+```c++
+static HWND hShellWnd = ::FindWindow(_T("Shell_TrayWnd"), NULL);
+ShowWindow(hShellWnd, SW_HIDE);
+```
+
+Note: the `ShowWindow` is very powerful.
+
+### How to kill a process by name?
+
+> [How to kill processes by name? (Win32 API)](https://stackoverflow.com/questions/7956519/how-to-kill-processes-by-name-win32-api)
+
+```c++
+void KillProcess(const wchar_t* exeName)
+{
+    HANDLE hSnapShot = CreateToolhelp32Snapshot(TH32CS_SNAPALL, NULL);
+    PROCESSENTRY32 pEntry;
+    pEntry.dwSize = sizeof(pEntry);
+    BOOL hRes = Process32First(hSnapShot, &pEntry);
+    while (hRes)
+    {
+        if (_wcsicmp(pEntry.szExeFile, exeName) == 0)
+        {
+            HANDLE hProcess = OpenProcess(PROCESS_TERMINATE, 0,
+                (DWORD)pEntry.th32ProcessID);
+            if (hProcess != NULL)
+            {
+                TerminateProcess(hProcess, 9);
+                CloseHandle(hProcess);
+            }
+        }
+        hRes = Process32Next(hSnapShot, &pEntry);
+    }
+    CloseHandle(hSnapShot);
+}
+```
+
+### 【UI】How to create a window at full screen?
+
+> [Win32: full-screen and hiding taskbar](https://stackoverflow.com/questions/2382464/win32-full-screen-and-hiding-taskbar)
+>
+> [chrominum](https://chromium.googlesource.com/chromium/src/+/lkgr/ui/views/win/fullscreen_handler.cc)
+
+```c++
+Microsoft::WRL::ComPtr<ITaskbarList2> ptaskBarList;
+
+void SetFullScreen(HWND hwnd)
+{
+    LONG style = ::GetWindowLong(hwnd, GWL_STYLE);
+    LONG exStyle = ::GetWindowLong(hwnd, GWL_EXSTYLE);
+    RECT rect;
+    ::GetWindowRect(hwnd, &rect);
+    // Set new window style and size.
+    SetWindowLong(hwnd, GWL_STYLE,
+        style & ~(WS_CAPTION | WS_THICKFRAME));
+    SetWindowLong(
+        hwnd, GWL_EXSTYLE,
+        exStyle & ~(WS_EX_DLGMODALFRAME | WS_EX_WINDOWEDGE |
+            WS_EX_CLIENTEDGE | WS_EX_STATICEDGE));
+
+    // On expand, if we're given a window_rect, grow to it, otherwise do
+    // not resize.
+    MONITORINFO monitorInfo;
+    monitorInfo.cbSize = sizeof(monitorInfo);
+    GetMonitorInfo(MonitorFromWindow(hwnd, MONITOR_DEFAULTTONEAREST), &monitorInfo);
+    SetWindowPos(hwnd, nullptr, monitorInfo.rcMonitor.left, monitorInfo.rcMonitor.top,
+        monitorInfo.rcMonitor.right - monitorInfo.rcMonitor.left, 
+        monitorInfo.rcMonitor.bottom - monitorInfo.rcMonitor.top,
+        SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+    if (!ptaskBarList)
+    {
+        HRESULT hr =
+            ::CoCreateInstance(CLSID_TaskbarList, nullptr, CLSCTX_INPROC_SERVER,
+                IID_PPV_ARGS(&ptaskBarList));
+        if (SUCCEEDED(hr) && FAILED(ptaskBarList->HrInit()))
+            ptaskBarList = nullptr;
+    }
+    if (ptaskBarList)
+    {
+        ptaskBarList->MarkFullscreenWindow(hwnd, TRUE);
+    }
+}
+```
+
+### Details of `QueryPerformanceCounter`
+
+> https://www.cnblogs.com/luckyraye/p/7410131.html
+
+TODO
