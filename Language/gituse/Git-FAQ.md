@@ -447,6 +447,38 @@ $ git push -d <remote_name> <branch_name>
 $ git branch -d <branch_name>
 ```
 
+## Git commit message rules
+
+[Understand how to write a good commit message through memes](https://medium.com/@hritik.jaiswal/how-to-write-a-good-commit-message-9d2d533b9052)
+
+50/72 commit message rules:
+
+50 is the maximum number of characters of the commit title, and 72 is the maximum character length of the commit body. 
+
+## Configure multiple users for git
+
+> [Can I specify multiple users for myself in .gitconfig?](https://stackoverflow.com/questions/4220416/can-i-specify-multiple-users-for-myself-in-gitconfig)
+
+One useful situation: one account for personal github account and one for working using company account.
+
+From the root of a specific repo (will override the global configuration):
+
+```bash
+git config user.name "Your Name Here"
+git config user.email your@email.com
+```
+
+Default users:
+
+```bash
+git config --global user.name "Your Name Here"
+git config --global user.email your@email.com
+```
+
+More about git config:
+
+> https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-config#:~:text=The%20git%20config%20command%20is,modify%20a%20configuration%20text%20file
+
 ## Resources
 
 - [git control from missing semeter](https://missing.csail.mit.edu/2020/version-control/)

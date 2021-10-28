@@ -1048,6 +1048,18 @@ Advice:
 
 > Mutexes are great, and C++11 standardizes them. But sometimes for performance reasons you want lower-level primitives. Although to be frank, unless you are an expert and working on some serious low-level code, you should probably stick to mutexes and condition variables.
 
+### About detached thread
+
+> [What happens to a detached thread when main() exits?](https://stackoverflow.com/questions/19744250/what-happens-to-a-detached-thread-when-main-exits)
+
+Just for reference.
+
+### Thread yield vs sleep_for
+
+> [C++11 Thread waiting behaviour: std::this_thread::yield() vs. std::this_thread::sleep_for( std::chrono::milliseconds(1) )](https://stackoverflow.com/questions/17325888/c11-thread-waiting-behaviour-stdthis-threadyield-vs-stdthis-thread)
+
+Read this [answer](https://stackoverflow.com/a/17330049/11100389)
+
 ## Types and Conversions
 
 ### How to convert string to wstring?
