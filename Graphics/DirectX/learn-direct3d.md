@@ -199,3 +199,7 @@ ID3D11InputLayout* vertLayout;       // IA对象
    调用`ID3D11DeviceContext::IASetInputLayout()`来设置（绑定）IA对象到IA;
 
 4. **其他**：设置图元拓扑、视口相关、渲染
+
+## 着色
+
+基本结构与上节相同，只需要增加RGBA输入。
