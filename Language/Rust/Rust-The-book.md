@@ -1420,3 +1420,8 @@ borrow_mut:
 
 > dereference the `Rc<T>` to the inner `RefCell<T>` value. The `borrow_mut` method returns a `RefMut<T>` smart pointer, and we use the dereference operator on it and change the inner value.
 
+### Weak\<T\>
+
+避免相互引用导致的内存泄露，与shared_ptr, weak_ptr类似。
+
+TODO: 细节内容补充
