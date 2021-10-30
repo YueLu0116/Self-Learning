@@ -1376,3 +1376,47 @@ fn main() {
 ```
 
 没有对应clone的减少引用计数的方法，因为Drop会自动减少引用计数。
+
+### RefCell\<T\>
+
+实现Interior Mutability，也是只能在单线程情况下使用:
+
+> a value to mutate itself in its methods but appear immutable to other code. Code outside the value’s methods would not be able to mutate the value. 
+
+使用场景1: 测试时的Mock Objects
+
+TODO
+
+使用场景2:与Rc\<T\>一起使用，实现多个owners时的interior mutability。举例：
+
+```rust
+#[derive(Debug)]
+enum List {
+    Cons(Rc<RefCell<i32>>, Rc<List>),
+    Nil,
+}
+
+use crate::List::{Cons, Nil};
+use std::cell::RefCell;
+use std::rc::Rc;
+
+fn main() {
+    let value = Rc::new(RefCell::new(5));
+
+    let a = Rc::new(Cons(Rc::clone(&value), Rc::new(Nil)));
+
+    let b = Cons(Rc::new(RefCell::new(3)), Rc::clone(&a));
+    let c = Cons(Rc::new(RefCell::new(4)), Rc::clone(&a));
+
+    *value.borrow_mut() += 10;
+
+    println!("a after = {:?}", a);
+    println!("b after = {:?}", b);
+    println!("c after = {:?}", c);
+}
+```
+
+borrow_mut: 
+
+> dereference the `Rc<T>` to the inner `RefCell<T>` value. The `borrow_mut` method returns a `RefMut<T>` smart pointer, and we use the dereference operator on it and change the inner value.
+
