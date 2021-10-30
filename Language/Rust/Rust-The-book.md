@@ -1303,3 +1303,35 @@ Deref coercion and mutability, three rules:
 > - From `&T` to `&U` when `T: Deref<Target=U>`
 > - From `&mut T` to `&mut U` when `T: DerefMut<Target=U>`
 > - From `&mut T` to `&U` when `T: Deref<Target=U>`
+
+### Drop trait
+
+`Drop`是Rust智能指针除`Deref`外另一个需要实现的trait
+
+> specify that a particular bit of code be run whenever a value goes out of scope, and the compiler will insert this code automatically.
+
+`Drop` trait需要实现一个`drop`函数，接受一个mutable reference to self。示例：
+
+```rust
+struct CustomSmartPointer {
+    data: String,
+}
+
+impl Drop for CustomSmartPointer {
+    fn drop(&mut self) {
+        println!("Dropping CustomSmartPointer with data `{}`!", self.data);
+    }
+}
+
+fn main() {
+    let c = CustomSmartPointer {
+        data: String::from("my stuff"),
+    };
+    let d = CustomSmartPointer {
+        data: String::from("other stuff"),
+    };
+    println!("CustomSmartPointers created.");
+}
+```
+
+Rust不允许显式的调用`drop`函数，因为编译器无论如何会自动在变量生命周期结束时调用，会造成double free。在某些场景下，例如释放mutex，可以调用包含在prelude中的`std::mem::drop`来释放相应的资源。
