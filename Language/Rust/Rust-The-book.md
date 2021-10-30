@@ -1335,3 +1335,44 @@ fn main() {
 ```
 
 Rust不允许显式的调用`drop`函数，因为编译器无论如何会自动在变量生命周期结束时调用，会造成double free。在某些场景下，例如释放mutex，可以调用包含在prelude中的`std::mem::drop`来释放相应的资源。
+
+### Rc\<T\>
+
+引用计数。类似于`shared_ptr`，一个变量有多个owners时使用，只能用于单线程的场景。
+
+例如如下场景，若不使用`Rc`将报错：
+
+```rust
+enum List {
+    Cons(i32, Box<List>),
+    Nil,
+}
+
+use crate::List::{Cons, Nil};
+
+fn main() {
+    let a = Cons(5, Box::new(Cons(10, Box::new(Nil))));
+    let b = Cons(3, Box::new(a));
+    let c = Cons(4, Box::new(a));
+}
+```
+
+原因在于创建b时，a的所有权move给了b，创建c时，又试图将a move给c。解决办法就是调用Rc::clone方法，增加引用计数：
+
+```rust
+enum List {
+    Cons(i32, Rc<List>),
+    Nil,
+}
+
+use crate::List::{Cons, Nil};
+use std::rc::Rc;    // Rc is not in the "prelude"
+
+fn main() {
+    let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));
+    let b = Cons(3, Rc::clone(&a));
+    let c = Cons(4, Rc::clone(&a));
+}
+```
+
+没有对应clone的减少引用计数的方法，因为Drop会自动减少引用计数。
