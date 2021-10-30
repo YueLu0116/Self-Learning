@@ -496,7 +496,7 @@ Option\<T\> must firstly be converted to T and then it can be calculated with T 
    }
    ```
 
-2. Patterns and binded value
+2. Patterns and **binded value**
 
    ```rust
    #[derive(Debug)] // so we can inspect the state in a minute
