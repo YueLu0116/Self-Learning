@@ -1425,3 +1425,91 @@ borrow_mut:
 避免相互引用导致的内存泄露，与shared_ptr, weak_ptr类似。
 
 TODO: 细节内容补充
+
+## Concurrency
+
+> *Concurrent programming*, where different parts of a program execute independently, and *parallel programming*, where different parts of a program execute at the same time
+
+不同的编程语言对线程的实现有两种**模型**：
+
+1. 1:1模型：直接调用操作系统提供的api，结果是一个操作系统的线程对应一个编程语言的线程；
+2. M:N模型：编程语言自己实现线程模型，M个语言构造的线程对应N个操作系统的线程，二者不一定一致。
+
+Rust采用的是第一种。
+
+**构造线程**的方法：调用`spawn`函数+闭包。如下示例：
+
+```rust
+use std::thread;
+use std::time::Duration;
+
+fn main() {
+    thread::spawn(|| {
+        for i in 1..10 {
+            println!("hi number {} from the spawned thread!", i);
+            thread::sleep(Duration::from_millis(1));
+        }
+    });
+
+    for i in 1..5 {
+        println!("hi number {} from the main thread!", i);
+        thread::sleep(Duration::from_millis(1));
+    }
+}
+```
+
+上面的代码块创建的线程都是"detached"的，如果想要**等待线程结束**，可以调用`spawn`返回值的`join`方法：
+
+```rust
+use std::thread;
+use std::time::Duration;
+
+fn main() {
+    let handle = thread::spawn(|| {
+        for i in 1..10 {
+            println!("hi number {} from the spawned thread!", i);
+            thread::sleep(Duration::from_millis(1));
+        }
+    });
+
+    for i in 1..5 {
+        println!("hi number {} from the main thread!", i);
+        thread::sleep(Duration::from_millis(1));
+    }
+
+    handle.join().unwrap();
+}
+```
+
+通过`move`闭包来**捕捉环境值**：Rust的线程设计保证了不会出现一个变量在其他线程中已经被释放了，而在当前线程中还在使用的情况，如下例是不允许的：
+
+```rust
+use std::thread;
+
+fn main() {
+    let v = vec![1, 2, 3];
+
+    let handle = thread::spawn(|| {
+        println!("Here's a vector: {:?}", v);
+    });
+
+    handle.join().unwrap();
+}
+```
+
+通过`move`使得启动的线程拿走变量的所有权，保证多线程访问安全：
+
+```rust
+use std::thread;
+
+fn main() {
+    let v = vec![1, 2, 3];
+
+    let handle = thread::spawn(move || {
+        println!("Here's a vector: {:?}", v);
+    });
+
+    handle.join().unwrap();
+}
+```
+
