@@ -85,3 +85,5 @@ Applications can optimize which subset of a texture is copied by specifying "dir
 
 > [DirectX11--HLSL编译着色器的三种方法](https://www.cnblogs.com/X-Jun/p/10066282.html)
 
+For more information: [What does *.hlsl files do, what the relationship between this file and *.fx file?](https://stackoverflow.com/questions/29988382/what-does-hlsl-files-do-what-the-relationship-between-this-file-and-fx-file)
+
