@@ -1430,6 +1430,8 @@ TODO: 细节内容补充
 
 > *Concurrent programming*, where different parts of a program execute independently, and *parallel programming*, where different parts of a program execute at the same time
 
+### 构造线程
+
 不同的编程语言对线程的实现有两种**模型**：
 
 1. 1:1模型：直接调用操作系统提供的api，结果是一个操作系统的线程对应一个编程语言的线程；
@@ -1510,6 +1512,98 @@ fn main() {
     });
 
     handle.join().unwrap();
+}
+```
+
+### 线程间通信
+
+Rust提供了创造**channel**的方法在线程间进行通信。如下示例：
+
+```rust
+use std::sync::mpsc;    // multiple producer, single consumer
+use std::thread;
+
+fn main() {
+    let (tx, rx) = mpsc::channel();
+
+    thread::spawn(move || {
+        let val = String::from("hi");
+        tx.send(val).unwrap();
+    });
+
+    let received = rx.recv().unwrap();    // blocked: recv, non-blocked: try_recv
+    println!("Got: {}", received);
+}
+```
+
+变量通过发送端被发出去后，当前线程不能再使用该值，保证线程间安全。
+
+接收端也可以被用作**迭代器**：
+
+```rust
+use std::sync::mpsc;
+use std::thread;
+use std::time::Duration;
+
+fn main() {
+    let (tx, rx) = mpsc::channel();
+
+    thread::spawn(move || {
+        let vals = vec![
+            String::from("hi"),
+            String::from("from"),
+            String::from("the"),
+            String::from("thread"),
+        ];
+
+        for val in vals {
+            tx.send(val).unwrap();
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
+
+    for received in rx {
+        println!("Got: {}", received);
+    }
+}
+```
+
+还可以通过**`clone`方法创造多个发送端**：
+
+```rust
+let (tx, rx) = mpsc::channel();
+
+let tx1 = tx.clone();
+thread::spawn(move || {
+  let vals = vec![
+    String::from("hi"),
+    String::from("from"),
+    String::from("the"),
+    String::from("thread"),
+  ];
+
+  for val in vals {
+    tx1.send(val).unwrap();
+    thread::sleep(Duration::from_secs(1));
+  }
+});
+
+thread::spawn(move || {
+  let vals = vec![
+    String::from("more"),
+    String::from("messages"),
+    String::from("for"),
+    String::from("you"),
+  ];
+
+  for val in vals {
+    tx.send(val).unwrap();
+    thread::sleep(Duration::from_secs(1));
+  }
+});
+
+for received in rx {
+  println!("Got: {}", received);
 }
 ```
 
