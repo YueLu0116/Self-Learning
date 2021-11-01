@@ -20,7 +20,20 @@ Two or more processes can call CreateMutex to create the same named mutex. The f
 
 ### About window station
 
-> 
+TODO
+
+### 【COM】Replacement of QueryInterface when using Com
+
+> [ComPtr from DirectXTK wiki](https://github.com/Microsoft/DirectXTK/wiki/ComPtr)
+
+```c++
+ComPtr<ID3D11Device> device;
+hr = D3D11CreateDevice( ..., device.GetAddressOf(), ... );
+if (SUCCEEDED(hr))
+   // device created
+ComPtr<ID3D11Device1> device1;
+hr = device.As( &device1 );
+```
 
 ## API programming
 
@@ -372,3 +385,10 @@ void SetFullScreen(HWND hwnd)
 > https://www.cnblogs.com/luckyraye/p/7410131.html
 
 TODO
+
+### How to get the running process
+
+> [Taking a Snapshot and Viewing Processes](https://docs.microsoft.com/en-us/windows/win32/toolhelp/taking-a-snapshot-and-viewing-processes)
+
+Similar to question [How to kill a process by name?](#How-to-kill-a-process-by-name?)
+
