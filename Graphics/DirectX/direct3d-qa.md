@@ -87,3 +87,24 @@ Applications can optimize which subset of a texture is copied by specifying "dir
 
 For more information: [What does *.hlsl files do, what the relationship between this file and *.fx file?](https://stackoverflow.com/questions/29988382/what-does-hlsl-files-do-what-the-relationship-between-this-file-and-fx-file)
 
+### How to enum every adapters of one computer?
+
+> [IDXGIFactory::EnumAdapters method (dxgi.h)](https://docs.microsoft.com/en-us/windows/win32/api/dxgi/nf-dxgi-idxgifactory-enumadapters)
+
+```c++
+UINT i = 0; 
+IDXGIAdapter * pAdapter; 
+std::vector <IDXGIAdapter*> vAdapters; 
+while(pFactory->EnumAdapters(i, &pAdapter) != DXGI_ERROR_NOT_FOUND) 
+{ 
+	vAdapters.push_back(pAdapter); 
+	++i; 
+} 
+```
+
+### What is the meaning of d3d_driver_type_unknown?
+
+> [Reason for D3D_DRIVER_TYPE_UNKNOWN when using non null adapter?](https://gamedev.net/forums/topic/667422-reason-for-d3d_driver_type_unknown-when-using-non-null-adapter/5222016/)
+
+> It's worth adding that this is absolutely consistent with other usages of "unknown" in D3D; in context "unknown" doesn't mean "I don't know it", it means "I don't specify it, the runtime or driver gets this information from elsewhere".
+

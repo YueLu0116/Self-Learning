@@ -6,6 +6,8 @@ Reference: [.gitignore](https://git-scm.com/docs/gitignore) in the man pages for
 
 ![how-to-write-gitignore](./images/gitignore-pattern.PNG)
 
+More information about gitignore can be found [here](https://www.atlassian.com/git/tutorials/saving-changes/gitignore).
+
 ## How to remove added contents?
 
 > [Applying .gitignore to committed files](https://stackoverflow.com/questions/7527982/applying-gitignore-to-committed-files)
