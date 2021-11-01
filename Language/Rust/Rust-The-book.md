@@ -1607,3 +1607,57 @@ for received in rx {
 }
 ```
 
+### 线程间共享状态
+
+`Mutex`的实现：
+
+```rust
+use std::sync::Mutex;
+
+fn main() {
+    let m = Mutex::new(5);
+
+    {
+        let mut num = m.lock().unwrap();  // num's type is Mutex<i32>
+        *num = 6;
+    }  // Mutex<T> is a smart pointer. Once leaving its scope, it will be droped.
+
+    println!("m = {:?}", m);
+}
+```
+
+Rc\<T\> 不是线程间安全的，增减引用计数不能保证不受race condition的影响。
+
+用Arc\<T\>可以解决这个问题：
+
+```rust
+use std::sync::{Arc, Mutex};
+use std::thread;
+
+fn main() {
+    let counter = Arc::new(Mutex::new(0));
+    let mut handles = vec![];
+
+    for _ in 0..10 {
+        let counter = Arc::clone(&counter);
+        let handle = thread::spawn(move || {
+            let mut num = counter.lock().unwrap();   // Mutex<T> provides interior mutability
+
+            *num += 1;
+        });
+        handles.push(handle);
+    }
+
+    for handle in handles {
+        handle.join().unwrap();
+    }
+
+    println!("Result: {}", *counter.lock().unwrap());
+}
+```
+
+### Send和Sync
+
+> 1. The `Send` marker trait indicates that ownership of values of the type implementing `Send` can be transferred between threads. 
+> 2. The `Sync` marker trait indicates that it is safe for the type implementing `Sync` to be referenced from multiple threads.
+> 3. Manually implementing these traits involves implementing unsafe Rust code.
