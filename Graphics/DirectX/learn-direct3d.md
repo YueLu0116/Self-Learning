@@ -203,3 +203,103 @@ ID3D11InputLayout* vertLayout;       // IA对象
 ## 着色
 
 基本结构与上节相同，只需要增加RGBA输入。
+
+## 深度测试
+
+TODO
+
+## 空间与矩阵
+
+### 各种空间的概念
+
+**local space**：物体的自身坐标系；
+
+**world space**: 描述各物体间的位置关系，主要用来实现每个物体的转换(transformation)
+
+> World Space is defined by individual transformations on each object, Translations, Rotations, and Scaling. 
+
+**view space**：视角（相机）的位置：
+
+> The camera is positioned at point (0, 0, 0) where the camera is looking down the z-axis, the up direction of the camera is the y-axis, and the world is translated into the cameras space. So when we do transformations, it will look like the camera is moving around the world, when in fact, the world is moving, and the camera is still.
+
+**projection space**: 透视，物体离camera的远近。遮挡的部分被丢弃，未遮挡的部分保留渲染。有如下几个变量：
+
+> FOV (Field of view in radians), aspect ratio, near z-plane, and far z-plane.
+
+**screen space**：略。
+
+实际渲染过程是将物体从world space转到projection space。流程如下：
+
+> The objects vertices in Local Space will be sent to the Vertex Shader. The VS will use the WVP passed into it right before we called the draw function, and multiply the vertices position with the **WVP matrix**.
+
+### 代码实现
+
+**WVP矩阵**要保存到constant buffers中。描述+创建buffer，示例：
+
+```c++
+struct cbPerObject
+{
+    XMMATRIX  WVP;
+};
+cbPerObject cbPerObj;
+
+D3D11_BUFFER_DESC cbbd;    
+ZeroMemory(&cbbd, sizeof(D3D11_BUFFER_DESC));
+cbbd.Usage = D3D11_USAGE_DEFAULT;
+cbbd.ByteWidth = sizeof(cbPerObject);
+cbbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+cbbd.CPUAccessFlags = 0;
+cbbd.MiscFlags = 0;
+hr = d3d11Device->CreateBuffer(&cbbd, NULL, &cbPerObjectBuffer);
+```
+
+设置ViewMatrix (**camera**)。由三个向量组成。（==具体原理还要看看书==）
+
+```c++
+camPosition = XMVectorSet( 0.0f, 0.0f, -0.5f, 0.0f );
+camTarget = XMVectorSet( 0.0f, 0.0f, 0.0f, 0.0f );
+camUp = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
+camView = XMMatrixLookAtLH( camPosition, camTarget, camUp );
+```
+
+设置**投影矩阵**，填充几个相关的变量：
+
+```c++
+camProjection = XMMatrixPerspectiveFovLH( 0.4f*3.14f, (float)Width/Height, 1.0f, 1000.0f);
+
+```
+
+将三个矩阵按照顺序相乘得到WVP：
+
+```c++
+WVP = World * camView * camProjection;
+```
+
+传进着色器的WVP要求是转置的，还需要调用deviceContext的`UpdateSubresource()`和`VSSetConstantBuffers()`上传设置到vertex shader的constant buffer中：
+
+```c++
+cbPerObj.WVP = XMMatrixTranspose(WVP);
+d3d11DevCon->UpdateSubresource( cbPerObjectBuffer, 0, NULL, &cbPerObj, 0, 0 );
+d3d11DevCon->VSSetConstantBuffers( 0, 1, &cbPerObjectBuffer );
+```
+
+着色器代码中定义常量buffer：
+
+>  Remember to separate them and name them on the frequency in which they are updated. 
+
+```c++
+cbuffer cbPerObject
+{
+    float4x4 WVP;
+};
+VS_OUTPUT VS(float4 inPos : POSITION, float4 inColor : COLOR)
+{
+    VS_OUTPUT output;
+
+    output.Pos = mul(inPos, WVP);
+    output.Color = inColor;
+
+    return output;
+}
+```
+
