@@ -392,3 +392,27 @@ TODO
 
 Similar to question [How to kill a process by name?](#How-to-kill-a-process-by-name?)
 
+### 【UI】How to draw texts on a window?
+
+> [c++ win32 output a text](https://stackoverflow.com/questions/3432457/c-win32-output-a-text)
+
+In `WM_PAINT` message handler, use `TextOut` api (or `DrawText` api). `SetTextColor` can set the texts' color and `SelectObject` combined with `CreateFont` can set the texts' font.
+
+```c++
+case WM_PAINT:
+{
+    PAINTSTRUCT paint;
+    LPCWSTR hintStartMsg = L"测试1";
+    LPCWSTR hintRestoretMsg = L"测试2";
+    HDC hdc = ::BeginPaint(gWindowHandle, &paint);
+    auto hFont = CreateFont(38, 15, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, CHINESEBIG5_CHARSET, OUT_OUTLINE_PRECIS,
+                            CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, VARIABLE_PITCH, TEXT("Times New Roman"));
+    SelectObject(hdc, hFont);
+    ::SetTextColor(hdc, 0x000000FF);  // red
+    ::TextOut(hdc, 10, 10, hintStartMsg, wcslen(hintStartMsg));
+    ::TextOut(hdc, 10, 50, hintRestoretMsg, wcslen(hintRestoretMsg));
+    ::EndPaint(gWindowHandle, &paint);
+    break;
+}
+```
+
