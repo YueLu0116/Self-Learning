@@ -303,3 +303,50 @@ VS_OUTPUT VS(float4 inPos : POSITION, float4 inColor : COLOR)
 }
 ```
 
+## 变换
+
+d3d11中变换矩阵是4x4的，包括x,y,z三个空间维度和一个变换因子 (change)。
+
+> Thats because they use 4 dimensions, 3 spacial, x, y, z, and 1 change, which is represented by the letter w. w is usually equal to a one(1) or a zero(0). 
+
+变换矩阵包括有scaling, rotating, 和translating，最终的变换矩阵是这三者相乘，矩阵乘积的顺序决定了变换的形式：
+
+> We have a scaling matrix called 'S', a rotation matrix called 'R', and a translation matrix called 'T'. our outcome is 'O'. O = S * R * T. Thats the order we must do it in. If we were to put the translation matrix first, 0 = T * S * R, our object would be rotating around where it was originally, not where it is now. It would create more of an orbit effect instead of a spinning effect.
+
+构造两个cubes，实现其中一个围绕另外一个旋转，矩阵构造代码示例：
+
+```c++
+void UpdateScene()
+{
+    //Keep the cubes rotating
+    rot += .0005f;
+    if(rot > 6.28f)
+        rot = 0.0f;
+
+    //Reset cube1World
+    cube1World = XMMatrixIdentity();
+
+    //Define cube1's world space matrix
+    XMVECTOR rotaxis = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+    Rotation = XMMatrixRotationAxis( rotaxis, rot);
+    Translation = XMMatrixTranslation( 0.0f, 0.0f, 4.0f );
+
+    //Set cube1's world space using the transformations
+    cube1World = Translation * Rotation;
+
+    //Reset cube2World
+    cube2World = XMMatrixIdentity();
+
+    //Define cube2's world space matrix
+    Rotation = XMMatrixRotationAxis( rotaxis, -rot);
+    Scale = XMMatrixScaling( 1.3f, 1.3f, 1.3f );
+
+    //Set cube2's world space matrix
+    cube2World = Rotation * Scale;
+}
+```
+
+渲染部分代码与上一节类似：
+
+>传进着色器的WVP要求是转置的，还需要调用deviceContext的`UpdateSubresource()`和`VSSetConstantBuffers()`上传设置到vertex shader的constant buffer中.
+
