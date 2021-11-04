@@ -203,3 +203,150 @@ ID3D11InputLayout* vertLayout;       // IA对象
 ## 着色
 
 基本结构与上节相同，只需要增加RGBA输入。
+
+## 深度测试
+
+TODO
+
+## 空间与矩阵
+
+### 各种空间的概念
+
+**local space**：物体的自身坐标系；
+
+**world space**: 描述各物体间的位置关系，主要用来实现每个物体的转换(transformation)
+
+> World Space is defined by individual transformations on each object, Translations, Rotations, and Scaling. 
+
+**view space**：视角（相机）的位置：
+
+> The camera is positioned at point (0, 0, 0) where the camera is looking down the z-axis, the up direction of the camera is the y-axis, and the world is translated into the cameras space. So when we do transformations, it will look like the camera is moving around the world, when in fact, the world is moving, and the camera is still.
+
+**projection space**: 透视，物体离camera的远近。遮挡的部分被丢弃，未遮挡的部分保留渲染。有如下几个变量：
+
+> FOV (Field of view in radians), aspect ratio, near z-plane, and far z-plane.
+
+**screen space**：略。
+
+实际渲染过程是将物体从world space转到projection space。流程如下：
+
+> The objects vertices in Local Space will be sent to the Vertex Shader. The VS will use the WVP passed into it right before we called the draw function, and multiply the vertices position with the **WVP matrix**.
+
+### 代码实现
+
+**WVP矩阵**要保存到constant buffers中。描述+创建buffer，示例：
+
+```c++
+struct cbPerObject
+{
+    XMMATRIX  WVP;
+};
+cbPerObject cbPerObj;
+
+D3D11_BUFFER_DESC cbbd;    
+ZeroMemory(&cbbd, sizeof(D3D11_BUFFER_DESC));
+cbbd.Usage = D3D11_USAGE_DEFAULT;
+cbbd.ByteWidth = sizeof(cbPerObject);
+cbbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+cbbd.CPUAccessFlags = 0;
+cbbd.MiscFlags = 0;
+hr = d3d11Device->CreateBuffer(&cbbd, NULL, &cbPerObjectBuffer);
+```
+
+设置ViewMatrix (**camera**)。由三个向量组成。（==具体原理还要看看书==）
+
+```c++
+camPosition = XMVectorSet( 0.0f, 0.0f, -0.5f, 0.0f );
+camTarget = XMVectorSet( 0.0f, 0.0f, 0.0f, 0.0f );
+camUp = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
+camView = XMMatrixLookAtLH( camPosition, camTarget, camUp );
+```
+
+设置**投影矩阵**，填充几个相关的变量：
+
+```c++
+camProjection = XMMatrixPerspectiveFovLH( 0.4f*3.14f, (float)Width/Height, 1.0f, 1000.0f);
+
+```
+
+将三个矩阵按照顺序相乘得到WVP：
+
+```c++
+WVP = World * camView * camProjection;
+```
+
+传进着色器的WVP要求是转置的，还需要调用deviceContext的`UpdateSubresource()`和`VSSetConstantBuffers()`上传设置到vertex shader的constant buffer中：
+
+```c++
+cbPerObj.WVP = XMMatrixTranspose(WVP);
+d3d11DevCon->UpdateSubresource( cbPerObjectBuffer, 0, NULL, &cbPerObj, 0, 0 );
+d3d11DevCon->VSSetConstantBuffers( 0, 1, &cbPerObjectBuffer );
+```
+
+着色器代码中定义常量buffer：
+
+>  Remember to separate them and name them on the frequency in which they are updated. 
+
+```c++
+cbuffer cbPerObject
+{
+    float4x4 WVP;
+};
+VS_OUTPUT VS(float4 inPos : POSITION, float4 inColor : COLOR)
+{
+    VS_OUTPUT output;
+
+    output.Pos = mul(inPos, WVP);
+    output.Color = inColor;
+
+    return output;
+}
+```
+
+## 变换
+
+d3d11中变换矩阵是4x4的，包括x,y,z三个空间维度和一个变换因子 (change)。
+
+> Thats because they use 4 dimensions, 3 spacial, x, y, z, and 1 change, which is represented by the letter w. w is usually equal to a one(1) or a zero(0). 
+
+变换矩阵包括有scaling, rotating, 和translating，最终的变换矩阵是这三者相乘，矩阵乘积的顺序决定了变换的形式：
+
+> We have a scaling matrix called 'S', a rotation matrix called 'R', and a translation matrix called 'T'. our outcome is 'O'. O = S * R * T. Thats the order we must do it in. If we were to put the translation matrix first, 0 = T * S * R, our object would be rotating around where it was originally, not where it is now. It would create more of an orbit effect instead of a spinning effect.
+
+构造两个cubes，实现其中一个围绕另外一个旋转，矩阵构造代码示例：
+
+```c++
+void UpdateScene()
+{
+    //Keep the cubes rotating
+    rot += .0005f;
+    if(rot > 6.28f)
+        rot = 0.0f;
+
+    //Reset cube1World
+    cube1World = XMMatrixIdentity();
+
+    //Define cube1's world space matrix
+    XMVECTOR rotaxis = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+    Rotation = XMMatrixRotationAxis( rotaxis, rot);
+    Translation = XMMatrixTranslation( 0.0f, 0.0f, 4.0f );
+
+    //Set cube1's world space using the transformations
+    cube1World = Translation * Rotation;
+
+    //Reset cube2World
+    cube2World = XMMatrixIdentity();
+
+    //Define cube2's world space matrix
+    Rotation = XMMatrixRotationAxis( rotaxis, -rot);
+    Scale = XMMatrixScaling( 1.3f, 1.3f, 1.3f );
+
+    //Set cube2's world space matrix
+    cube2World = Rotation * Scale;
+}
+```
+
+渲染部分代码与上一节类似：
+
+>传进着色器的WVP要求是转置的，还需要调用deviceContext的`UpdateSubresource()`和`VSSetConstantBuffers()`上传设置到vertex shader的constant buffer中.
+
