@@ -813,6 +813,19 @@ int main()
 }
 ```
 
+### About vtable
+
+> [C++ 虚函数表解析](https://coolshell.cn/articles/12165.html)
+
+C++的编译器应该是保证虚函数表的指针存在于对象实例中最前面的位置。子类覆盖父类虚函数后，vtable如下图：
+
+![vtable1](./images/vtable-01.jpg)
+
+![vtable2](./images/vtable-02.jpg)
+
+> 1） 每个父类都有自己的虚表。
+> 2） 子类的成员函数被放到了第一个父类的表中。
+
 ## Parallel Programming
 
 ### How to create a thread function?
