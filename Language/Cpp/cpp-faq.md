@@ -1,6 +1,6 @@
 # cpp FAQ
 
-> personal questions generated in everyday programming. Answers mainly extracted from stackoverflow
+> Personal questions generated in daily programming.
 
 ## Basics
 
@@ -112,7 +112,7 @@ static int sf(); // explicitly static
 
    - other usages: Putting methods in an anonymous namespace prevents you from accidentally violating the One Definition Rule, allowing you to never worry about naming your helper methods the same as some other method you may link in.
 
-### More about static key word
+### More about static keyword
 
 > [The static keyword and its various uses in C++](https://stackoverflow.com/questions/15235526/the-static-keyword-and-its-various-uses-in-c/15235708)
 
@@ -131,7 +131,7 @@ static int sf(); // explicitly static
 
      
 
-   - class members have no restricted scope due to `static`, but can be addressed from the class as well as an instance. You can *declare* static members in a class, but they should usually still be *defined* in a translation unit (cpp file), and as such, there's only one per class.
+   - class members have no restricted scope due to `static`, but can be addressed from the class as well as an instance. **You can *declare* static members in a class, but they should usually still be *defined* in a translation unit (cpp file), and as such, there's only one per class.**
 
    - initialize orders: [static initialization order fiasco](https://stackoverflow.com/questions/3035422/static-initialization-order-fiasco)
 
@@ -185,8 +185,6 @@ address temp_addres = {
 > [Enumeration declaration](https://en.cppreference.com/w/cpp/language/enum)
 >
 > [Where to put the enum in a cpp program?](https://stackoverflow.com/questions/993505/where-to-put-the-enum-in-a-cpp-program)
->
-> 
 
 1. unscoped  `enum`:
 
@@ -221,7 +219,7 @@ address temp_addres = {
 
    `enum name(optional) : type{...}`
 
-4. Where should I put `enum` in my project? Mostly, put them in a common head files.
+4. Where should I put `enum` in my project?  Mostly, put them in a common head files.
 
 ### What is "*&" in c++?
 
@@ -286,7 +284,7 @@ The value of `t` is the address of the string literal `"test"`, and that is not 
 
 ```c++
 std::string str = "world";
-const char* = std::string("hello" + str").c_str();
+const char* = std::string("hello" + str).c_str();
 ```
 
 > [value categories](https://zh.cppreference.com/w/cpp/language/value_category)
@@ -459,7 +457,7 @@ unsigned int round_closest(unsigned int dividend, unsigned int divisor)
 
 ### How to use `if constexpr`?
 
-Condition judgement finished in compiling time. In a constexpr if statement, the value of *condition* must be a [contextually converted constant expression of type bool](https://en.cppreference.com/w/cpp/language/constant_expression#Converted_constant_expression)
+Condition judgment finished in compiling time. In a `constexpr` if statement, the value of *condition* must be a [contextually converted constant expression of type bool](https://en.cppreference.com/w/cpp/language/constant_expression#Converted_constant_expression)
 
 ```cpp
 #include <iostream>
@@ -564,7 +562,7 @@ int * count()
 }
 ```
 
-Method 2: Return a smart pointer. But when I'm working on functions others' defined, I can't return what I want.
+Method 2: Return a smart pointer. But when I'm working on functions defined by others, I can't return what I want.
 
 ```cpp
 unique_ptr<int> count()
@@ -614,7 +612,7 @@ using FunctionPtr = void (*)();
 
 ### What is the use of do while false?
 
-1. A disguised `goto`:
+1. A disguised `goto`, because I can break the loop:
 
    > [do {...} while(false)](https://stackoverflow.com/questions/2314066/do-whilefalse)
 
@@ -741,13 +739,13 @@ Example:
 ```c++
 class Base
 {
-    public:
+public:
     int base_int;
 };
 
 class Derived : public Base
 {
-    public:
+public:
     int derived_int;
 };
 
@@ -782,7 +780,7 @@ class B
 
 > [Pointer to class data member “::*”](https://stackoverflow.com/questions/670734/pointer-to-class-data-member)
 
-An simple example:
+A simple example:
 
 ```cpp
 #include <iostream>
