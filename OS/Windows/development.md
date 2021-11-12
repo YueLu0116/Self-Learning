@@ -35,6 +35,12 @@ ComPtr<ID3D11Device1> device1;
 hr = device.As( &device1 );
 ```
 
+### Why we need pdb files under release mode?
+
+> [Release generating .pdb files, why?](https://stackoverflow.com/questions/5457095/release-generating-pdb-files-why)
+>
+> [What is the best way to distribute .Net binaries and PDBs?](https://stackoverflow.com/questions/225488/what-is-the-best-way-to-distribute-net-binaries-and-pdbs)
+
 ## API programming
 
 ### Write callback using a class member function
