@@ -620,6 +620,18 @@ using FunctionPtr = void (*)();
 
    > [What should be done with macros that contain `if`?](https://www.cs.technion.ac.il/users/yechiel/c++-faq/macros-with-if.html)
 
+### Use "[]" for const map cause an errror
+
+> [Const map element access](https://stackoverflow.com/questions/5134614/const-map-element-access)
+
+Use `at()` instead.
+
+> [`at()`](http://en.cppreference.com/w/cpp/container/map/at) is a new method for `std::map` in C++11.
+>
+> Rather than insert a new default constructed element as `operator[]` does if an element with the given key does not exist, it throws a `std::out_of_range` exception. (This is similar to the behaviour of `at()` for `deque` and `vector`.)
+>
+> Because of this behaviour it makes sense for there to be a `const` overload of `at()`, unlike `operator[]` which always has the potential to change the map
+
 ## File Operations
 
 ### Are seekp and seek exchangeable?
