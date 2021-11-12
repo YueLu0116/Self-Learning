@@ -255,6 +255,10 @@ Small exercises to get you used to reading and writing Rust code!
 
 Writing an OS in Rust
 
+### [windows-rs](https://github.com/microsoft/windows-rs)
+
+Rust for Windows
+
 ## Concurrency
 ### [Is Parallel Programming Hard, And If So, What Can You Do About It?](https://github.com/paulmckrcu/perfbook)
 
@@ -370,6 +374,16 @@ c#网络编程，[教程](https://www.youtube.com/playlist?list=PLXkn83W0QkfnqsK
 cpp websocket lib
 ### [chromium](https://github.com/chromium/chromium)
 chromium源码
+
+### [V2rayU](https://github.com/yanue/V2rayU)
+
+V2rayU,基于v2ray核心的mac版客户端,用于科学上网,使用swift编写,支持vmess,shadowsocks,socks5等服务协议,支持订阅, 支持二维码,剪贴板导入,手动配置,二维码分享等
+
+### [free](https://github.com/freefq/free)
+
+免费科学上网
+
+
 
 ## AI
 ### [Deep-Learning-Papers-Reading-Roadmap](https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap)
