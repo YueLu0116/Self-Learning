@@ -481,6 +481,10 @@ More about git config:
 
 > https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-config#:~:text=The%20git%20config%20command%20is,modify%20a%20configuration%20text%20file
 
+### Save current changes and check to another branch. Very useful!
+
+All about `git stash`: [article in Bitbucket](https://www.atlassian.com/git/tutorials/saving-changes/git-stash)
+
 ## Resources
 
 - [git control from missing semeter](https://missing.csail.mit.edu/2020/version-control/)
