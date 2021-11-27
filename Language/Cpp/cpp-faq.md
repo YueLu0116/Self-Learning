@@ -49,6 +49,41 @@ extern int x;
 int x = 5;
 ```
 
+**More about global variables**:
+
+The following codes are wrong:
+
+```cpp
+// globals.h
+// ...
+static int x = 10;
+
+// main.cpp
+#include "globals.h"
+foo(x);
+
+// utils.cpp
+#include "globals.h"
+bar(x);
+```
+
+Each cpp file will have/make its own copy of x. As this [answer](https://stackoverflow.com/a/14349916/11100389) says:
+
+> `Static` is a keyword with many meanings, and in this particular case, it means **not global** (paraphrasing)
+>
+> It means that each **`.cpp` file has its own copy** of the variable. Thus, when you initialize in `main.cpp`, **it is initialized ONLY in `main.cpp`**. The other files have it still uninitialized.
+
+So use the way at the beginning of this section to declare and define global variabls.
+
+From c++17, inline globals is another choice:
+
+> [How do inline variables work?](https://stackoverflow.com/questions/38043442/how-do-inline-variables-work)
+
+```cpp
+// globals.h
+inline int x = 10;
+```
+
 ### Translation unit and linkage
 
 > [What is a “translation unit” in C++?](https://stackoverflow.com/questions/1106149/what-is-a-translation-unit-in-c)
@@ -295,7 +330,7 @@ const char* = std::string("hello" + str).c_str();
 
 > [!! c operator, is a two NOT?](https://stackoverflow.com/questions/10307281/c-operator-is-a-two-not)
 >
-> [What is “!!” in C? [duplicate\]](https://stackoverflow.com/questions/14751973/what-is-in-c)
+> [What is “!!” in C? ](https://stackoverflow.com/questions/14751973/what-is-in-c)
 >
 > [Defining double exclamation?](https://stackoverflow.com/questions/11374810/defining-double-exclamation)
 
@@ -1357,6 +1392,26 @@ lReturn = RegDeleteKey(HKEY_CURRENT_USER, _T("test1\\test2\\test3"));
 lReturn = RegDeleteKey(HKEY_CURRENT_USER, _T("test1\\test2"));
 ```
 
+### How to indicate debug section in Visual Studio?
+
+> [Automatic #defines according to Debug/Release config in Visual Studio](https://stackoverflow.com/questions/4604283/automatic-defines-according-to-debug-release-config-in-visual-studio)
+>
+> [_DEBUG vs NDEBUG](https://stackoverflow.com/questions/2290509/debug-vs-ndebug)
+
+Use the following codes:
+
+```cpp
+#ifdef _DEBUG
+    std::cout << "[RE_words] " << m_re << std::endl;
+#endif
+```
+
+About NDEBUG: use to disable assertion
+
+> Visual Studio defines `_DEBUG` when you specify the `/MTd` or `/MDd` option, `NDEBUG` disables standard-C assertions. Use them when appropriate, ie `_DEBUG` if you want your debugging code to be consistent with the [MS CRT debugging techniques](https://docs.microsoft.com/en-us/visualstudio/debugger/crt-debugging-techniques) and `NDEBUG` if you want to be consistent with `assert()`.
+
+Any symbol indicates release mode? No.
+
 ## Errors and Exceptions handling
 
 ### Error: Expected a type specifier
@@ -1493,6 +1548,21 @@ int main()
 Bonus: [the difference between file version and production version](https://stackoverflow.com/questions/752162/whats-the-difference-between-a-dlls-fileversion-and-productversion)
 
 > File and product versions are only likely to be different if the assembly in question is not just part of one product (e.g. a reusable third party library), if just used in a single application there seems little reason not to keep them the same.
+
+### How to disable warnings for a certain function?
+
+> [Disable single warning error](https://stackoverflow.com/questions/7159348/disable-single-warning-error)
+
+```cpp
+#pragma warning( push )
+#pragma warning( disable : 4101)
+// Your function
+#pragma warning( pop ) 
+```
+
+### How to precisely sleep a thread?
+
+Just a [discussion](https://stackoverflow.com/questions/13397571/precise-thread-sleep-needed-max-1ms-error), haven't fully implemented it.
 
 ## Linkages
 
